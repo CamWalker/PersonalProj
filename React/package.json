@@ -1,0 +1,24 @@
+{
+  "name": "Goodturn-react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "A react application of Goodturn",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CamWalker/PersonalProj.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CamWalker/PersonalProj/issues"
+  },
+  "homepage": "https://github.com/CamWalker/PersonalProj#readme"
+}
