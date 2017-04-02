@@ -7,16 +7,16 @@ const SelectedProfile = () => {
         <div className="selected-profile-item">
 
           <div className="selected-profile-pic-container">
-            <img className="selected-profile-pic" src="./gil-pic.JPG" alt="" />
+            <img className="selected-profile-pic" src="./gil-pic.JPG" />
           </div>
 
           <div className="selected-profile-name-specs">
-            <div className="selected-profile-name">GIL WALKER 1</div>
+            <div className="selected-profile-name">GIL WALKER</div>
 
             <div className="selected-profile-specs">
               <div className="selected-profile-spec">
-                <img className="selected-profile-spec-image" src="./gil-pic.JPG" />
-                <span className="selected-profile-spec-text">Baby high school. What happends asdfkjalejlqwerl;klkda;lsdflkqwerlkqjwelm doa ewr  fpsodf we</span>
+                <img className="selected-profile-spec-image" src="./education.png" />
+                <span className="selected-profile-spec-text">Baby high school. What happends asdfkjale jlqwerl;klkda;l sdflkqwerlkqjwelm doa ewr  fpsodf we</span>
               </div>
               <div className="selected-profile-spec">
                 <img className="selected-profile-spec-image" src="./gil-pic.JPG" />

@@ -43,26 +43,31 @@ header {
 }
 .blue-circle-container {
   padding: 7px;
+  padding-right: 15px;
   border-right: solid 0.25px #e8e2de;
   background: #81A8CD;
   width: 45px;
   height: 46px;
   overflow: hidden;
 }
-.profile-pic {
+.profile-view {
   /*background: #fffdfb;*/
   width: 100%;
   border-radius: 27.5px;
-  object-fit: cover;
-  object-position: center;
+  border: solid 2px #fffdfb;
+  height: 100%;
 }
 .logo {
-  background: #81A8CD;
+  /*background: #81A8CD;*/
   height: 35px;
   width: 35px;
   border-radius: 17.5px;
   margin-right: 25%;
 }
+  .logo-G {
+    height: 35px;
+    object-fit: cover;
+  }
 .reg-circle {
   height: 32px;
   width: 32px;
@@ -99,12 +104,49 @@ li {
 }
 .left-column {
   background-color: #81A8CD;
-  width: 0px;
+  /*width: 100%;*/
   position: block;
-  height: 0px;
+  height: calc(100vh - 61px);
   z-index: 1;
   display: none;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
 }
+  .account-greeting-text {
+    color: #fffdfb;
+    font-size: 25px;
+    padding: 20px 0px;
+    font-weight: 500;
+  }
+  .account-pic-container {
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    height: 130px;
+    padding: 20px 0px;
+  }
+    .account-pic {
+      border-radius: 65px;
+      object-fit: cover;
+      height: 130px;
+    }
+  .account-options {
+    width: calc(100% - 4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 58px;
+  }
+  .account-options-box {
+    border-bottom: 2px solid #fffdfb;
+    height: 30px;
+    width: 80%;
+    color: #fffdfb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 .right-column {
   display: flex;
   flex-direction: row;
@@ -162,9 +204,9 @@ li {
     .profile-item {
       width: 260px;
       height: auto;
-      border: 1px solid #ccc;
+      border: 2px solid #81A8CD;
       overflow: hidden;
-      border-radius: 25px 5px 5px 25px;
+      border-radius: 27px 5px 5px 25px;
     }
     .item-box {
       height: auto;
@@ -225,7 +267,7 @@ li {
         color: #aaa;
       }
   .selected-profile {
-    background: #F2EEEB;
+    background: #e0edfa;
     /*border: solid 1px #ff8355;*/
   }
 
@@ -341,7 +383,7 @@ li {
 
 @media (min-width: 1050px) {
   .left-column {
-    display: block;
+    display: flex;
   }
   .right-column {
     margin-left: 240px;

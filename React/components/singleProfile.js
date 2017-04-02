@@ -3,7 +3,7 @@ import React from 'react';
 const SingleProfile = () => {
 
   return (
-    <div className="profile-item">
+    <div className="profile-item selected-profile">
       <div className="item-box">
         <div className="item-pic-container">
           <img className="item-pic" src="./gil-pic.JPG" />
@@ -12,7 +12,7 @@ const SingleProfile = () => {
             <div className="item-name">GIL WALKER</div>
             <div className="specs">
               <div className="spec">
-                <img className="spec-image" src="./gil-pic.JPG" />
+                <img className="spec-image" src="./education.png" />
                 <span className="spec-text">Baby high school</span>
               </div>
               <div className="spec">
