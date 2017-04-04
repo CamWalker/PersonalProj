@@ -1,50 +1,57 @@
 import React from 'react';
+import SingleProfileSpec from './singleProfileSpec';
 
-const SingleProfile = () => {
+const SingleProfile = (props, onProfileSelect) => {
+
+  //future state -- have the dates be stored in full conext so they can be sorted and the most recent can be pulled.
+  let specs = [];
+    const educ = props.profile.specs.filter( (specs) => { return specs.type === 'education'})
+    if (educ[0] !== undefined) {
+      specs.push({spec: educ[0], path: '../pics/education.png'});
+    }
+    const work =props.profile.specs.filter( (specs) => { return specs.type === 'work'})
+    if (work[0] !== undefined) {
+      specs.push({spec: work[0], path: '../pics/education.png'});
+    }
+    const relation =props.profile.specs.filter( (specs) => { return specs.type === 'relation'})
+    if (relation[0] !== undefined) {
+      specs.push({spec: relation[0], path: '../pics/education.png'});
+    }
+    const lived =props.profile.specs.filter( (specs) => { return specs.type === 'lived'})
+    if (lived[0] !== undefined) {
+      specs.push({spec: lived[0], path: '../pics/education.png'});
+    }
+  specs = specs.map((spec, i) => {
+    return <SingleProfileSpec
+      spec = {spec.spec}
+      key = {i}
+      path = {spec.path} />
+  })
+
+
+
+
 
   return (
-    <div className="profile-item selected-profile">
+    <div onClick={() => {props.onProfileSelect(props.profile);}} className="profile-item">
       <div className="item-box">
         <div className="item-pic-container">
-          <img className="item-pic" src="./gil-pic.JPG" />
+          <img className="item-pic" src={props.profile.pic} alt="" />
         </div>
           <div className="item-content">
-            <div className="item-name">GIL WALKER</div>
+            <div className="item-name">{props.profile.first_name} {props.profile.last_name}</div>
             <div className="specs">
-              <div className="spec">
-                <img className="spec-image" src="./education.png" />
-                <span className="spec-text">Baby high school</span>
-              </div>
-              <div className="spec">
-                <img className="spec-image" src="./gil-pic.JPG" />
-                <span className="spec-text">Baby work</span>
-              </div>
-              <div className="spec">
-                <img className="spec-image" src="./gil-pic.JPG" />
-                <span className="spec-text">Salt Lake City, Utah</span>
-              </div>
-              <div className="spec">
-                <img className="spec-image" src="./gil-pic.JPG" />
-                <span className="spec-text">Single</span>
-              </div>
+              {specs}
             </div>
           </div>
       </div>
       <div className="ice-breaker-box">
         <div className="ice-breaker-item">
           <div className="ice-breaker-question">
-            Favorite ice cream
+            Ask me about...
           </div>
           <div className="ice-breaker-answer">
-            Swirl- vanilla and chocolate chip
-          </div>
-        </div>
-        <div className="ice-breaker-item">
-          <div className="ice-breaker-question">
-            First job
-          </div>
-          <div className="ice-breaker-answer">
-            McDonald's
+            {props.profile.gtky[0]}
           </div>
         </div>
       </div>

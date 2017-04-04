@@ -1,35 +1,44 @@
 import React from 'react';
+import SelectedProfileSpec from './selectedProfileSpec.js'
 
-const SelectedProfile = () => {
+const SelectedProfile = (props) => {
+  const specs = props.profile.specs.map((spec, i) => {
+    let path = '';
+    switch (spec.type) {
+      case 'education':
+        path = '../pics/education.png'
+        break;
+      case 'work':
+        path = '../pics/education.png'
+        break;
+      case 'relation':
+        path = '../pics/education.png'
+        break;
+      case 'lived':
+        path = '../pics/education.png'
+        break;
+
+    }
+    return <SelectedProfileSpec
+      spec = {spec}
+      key = {i}
+      path = {path} />
+  })
+
   return (
     <div className="selected-profile-box">
       <div className="selected-profile-container">
         <div className="selected-profile-item">
 
           <div className="selected-profile-pic-container">
-            <img className="selected-profile-pic" src="./gil-pic.JPG" />
+            <img className="selected-profile-pic" src={props.profile.pic} />
           </div>
 
           <div className="selected-profile-name-specs">
-            <div className="selected-profile-name">GIL WALKER</div>
+            <div className="selected-profile-name">{props.profile.first_name} {props.profile.last_name}</div>
 
             <div className="selected-profile-specs">
-              <div className="selected-profile-spec">
-                <img className="selected-profile-spec-image" src="./education.png" />
-                <span className="selected-profile-spec-text">Baby high school. What happends asdfkjale jlqwerl;klkda;l sdflkqwerlkqjwelm doa ewr  fpsodf we</span>
-              </div>
-              <div className="selected-profile-spec">
-                <img className="selected-profile-spec-image" src="./gil-pic.JPG" />
-                <span className="selected-profile-spec-text">Baby work</span>
-              </div>
-              <div className="selected-profile-spec">
-                <img className="selected-profile-spec-image" src="./gil-pic.JPG" />
-                <span className="selected-profile-spec-text">Salt Lake City, Utah</span>
-              </div>
-              <div className="selected-profile-spec">
-                <img className="selected-profile-spec-image" src="./gil-pic.JPG" />
-                <span className="selected-profile-spec-text">Single</span>
-              </div>
+              {specs}
             </div>
           </div>
 

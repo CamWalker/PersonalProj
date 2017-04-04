@@ -1,13 +1,21 @@
 import React from 'react';
 import SingleProfile from './singleProfile';
 
-const ProfileFeed = () => {
+const ProfileFeed = (props) => {
+  const profileItems = props.profiles.map((profile, i) => {
+    return <SingleProfile
+      key = {i}
+      profile = {profile}
+      gtkyKEY = {props.gtkyKEY}
+      onProfileSelect={props.onProfileSelect}
+      style="profile-item" />
+  });
+
+
+  // {profileItems}
   return (
     <div className="profile-list">
-      <SingleProfile />
-      <SingleProfile />
-      <SingleProfile />
-      <SingleProfile />
+      {profileItems}
     </div>
   );
 
