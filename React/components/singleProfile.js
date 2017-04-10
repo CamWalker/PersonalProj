@@ -5,21 +5,21 @@ const SingleProfile = (props, onProfileSelect) => {
 
   //future state -- have the dates be stored in full conext so they can be sorted and the most recent can be pulled.
   let specs = [];
-    const educ = props.profile.specs.filter( (specs) => { return specs.type === 'education'})
+    const educ = props.profile.specs.education
     if (educ[0] !== undefined) {
       specs.push({spec: educ[0], path: '../pics/education.png'});
     }
-    const work =props.profile.specs.filter( (specs) => { return specs.type === 'work'})
+    const work = props.profile.specs.work
     if (work[0] !== undefined) {
-      specs.push({spec: work[0], path: '../pics/education.png'});
+      specs.push({spec: work[0], path: '../pics/work.png'});
     }
-    const relation =props.profile.specs.filter( (specs) => { return specs.type === 'relation'})
+    const relation = props.profile.specs.relation
     if (relation[0] !== undefined) {
-      specs.push({spec: relation[0], path: '../pics/education.png'});
+      specs.push({spec: relation[0], path: '../pics/relationship.png'});
     }
-    const lived =props.profile.specs.filter( (specs) => { return specs.type === 'lived'})
+    const lived =props.profile.specs.lived
     if (lived[0] !== undefined) {
-      specs.push({spec: lived[0], path: '../pics/education.png'});
+      specs.push({spec: lived[0], path: '../pics/location.png'});
     }
   specs = specs.map((spec, i) => {
     return <SingleProfileSpec
@@ -28,12 +28,12 @@ const SingleProfile = (props, onProfileSelect) => {
       path = {spec.path} />
   })
 
-
+  const id = (props.selectedID.email === props.profile.email) ? "selected-profile" : "";
 
 
 
   return (
-    <div onClick={() => {props.onProfileSelect(props.profile);}} className="profile-item">
+    <div onClick={() => {props.onProfileSelect(props.profile);}} id={id} className="profile-item">
       <div className="item-box">
         <div className="item-pic-container">
           <img className="item-pic" src={props.profile.pic} alt="" />

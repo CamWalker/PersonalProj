@@ -8,7 +8,7 @@ const ProfileFeed = (props) => {
       profile = {profile}
       gtkyKEY = {props.gtkyKEY}
       onProfileSelect={props.onProfileSelect}
-      style="profile-item" />
+      selectedID={props.selectedID} />
   });
 
 
