@@ -20,7 +20,7 @@ render() {
             </div>
           </div>
           <div className="logo">
-            <img className="logo-G" src="../pics/GoodTurn Logo.png" />
+            <img className="logo-G" src="../pics/GTLogoBlue.png" />
           </div>
           <div className="right-nav"></div>
         </header>

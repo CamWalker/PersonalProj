@@ -5,33 +5,37 @@ import { connect } from 'react-redux';
 
 
 const SelectedProfile = (props) => {
+  let education = "";
+  let work = "";
+  let relation = "";
+  let lived = "";
+  let gtkys = "";
   if(props.selectedProfile) {
-    const education = props.selectedProfile.specs.education.map((spec, i) => {
+    education = props.selectedProfile.specs.education.map((spec, i) => {
       return <SelectedProfileSpec
         spec = {spec}
         key = {i}
         path = '../pics/education.png' />
     });
-    console.log(education);
-    const work = props.selectedProfile.specs.work.map((spec, i) => {
+    work = props.selectedProfile.specs.work.map((spec, i) => {
       return <SelectedProfileSpec
         spec = {spec}
         key = {i}
         path = '../pics/work.png' />
     });
-    const relation = props.selectedProfile.specs.relation.map((spec, i) => {
+    relation = props.selectedProfile.specs.relation.map((spec, i) => {
       return <SelectedProfileSpec
         spec = {spec}
         key = {i}
         path = '../pics/relationship.png' />
     });
-    const lived = props.selectedProfile.specs.lived.map((spec, i) => {
+    lived = props.selectedProfile.specs.lived.map((spec, i) => {
       return <SelectedProfileSpec
         spec = {spec}
         key = {i}
         path = '../pics/location.png' />
     });
-    const gtkys = props.selectedProfile.gtky.map((gtky, i) => {
+    gtkys = props.selectedProfile.gtky.map((gtky, i) => {
       if (gtky) {
         return <SelectedProfileGTKY
           question = {props.gtkyKEY[i]}
@@ -61,10 +65,10 @@ const SelectedProfile = (props) => {
             <div className="selected-profile-name">{ props.selectedProfile ? props.selectedProfile.first_name : "" } { props.selectedProfile ? props.selectedProfile.last_name : "" }</div>
 
             <div className="selected-profile-specs">
-              {props.selectedProfile ? education : ""}
-              {props.selectedProfile ? work : ""}
-              {props.selectedProfile ? relation : ""}
-              {props.selectedProfile ? lived : ""}
+              { props.selectedProfile ? education ? education : "" : ""}
+              { props.selectedProfile ? work ? work : "" : ""}
+              { props.selectedProfile ? relation ? relation : "" : "" }
+              { props.selectedProfile ? lived ? lived : "" : ""}
             </div>
           </div>
           <div className="selected-profile-ice-breaker-box">
