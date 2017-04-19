@@ -1,5 +1,5 @@
 import React from 'react';
-import SingleProfileSpec from './singleProfileSpec';
+import SingleProfileSpec from '../components/singleProfileSpec';
 
 const SingleProfile = (props, onProfileSelect) => {
 
@@ -28,7 +28,7 @@ const SingleProfile = (props, onProfileSelect) => {
       path = {spec.path} />
   })
 
-  const id = (props.selectedID.email === props.profile.email) ? "selected-profile" : "";
+  const id = ""//(props.selectedID.email === props.profile.id) ? "selected-profile" : "";
 
 
 

@@ -1,0 +1,22 @@
+Things to resolve:
+
+FE:
+
+(1) Convert existing code to redux
+  (a) Make API calls
+(2) Work out React Router
+(3) Create Login Page
+(4) Create Profile View and Edit.
+(5) Store Pictures?
+(6) Logo?
+
+BE:
+
+(1) Set up all needed API calls.
+(2) Figure out database
+
+
+
+REACT NATIVE
+
+(1) Send design and colors over to Craig.

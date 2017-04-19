@@ -5,13 +5,17 @@
   "scripts": {
     "start": "webpack-dev-server"
   },
-  "author": "",
+  "author": "Cameron Walker whatIsCameronsEmail@gmail.com",
   "license": "ISC",
   "description": "A react application of Goodturn",
   "dependencies": {
+    "axios": "^0.16.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-geolocated": "^1.0.1"
+    "react-geolocated": "^1.0.1",
+    "react-redux": "^5.0.4",
+    "redux": "^3.6.0",
+    "redux-promise": "^0.5.3"
   },
   "devDependencies": {},
   "repository": {
