@@ -1,8 +1,8 @@
 export const SELECT_PROFILE = 'SELECT_PROFILE';
 
-export function getFeed() {
+export function selectProfile(profile) {
   return {
     type: SELECT_PROFILE,
-    payload: sampleData,
-  }
-}
+    payload: profile,
+  };
+};

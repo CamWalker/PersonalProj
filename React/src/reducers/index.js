@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux';
-// import searchReducer from './reducer_search';
-import feedReducer  from './reducer_feed.js';
-
-var gtkyKEY = ['Ask me about...', "I'm too good for...", "My dream is...", 'Never interrupt me when...', ''];
+import selectProfile from './reducer_selectProfile';
+import feedReducer  from './reducer_feed';
+import gtkyKEY from './reducer_gtky';
 
 
 const rootReducer = combineReducers({
-  profiles: feedReducer
+  profiles: feedReducer,
+  selectedProfile: selectProfile,
+  gtkyKEY: gtkyKEY,
 });
 
 export default rootReducer;

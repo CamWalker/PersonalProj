@@ -1,62 +1,52 @@
 import React from 'react';
 import SelectedProfileSpec from '../components/selectedProfileSpec.js'
 import SelectedProfileGTKY from '../components/selectedProfileGTKY.js'
+import { connect } from 'react-redux';
 
 
 const SelectedProfile = (props) => {
-  console.log(props);
-  // const education = props.profile.specs.education.map((spec, i) => {
-  //   return <SelectedProfileSpec
-  //     spec = {spec}
-  //     key = {i}
-  //     path = '../pics/education.png' />
-  // })
-  // const work = props.profile.specs.work.map((spec, i) => {
-  //   return <SelectedProfileSpec
-  //     spec = {spec}
-  //     key = {i}
-  //     path = '../pics/work.png' />
-  // })
-  // const relation = props.profile.specs.relation.map((spec, i) => {
-  //   return <SelectedProfileSpec
-  //     spec = {spec}
-  //     key = {i}
-  //     path = '../pics/relationship.png' />
-  // })
-  // const lived = props.profile.specs.lived.map((spec, i) => {
-  //   return <SelectedProfileSpec
-  //     spec = {spec}
-  //     key = {i}
-  //     path = '../pics/location.png' />
-  // })
+  if(props.selectedProfile) {
+    const education = props.selectedProfile.specs.education.map((spec, i) => {
+      return <SelectedProfileSpec
+        spec = {spec}
+        key = {i}
+        path = '../pics/education.png' />
+    });
+    console.log(education);
+    const work = props.selectedProfile.specs.work.map((spec, i) => {
+      return <SelectedProfileSpec
+        spec = {spec}
+        key = {i}
+        path = '../pics/work.png' />
+    });
+    const relation = props.selectedProfile.specs.relation.map((spec, i) => {
+      return <SelectedProfileSpec
+        spec = {spec}
+        key = {i}
+        path = '../pics/relationship.png' />
+    });
+    const lived = props.selectedProfile.specs.lived.map((spec, i) => {
+      return <SelectedProfileSpec
+        spec = {spec}
+        key = {i}
+        path = '../pics/location.png' />
+    });
+    const gtkys = props.selectedProfile.gtky.map((gtky, i) => {
+      if (gtky) {
+        return <SelectedProfileGTKY
+          question = {props.gtkyKEY[i]}
+          answer = {gtky}
+          key = {props.gtkyKEY[i]} />
+      }
+    });
+  }
 
 
 
-  // const gtkys = props.profile.gtky.map((gtky, i) => {
-  //   if (gtky) {
-  //     return <SelectedProfileGTKY
-  //       question = {props.gtkyKEY[i]}
-  //       answer = {gtky}
-  //       key = {i} />
-  //   }
-  // })
 
-  // <div className="selected-profile-pic-container">
-  //   <img className="selected-profile-pic" src={props.profile.pic} />
-  // </div>
-  // <div className="selected-profile-name-specs">
-  //   <div className="selected-profile-name">{props.profile.first_name} {props.profile.last_name}</div>
-  //
-  //   <div className="selected-profile-specs">
-  //     {education}
-  //     {work}
-  //     {relation}
-  //     {lived}
-  //   </div>
-  // </div>
-  // <div className="selected-profile-ice-breaker-box">
-  //   {gtkys}
-  // </div>
+
+
+
 
 
   return (
@@ -64,8 +54,22 @@ const SelectedProfile = (props) => {
       <div className="selected-profile-container">
         <div className="selected-profile-item">
 
+          <div className="selected-profile-pic-container">
+            { props.selectedProfile ? (<img className="selected-profile-pic" src={props.selectedProfile.pic} />) : (<img className="selected-profile-pic" />)}
+          </div>
+          <div className="selected-profile-name-specs">
+            <div className="selected-profile-name">{ props.selectedProfile ? props.selectedProfile.first_name : "" } { props.selectedProfile ? props.selectedProfile.last_name : "" }</div>
 
-
+            <div className="selected-profile-specs">
+              {props.selectedProfile ? education : ""}
+              {props.selectedProfile ? work : ""}
+              {props.selectedProfile ? relation : ""}
+              {props.selectedProfile ? lived : ""}
+            </div>
+          </div>
+          <div className="selected-profile-ice-breaker-box">
+            {props.selectedProfile ? gtkys : ""}
+          </div>
 
         </div>
       </div>
@@ -73,4 +77,11 @@ const SelectedProfile = (props) => {
   );
 };
 
-export default SelectedProfile;
+function mapStateToProps(store) {
+  return {
+    selectedProfile: store.selectedProfile,
+    gtkyKEY: store.gtkyKEY,
+  };
+};
+
+export default connect(mapStateToProps)(SelectedProfile);

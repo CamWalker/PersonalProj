@@ -1,5 +1,5 @@
 import { GET_FEED } from '../actions/action_feed.js';
-import { SEARCH_FILTER } from '../actions/search.js';
+import { SEARCH_FILTER } from '../actions/action_search.js';
 
 export default function(state = [], action) {
   const fullFeed = action.fullFeed;

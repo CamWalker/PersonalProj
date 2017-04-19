@@ -1,23 +1,23 @@
 import React from 'react';
 import SingleProfileSpec from '../components/singleProfileSpec';
 
-const SingleProfile = (props, onProfileSelect) => {
+const SingleProfile = (props) => {
 
   //future state -- have the dates be stored in full conext so they can be sorted and the most recent can be pulled.
   let specs = [];
-    const educ = props.profile.specs.education
+    const educ = props.profile.specs.education;
     if (educ[0] !== undefined) {
       specs.push({spec: educ[0], path: '../pics/education.png'});
     }
-    const work = props.profile.specs.work
+    const work = props.profile.specs.work;
     if (work[0] !== undefined) {
       specs.push({spec: work[0], path: '../pics/work.png'});
     }
-    const relation = props.profile.specs.relation
+    const relation = props.profile.specs.relation;
     if (relation[0] !== undefined) {
       specs.push({spec: relation[0], path: '../pics/relationship.png'});
     }
-    const lived =props.profile.specs.lived
+    const lived =props.profile.specs.lived;
     if (lived[0] !== undefined) {
       specs.push({spec: lived[0], path: '../pics/location.png'});
     }
@@ -26,9 +26,9 @@ const SingleProfile = (props, onProfileSelect) => {
       spec = {spec.spec}
       key = {i}
       path = {spec.path} />
-  })
+  });
 
-  const id = ""//(props.selectedID.email === props.profile.id) ? "selected-profile" : "";
+  const id = (props.selectedID === props.profile.id) ? "selected-profile" : "";
 
 
 

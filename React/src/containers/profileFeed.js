@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import SingleProfile from './singleProfile';
+import SingleProfile from '../components/singleProfile';
 import { getFeed } from '../actions/action_feed';
 import { bindActionCreators } from 'redux';
-
+import { selectProfile } from '../actions/action_selectProfile';
 
 class ProfileFeed extends React.Component {
   componentWillMount() {
     this.props.getFeed();
   }
+
 
 
   // {profileItems}
@@ -19,8 +20,10 @@ class ProfileFeed extends React.Component {
       profileItems = profiles.map((profile, i) => {
         return <SingleProfile
           key = {profile.id}
-          profile = {profile} />
-      })
+          profile = {profile}
+          onProfileSelect = {this.props.selectProfile}
+          selectedID = {this.props.selectedProfile ? this.props.selectedProfile.id : null}/>
+      });
     } else {
       profileItems = "";
     }
@@ -36,11 +39,17 @@ class ProfileFeed extends React.Component {
 };
 
 function mapStateToProps(store) {
-  return { profiles: store.profiles };
+  return {
+    profiles: store.profiles,
+    selectedProfile: store.selectedProfile,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getFeed: getFeed }, dispatch)
-}
+  return bindActionCreators({
+    getFeed: getFeed,
+    selectProfile: selectProfile,
+  }, dispatch);
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileFeed);
