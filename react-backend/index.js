@@ -28,14 +28,37 @@ app.set('db', conn);
 var db = app.get('db');
 
 
-// const feedCtrl = require('./feedCtrl.js')
-const profileCtrl = require('./profileCtrl.js')
+const feedCtrl = require('./feedCtrl.js');
+const profileCtrl = require('./profileCtrl.js');
 
-//retrieve the feed
-app.put('/feed', profileCtrl.updateCoords)
 
-//update data
-// app.put('/profile')
+
+//SIGN UP (CREATE NEW ACCOUNT)
+app.post('/profile/', profileCtrl.createUser);
+
+//AUTHENTICATION (LOGIN)
+
+//CHANGE PASSWORD (CHANGE EMAIL?)
+
+
+
+//RETRIEVE USER ACCOUNT
+app.get('/profile/:id', profileCtrl.getUser);
+
+
+
+//UPDATE USER INFORMATION
+app.put('/profile/:id', profileCtrl.updateUser);
+
+//DELETE ACCOUNT
+app.delete('/profile/:id', profileCtrl.deleteUser);
+
+
+
+//RETRIEVE THE FEED
+app.put('/feed/:id', feedCtrl.updateCoordsAndGetFeed);
+
+
 
 
 

@@ -3,9 +3,9 @@ import axios from 'axios';
 
 export function getFeed(lat, long) {
   // RETURN AXIOS AJAX REQUEST //
-  const url = '/feed';
+  const id = 1
+  const url = '/feed/' + id;
   const request = axios.put(url, {
-    id: 1,
     latitude: lat,
     longitude: long
   });

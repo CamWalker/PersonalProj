@@ -7,13 +7,10 @@ CREATE TABLE profiles (
 );
 
 INSERT INTO profiles (email, password, latitude, longitude)
-  VALUES ('whatiscameronsemail@gmail.com', '*****', 12.3455677, 53.9382716);
-INSERT INTO profiles (email, password, latitude, longitude)
-  VALUES ('barackObama@gmail.com', '*****', 13.3455677, 54.9382716);
-INSERT INTO profiles (email, password, latitude, longitude)
-  VALUES ('donaldTrump@gmail.com', '*****', 15.3455677, 56.9382716);
-INSERT INTO profiles (email, password, latitude, longitude)
   VALUES ('test0@gmail.com', '*****', 40.2263334, -111.6608056),
+  ('whatiscameronsemail@gmail.com', '*****', 12.3455677, 53.9382716),
+  ('barackObama@gmail.com', '*****', 13.3455677, 54.9382716),
+  ('donaldTrump@gmail.com', '*****', 15.3455677, 56.9382716),
   ('test1@gmail.com', '*****', 40.2263335, -111.6608066),
   ('test2@gmail.com', '*****', 40.2263335, -111.6608056),
   ('test3@gmail.com', '*****', 40.2263336, -111.6608076),
@@ -119,7 +116,7 @@ INSERT INTO userInfo (first_name, last_name, pic, specs, gtky, profileId)
     "",
     ""
   ]', 3),
-  ('test0-a', 'test', '././pics/test.jpeg', '{
+  ('test0-a', 'test', '././pics/blank-profile.png', '{
       "education": [
         {"value": "test0-b", "start_date": "2004", "end_date": "2008"}
       ],
@@ -138,7 +135,7 @@ INSERT INTO userInfo (first_name, last_name, pic, specs, gtky, profileId)
       "test0-h",
       "test0-i"
     ]', 4),
-    ('test1-a', 'test', '././pics/test.jpeg', '{
+    ('test1-a', 'test', '././pics/blank-profile.png', '{
       "education": [
         {"value": "test1-b", "start_date": "2004", "end_date": "2008"}
       ],
@@ -157,7 +154,7 @@ INSERT INTO userInfo (first_name, last_name, pic, specs, gtky, profileId)
       "test1-h",
       "test1-i"
     ]', 5),
-    ('test2-a', 'test', '././pics/test.jpeg', '{
+    ('test2-a', 'test', '././pics/blank-profile.png', '{
       "education": [
         {"value": "test2-b", "start_date": "2004", "end_date": "2008"}
       ],
@@ -176,7 +173,7 @@ INSERT INTO userInfo (first_name, last_name, pic, specs, gtky, profileId)
       "test2-h",
       "test2-i"
     ]', 6),
-    ('test3-a', 'test', '././pics/test.jpeg', '{
+    ('test3-a', 'test', '././pics/blank-profile.png', '{
       "education": [
         {"value": "test3-b", "start_date": "2004", "end_date": "2008"}
       ],
@@ -195,7 +192,7 @@ INSERT INTO userInfo (first_name, last_name, pic, specs, gtky, profileId)
       "test3-h",
       "test3-i"
     ]', 7),
-    ('test4-a', 'test', '././pics/test.jpeg', '{
+    ('test4-a', 'test', '././pics/blank-profile.png', '{
       "education": [
         {"value": "test4-b", "start_date": "2004", "end_date": "2008"}
       ],
@@ -214,7 +211,7 @@ INSERT INTO userInfo (first_name, last_name, pic, specs, gtky, profileId)
       "test4-h",
       "test4-i"
     ]', 8),
-    ('test5-a', 'test', '././pics/test.jpeg', '{
+    ('test5-a', 'test', '././pics/blank-profile.png', '{
       "education": [
         {"value": "test5-b", "start_date": "2004", "end_date": "2008"}
       ],
@@ -233,7 +230,7 @@ INSERT INTO userInfo (first_name, last_name, pic, specs, gtky, profileId)
       "test5-h",
       "test5-i"
     ]', 9),
-    ('test6-a', 'test', '././pics/test.jpeg', '{
+    ('test6-a', 'test', '././pics/blank-profile.png', '{
       "education": [
         {"value": "test6-b", "start_date": "2004", "end_date": "2008"}
       ],
@@ -252,7 +249,7 @@ INSERT INTO userInfo (first_name, last_name, pic, specs, gtky, profileId)
       "test6-h",
       "test6-i"
     ]', 10),
-    ('test7-a', 'test', '././pics/test.jpeg', '{
+    ('test7-a', 'test', '././pics/blank-profile.png', '{
       "education": [
         {"value": "test7-b", "start_date": "2004", "end_date": "2008"}
       ],
@@ -271,7 +268,7 @@ INSERT INTO userInfo (first_name, last_name, pic, specs, gtky, profileId)
       "test7-h",
       "test7-i"
     ]', 11),
-    ('test8-a', 'test', '././pics/test.jpeg', '{
+    ('test8-a', 'test', '././pics/blank-profile.png', '{
       "education": [
         {"value": "test8-b", "start_date": "2004", "end_date": "2008"}
       ],
@@ -290,7 +287,7 @@ INSERT INTO userInfo (first_name, last_name, pic, specs, gtky, profileId)
       "test8-h",
       "test8-i"
     ]', 12),
-    ('test9-a', 'test', '././pics/test.jpeg', '{
+    ('test9-a', 'test', '././pics/blank-profile.png', '{
       "education": [
         {"value": "test9-b", "start_date": "2004", "end_date": "2008"}
       ],
@@ -309,7 +306,7 @@ INSERT INTO userInfo (first_name, last_name, pic, specs, gtky, profileId)
       "test9-h",
       "test9-i"
     ]', 13),
-    ('test10-a', 'test', '././pics/test.jpeg', '{
+    ('test10-a', 'test', '././pics/blank-profile.png', '{
       "education": [
         {"value": "test10-b", "start_date": "2004", "end_date": "2008"}
       ],
@@ -328,7 +325,7 @@ INSERT INTO userInfo (first_name, last_name, pic, specs, gtky, profileId)
       "test10-h",
       "test10-i"
     ]', 14),
-    ('test11-a', 'test', '././pics/test.jpeg', '{
+    ('test11-a', 'test', '././pics/blank-profile.png', '{
       "education": [
         {"value": "test11-b", "start_date": "2004", "end_date": "2008"}
       ],
@@ -347,7 +344,7 @@ INSERT INTO userInfo (first_name, last_name, pic, specs, gtky, profileId)
       "test11-h",
       "test11-i"
     ]', 15),
-    ('test12-a', 'test', '././pics/test.jpeg', '{
+    ('test12-a', 'test', '././pics/blank-profile.png', '{
       "education": [
         {"value": "test12-b", "start_date": "2004", "end_date": "2008"}
       ],
@@ -366,7 +363,7 @@ INSERT INTO userInfo (first_name, last_name, pic, specs, gtky, profileId)
       "test12-h",
       "test12-i"
     ]', 16),
-    ('test13-a', 'test', '././pics/test.jpeg', '{
+    ('test13-a', 'test', '././pics/blank-profile.png', '{
       "education": [
         {"value": "test13-b", "start_date": "2004", "end_date": "2008"}
       ],
@@ -385,7 +382,7 @@ INSERT INTO userInfo (first_name, last_name, pic, specs, gtky, profileId)
       "test13-h",
       "test13-i"
     ]', 17),
-    ('test14-a', 'test', '././pics/test.jpeg', '{
+    ('test14-a', 'test', '././pics/blank-profile.png', '{
       "education": [
         {"value": "test14-b", "start_date": "2004", "end_date": "2008"}
       ],
@@ -404,7 +401,7 @@ INSERT INTO userInfo (first_name, last_name, pic, specs, gtky, profileId)
       "test14-h",
       "test14-i"
     ]', 18),
-    ('test15-a', 'test', '././pics/test.jpeg', '{
+    ('test15-a', 'test', '././pics/blank-profile.png', '{
       "education": [
         {"value": "test15-b", "start_date": "2004", "end_date": "2008"}
       ],
