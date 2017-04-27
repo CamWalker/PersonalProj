@@ -49,14 +49,9 @@ const SelectedProfile = (props) => {
 
 
 
-
-
-
-
-
-
   return (
     <div className="selected-profile-box">
+      {props.selectedProfile &&
       <div className="selected-profile-container">
         <div className="selected-profile-item">
 
@@ -79,6 +74,7 @@ const SelectedProfile = (props) => {
 
         </div>
       </div>
+      }
     </div>
   );
 };

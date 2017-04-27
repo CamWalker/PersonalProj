@@ -6,6 +6,36 @@ blue : #81A8CD
 yellow : #e4d438
 orange : #ff8355
 */
+
+
+/* LOGIN */
+.login-profile-item {
+  height: auto;
+  /*background-color: rgba(255, 253, 251, 0.3);*/
+  /*border: 3px solid #d1cbc7;*/
+  margin-bottom: 1px;
+  overflow: hidden;
+  border-radius: 5px 5px 5px 5px;
+  color: #fffbfd;
+}
+.login-summary {
+  width: 90%;
+  margin: auto;
+}
+.login-ice-breaker-question {
+  color: #597d9e;
+  font-size: 12px;
+}
+.login-ice-breaker-answer {
+  color: #fffbfd;
+  padding-left: 20px;
+  font-size: 12px;
+}
+.login-specs {
+  font-size: 12px;
+}
+
+
 ::-webkit-scrollbar {
     display: none;
 }
@@ -108,7 +138,6 @@ li {
   /*width: 100%;*/
   position: block;
   height: calc(100vh - 61px);
-  z-index: 1;
   display: none;
   justify-content: space-between;
   align-items: center;
@@ -133,6 +162,7 @@ li {
       border-radius: 65px;
       object-fit: cover;
       height: 130px;
+      width: 130px;
     }
   .account-options {
     width: calc(100% - 4px);
@@ -149,6 +179,7 @@ li {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
   }
 .right-column {
   display: flex;
@@ -211,6 +242,7 @@ li {
       margin-bottom: 1px;
       overflow: hidden;
       border-radius: 27px 5px 5px 25px;
+      color: #aaa;
     }
     .item-box {
       height: auto;
@@ -248,7 +280,7 @@ li {
 
 
       .item-content {
-        padding: 5px 5px 5px 10px;
+        padding: 5px 5px 5px 5px;
         width: 200px;
       }
         .item-name{
@@ -277,21 +309,19 @@ li {
             display: flex;
             align-items: center;
             padding-bottom: 8px;
-
           }
           .spec-image {
             width: 15px;
             padding-right: 15px
           }
-          .spec-text {
-            color: #aaa;
-          }
+
     .ice-breaker-box {
       padding: 5px;
       font-size: 12px;
     }
     .ice-breaker-item {
-      padding-bottom: 8px;
+      padding-bottom: 10px;
+      padding-left: 10px;
     }
       .ice-breaker-question {
         color: #444;
@@ -386,6 +416,11 @@ li {
         padding-left: 20px;
         color: #aaa;
       }
+
+
+
+
+
 
 
 

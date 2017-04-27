@@ -11,9 +11,6 @@ class ProfileFeed extends React.Component {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
         getFeed(position.coords.latitude, position.coords.longitude);
-
-
-
       }, function (error) {
         switch(error.code) {
           case error.PERMISSION_DENIED:
@@ -36,10 +33,7 @@ class ProfileFeed extends React.Component {
         alert("Geolocation is not supported by this browser.");
     }
 
-
-
   }
-
 
 
   // {profileItems}
@@ -58,8 +52,6 @@ class ProfileFeed extends React.Component {
       profileItems = "";
     }
 
-
-
     return (
       <div className="profile-list">
         {profileItems}
@@ -71,14 +63,14 @@ class ProfileFeed extends React.Component {
 function mapStateToProps(store) {
   return {
     profiles: store.profiles,
-    selectedProfile: store.selectedProfile,
+    selectedProfile: store.selectedProfile
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     getFeed: getFeed,
-    selectProfile: selectProfile,
+    selectProfile: selectProfile
   }, dispatch);
 };
 

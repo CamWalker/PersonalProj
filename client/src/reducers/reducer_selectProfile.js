@@ -5,7 +5,6 @@ export default function(state = null, action) {
     case SELECT_PROFILE:
       return action.payload;
     default:
-      //nothing
+      return state;
   }
-  return state;
 }

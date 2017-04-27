@@ -10,11 +10,7 @@ export default function(state = [], action) {
           feed[i].distance /= 1609;
           if (feed[i].distance  < 1) {
             feed[i].distance *= 5280;
-            if(Math.ceil(feed[i].distance) === 1) {
-              feed[i].distance = '' + Math.ceil(feed[i].distance) + ' foot';
-            } else {
-              feed[i].distance = '' + Math.ceil(feed[i].distance) + ' feet';
-            }
+            feed[i].distance = '' + Math.ceil(feed[i].distance/100)*100 + ' feet';
           } else {
             if(Math.ceil(feed[i].distance) === 1) {
               feed[i].distance = '' + Math.ceil(feed[i].distance) + ' mile';
@@ -25,7 +21,6 @@ export default function(state = [], action) {
         }
 
       }
-      console.log(action.payload.data.feed);
       return {
         temp: action.payload.data.feed,
         perm: action.payload.data.feed
@@ -63,7 +58,6 @@ export default function(state = [], action) {
         perm: state.perm
       };
     default:
-      //
+      return state;
   }
-  return state;
 }
