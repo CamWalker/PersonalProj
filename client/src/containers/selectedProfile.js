@@ -15,7 +15,7 @@ const SelectedProfile = (props) => {
       return <SelectedProfileSpec
         spec={spec}
         key={i}
-        path='../pics/education.png' />
+        path='../pics/education2.png' />
     });
     work = props.selectedProfile.specs.work.map((spec, i) => {
       return <SelectedProfileSpec

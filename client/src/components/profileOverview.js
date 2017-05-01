@@ -37,19 +37,19 @@ const ProfileOverview = () => {
     let specs = [];
     const educ = profile.specs.education;
     if (educ[0] !== undefined) {
-      specs.push({spec: educ[0], path: '../pics/education.png'});
+      specs.push({spec: educ[0], path: '../pics/education4.png'});
     }
     const work = profile.specs.work;
     if (work[0] !== undefined) {
-      specs.push({spec: work[0], path: '../pics/work.png'});
+      specs.push({spec: work[0], path: '../pics/work2.png'});
     }
     const relation = profile.specs.relation;
     if (relation[0] !== undefined) {
-      specs.push({spec: relation[0], path: '../pics/relationship.png'});
+      specs.push({spec: relation[0], path: '../pics/relationship2.png'});
     }
     const lived =profile.specs.lived;
     if (lived[0] !== undefined) {
-      specs.push({spec: lived[0], path: '../pics/location.png'});
+      specs.push({spec: lived[0], path: '../pics/location2.png'});
     }
     specs = specs.map((spec, i) => {
       return <SingleProfileSpec
@@ -92,7 +92,7 @@ const ProfileOverview = () => {
         </div>
       </div>
       <div className="account-options">
-        <Link className="account-options-box" to="/profile"><div>View/Edit Profile</div></Link>
+        <Link className="account-options-box" to="/profile"><div>Profile</div></Link>
         <div className="account-options-box">Help</div>
         <div className="account-options-box">Log Out</div>
       </div>

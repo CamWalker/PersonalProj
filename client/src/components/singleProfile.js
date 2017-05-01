@@ -7,7 +7,7 @@ const SingleProfile = (props) => {
   let specs = [];
     const educ = props.profile.specs.education;
     if (educ[0] !== undefined) {
-      specs.push({spec: educ[0], path: '../pics/education.png'});
+      specs.push({spec: educ[0], path: '../pics/education2.png'});
     }
     const work = props.profile.specs.work;
     if (work[0] !== undefined) {

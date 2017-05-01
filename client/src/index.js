@@ -8,9 +8,8 @@ import reducers from './reducers/index.js';
 import App from './containers/App.js';
 import Login from './containers/login.js';
 import UserProfile from './containers/userProfile.js';
+import Header from './containers/header.js';
 
-
-// import routes from './components/routes.js';
 
 const middleware = applyMiddleware(ReduxPromise);
 const store = createStore(reducers, middleware);
@@ -19,15 +18,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
         <main>
-          <header>
-            <div className="left-nav-items">
-            </div>
-            <div className="logo">
-              <img className="logo-G" src="../pics/GTLogo4.png" alt="" />
-            </div>
-            <div className="right-nav"></div>
-          </header>
-
+          <Header />
           <div className="below-nav">
             <Route path='/' exact={true} component={App} />
             <Route path='/login' component={Login} />

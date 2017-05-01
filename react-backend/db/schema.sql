@@ -46,11 +46,11 @@ INSERT INTO userInfo (first_name, last_name, pic, specs, gtky, profileId)
       {"value": "Foothill High School", "start_date": "2004", "end_date": "2008"}
     ] ,
     "work": [
-      {"value": "Operations Analyst - Goldman Sachs", "start_date": "2014", "end_date": "2017"},
-      {"value": "Economics Teaching Assistant - Brigham Young University", "start_date": "2012", "end_date": "2014"}
+      {"title": "Operations Analyst", Employer: "Goldman Sachs", "start_date": "2014", "end_date": "2017"},
+      {"title": "Economics Teaching Assistant", Employer: "Brigham Young University", "start_date": "2012", "end_date": "2014"}
     ] ,
     "relation": [
-      {"value": "Married"},
+      {"status": "Married"},
       {"value": "1 child"},
       {"value": "4 siblings"}
     ],

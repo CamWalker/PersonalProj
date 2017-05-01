@@ -39,10 +39,10 @@ function findWithinDist (lat, long, dist) {
     minLong: long - longChange,
   };
   if (block.maxLong >= 180) {
-    block.maxLong = 180 - (block.maxLong - 180);
+    block.maxLong = -180 + (block.maxLong - 180);
   }
   if (block.minLong <= -180) {
-    block.minLong = -180 - (block.minLong + 180);
+    block.minLong = 180 + (block.minLong + 180);
   }
   return block;
 }
@@ -77,7 +77,7 @@ exports.updateCoordsAndGetFeed = function (req, res, next) {
   function queryUsers(latitude, longitude, dist) {
     block = findWithinDist (latitude, longitude, dist);
     let promise = new Promise(function(resolve, reject) {
-      db.getFeedIds([block.minLat, block.maxLat, block.minLong, block.maxLong], function (err, users) {
+      db.getFeedIds([block.minLat, block.maxLat, block.minLong, block.maxLong, id], function (err, users) {
         if (!err) {
           resolve(users)
         } else {
