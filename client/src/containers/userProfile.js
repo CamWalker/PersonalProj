@@ -7,11 +7,11 @@ import { Link } from 'react-router-dom';
 
 
 const UserProfile = (props) => {
-  if (!props.login) {
-    return (
-      <Redirect to='/login' />
-    )
-  }
+  // if (!props.login) {
+  //   return (
+  //     <Redirect to='/login' />
+  //   )
+  // }
 
   let profile = {
     specs: {
@@ -46,8 +46,12 @@ const UserProfile = (props) => {
       const education = profile.specs.education.map((spec, i) => {
         return (
           <div key={i} className="user-spec">
-            {spec.value}
-            <div>{spec.start_date} - {spec.end_date}</div>
+            <div className="user-spec-value">
+              {spec.value}
+            </div>
+            <div className="user-spec-dates">
+              {spec.start_date} - {spec.end_date}
+            </div>
           </div>
         )
       });
@@ -55,27 +59,37 @@ const UserProfile = (props) => {
       const work = profile.specs.work.map((spec, i) => {
         return (
           <div key={i} className="user-spec">
-            <div>{spec.title} at {spec.employer}</div>
-            <div>{spec.start_date} - {spec.end_date}</div>
+            <div className="user-spec-value">{spec.title} at {spec.employer}</div>
+            <div className="user-spec-dates">{spec.start_date} - {spec.end_date}</div>
           </div>
         )
       });
 
       const relation = profile.specs.relation.map((spec, i) => {
         return (
-          <div key={i}>
-            {spec.value}
+          <div key={i} className="user-spec">
+            <div className="user-spec-value"></div>
+            <div className="user-spec-dates">{spec.value}</div>
           </div>
         )
       });
 
       const lived = profile.specs.lived.map((spec, i) => {
         return (
-          <div key={i}>
-            {spec.value}
+          <div key={i} className="user-spec">
+            <div className="user-spec-value">{spec.value}</div>
           </div>
         )
       });
+
+      const gtky = profile.gtky.map((answer, i) => {
+        return (
+          <div key={i} className="user-spec">
+            <div className="user-spec-value gray-text">{props.gtkyKEY[i]}</div>
+            <div className="user-spec-dates">{answer}</div>
+          </div>
+        )
+      })
 
 
   return (
@@ -116,10 +130,11 @@ const UserProfile = (props) => {
                     <hr size="1px" color="#ece6e2" />
                   </div>
                   <div className="user-spec-fields">
-                    <div>
-                      Relationship Status: {profile.specs.relationship_status}
-                      {relation}
+                    <div className="user-spec">
+                      <div className="user-spec-value user-relationship-status">Relationship Status:</div>
+                      <div className="user-spec-dates">{profile.specs.relationship_status}</div>
                     </div>
+                    {relation}
                   </div>
                 </div>
 
@@ -135,13 +150,11 @@ const UserProfile = (props) => {
 
                 <div>
                   <div className="user-item-pic-container">
-                    <div className="user-item-pic" />
+                    <div className="user-item-pic" ></div>
                     <hr size="1px" color="#ece6e2" />
                   </div>
                   <div className="user-spec-fields">
-                    <div className="user-spec-gtky">
-                      GTKY
-                    </div>
+                    {gtky}
                   </div>
                 </div>
 
@@ -158,7 +171,8 @@ const UserProfile = (props) => {
 
 function mapStateToProps(store) {
   return {
-    login: store.login
+    login: store.login,
+    gtkyKEY: store.gtkyKEY
   };
 }
 

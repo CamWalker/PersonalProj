@@ -7,11 +7,11 @@ import { Link } from 'react-router-dom';
 
 
 const UserProfileEdit = (props) => {
-  if (!props.login) {
-    return (
-      <Redirect to='/login' />
-    )
-  }
+  // if (!props.login) {
+  //   return (
+  //     <Redirect to='/login' />
+  //   )
+  // }
 
   let profile = {
     specs: {
@@ -45,37 +45,43 @@ const UserProfileEdit = (props) => {
 
       const education = profile.specs.education.map((spec, i) => {
         return (
-          <div key={i}>
-            <input type="text" value={spec.value} />
-            <input type="text" value={spec.start_date} />
-            <input type="text" value={spec.end_date} />
+          <div key={i} className="user-spec">
+            <div className="user-spec-value">
+              <input type="text" value={spec.value} />
+            </div>
+            <div className="user-spec-dates">
+              <input type="text" value={spec.start_date} /> - <input type="text" value={spec.end_date} />
+            </div>
           </div>
         )
       });
 
       const work = profile.specs.work.map((spec, i) => {
         return (
-          <div key={i}>
-            <input type="text" value={spec.title} />
-            <input type="text" value={spec.employer} />
-            <input type="text" value={spec.start_date} />
-            <input type="text" value={spec.end_date} />
+          <div key={i} className="user-spec">
+            <div className="user-spec-value"><input type="text" value={spec.title} /> at <input type="text" value={spec.employer} /></div>
+            <div className="user-spec-dates"><input type="text" value={spec.start_date} /> - <input type="text" value={spec.end_date} /></div>
           </div>
         )
       });
 
       const relation = profile.specs.relation.map((spec, i) => {
         return (
-          <div key={i}>
-            <input type="text" value={spec.value} />
+          <div key={i} className="user-spec">
+            <div className="user-spec-value"></div>
+            <div className="user-spec-dates">
+              <input type="text" value={spec.value} />
+            </div>
           </div>
         )
       });
 
       const lived = profile.specs.lived.map((spec, i) => {
         return (
-          <div key={i}>
-            <input type="text" value={spec.value} />
+          <div key={i} className="user-spec">
+            <div className="user-spec-value">
+              <input type="text" value={spec.value} />
+            </div>
           </div>
         )
       });
