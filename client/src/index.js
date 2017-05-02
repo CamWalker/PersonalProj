@@ -9,6 +9,7 @@ import App from './containers/App.js';
 import Login from './containers/login.js';
 import UserProfile from './containers/userProfile.js';
 import Header from './containers/header.js';
+import UserProfileEdit from './containers/userProfileEdit.js';
 
 
 const middleware = applyMiddleware(ReduxPromise);
@@ -23,6 +24,7 @@ ReactDOM.render(
             <Route path='/' exact={true} component={App} />
             <Route path='/login' component={Login} />
             <Route path='/profile' component={UserProfile} />
+            <Route path='/profile/edit' component={UserProfileEdit} />
         </div>
       </main>
     </Router>

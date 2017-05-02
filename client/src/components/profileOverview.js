@@ -1,62 +1,76 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import SingleProfileSpec from './singleProfileSpec.js'
+import SingleProfileSpec from './singleProfileSpec.js';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { logoutAction } from '../actions/action_logout.js'
 
-const ProfileOverview = () => {
-  let profile = {
-    specs: {
-      "education": [
-        {"value": "Dev Mountain", "start_date": "2017", "end_date": "2017"},
-        {"value": "Brigham Young University", "start_date": "2008", "end_date": "2014"},
-        {"value": "Foothill High School", "start_date": "2004", "end_date": "2008"}
-      ] ,
-      "work": [
-        {"value": "Operations Analyst - Goldman Sachs", "start_date": "2014", "end_date": "2017"},
-        {"value": "Economics Teaching Assistant - Brigham Young University", "start_date": "2012", "end_date": "2014"}
-      ] ,
-      "relation": [
-        {"value": "Married"},
-        {"value": "1 child"},
-        {"value": "4 siblings"}
-      ],
-      "lived": [
-        {"value": "Salt Lake City, UT, USA"},
-        {"value": "Provo, UT, USA"},
-        {"value": "Rio de Janeiro, Brazil"},
-        {"value": "Henderson, NV, USA"}
-      ]
-    },
-    gtky: [
-      "Building this website/app",
-      "",
-      "",
-      ""
-    ]};
+class ProfileOverview extends Component {
 
 
-    let specs = [];
-    const educ = profile.specs.education;
-    if (educ[0] !== undefined) {
-      specs.push({spec: educ[0], path: '../pics/education4.png'});
-    }
-    const work = profile.specs.work;
-    if (work[0] !== undefined) {
-      specs.push({spec: work[0], path: '../pics/work2.png'});
-    }
-    const relation = profile.specs.relation;
-    if (relation[0] !== undefined) {
-      specs.push({spec: relation[0], path: '../pics/relationship2.png'});
-    }
-    const lived =profile.specs.lived;
-    if (lived[0] !== undefined) {
-      specs.push({spec: lived[0], path: '../pics/location2.png'});
-    }
-    specs = specs.map((spec, i) => {
-      return <SingleProfileSpec
-        spec={spec.spec}
-        key={i}
-        path={spec.path} />
-    });
+  onLogout() {
+    console.log('here');
+    console.log(this.props);
+    this.props.logoutAction();
+  }
+
+
+  render() {
+    let profile = {
+      specs: {
+        "education": [
+          {"value": "Dev Mountain", "start_date": "2017", "end_date": "2017"},
+          {"value": "Brigham Young University", "start_date": "2008", "end_date": "2014"},
+          {"value": "Foothill High School", "start_date": "2004", "end_date": "2008"}
+        ] ,
+        "work": [
+          {"value": "Operations Analyst - Goldman Sachs", "start_date": "2014", "end_date": "2017"},
+          {"value": "Economics Teaching Assistant - Brigham Young University", "start_date": "2012", "end_date": "2014"}
+        ] ,
+        "relation": [
+          {"value": "Married"},
+          {"value": "1 child"},
+          {"value": "4 siblings"}
+        ],
+        "lived": [
+          {"value": "Salt Lake City, UT, USA"},
+          {"value": "Provo, UT, USA"},
+          {"value": "Rio de Janeiro, Brazil"},
+          {"value": "Henderson, NV, USA"}
+        ]
+      },
+      gtky: [
+        "Building this website/app",
+        "",
+        "",
+        ""
+      ]};
+
+
+      let specs = [];
+      const educ = profile.specs.education;
+      if (educ[0] !== undefined) {
+        specs.push({spec: educ[0], path: '../pics/education4.png'});
+      }
+      const work = profile.specs.work;
+      if (work[0] !== undefined) {
+        specs.push({spec: work[0], path: '../pics/work2.png'});
+      }
+      const relation = profile.specs.relation;
+      if (relation[0] !== undefined) {
+        specs.push({spec: relation[0], path: '../pics/relationship2.png'});
+      }
+      const lived =profile.specs.lived;
+      if (lived[0] !== undefined) {
+        specs.push({spec: lived[0], path: '../pics/location2.png'});
+      }
+      specs = specs.map((spec, i) => {
+        return <SingleProfileSpec
+          spec={spec.spec}
+          key={i}
+          path={spec.path} />
+      });
+
 
 
   return (
@@ -94,10 +108,15 @@ const ProfileOverview = () => {
       <div className="account-options">
         <Link className="account-options-box" to="/profile"><div>Profile</div></Link>
         <div className="account-options-box">Help</div>
-        <div className="account-options-box">Log Out</div>
+        <a className="account-options-box" onClick={() => this.onLogout()}><div >Log Out</div></a>
       </div>
     </div>
   )
+}}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ logoutAction }, dispatch);
 }
 
-export default ProfileOverview;
+
+export default connect(null, mapDispatchToProps)(ProfileOverview);

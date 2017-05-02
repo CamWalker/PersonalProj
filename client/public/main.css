@@ -8,7 +8,9 @@ orange : #ff8355
 
 yellow : #e4d438
 */
-
+button {
+  cursor: pointer;
+}
 
 /*USER PAGE*/
 .user-wrapper {
@@ -31,42 +33,61 @@ yellow : #e4d438
     justify-content: space-between;
     height: 100%;
   }
-  .user-back {
-    padding: 15px;
-    border-radius: 32px;
-    border: none;
-    background: #ff8355;
-    color: white;
-    font-weight: bold;
-    outline:none;
-    width: 70px;
+  .user-top-buttons {
+    margin-bottom: 25px;
   }
-  .user-edit {
-    padding: 15px;
-    border-radius: 32px;
-    border: #ff8355 1px solid;
-    background: #fffdfb;
-    color: #ff8355;
-    font-weight: bold;
-    outline:none;
-    margin-left: 15px;
-    width: 70px;
-  }
-    .user-item-pic-container {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
+    .user-back {
+      padding: 15px;
+      border-radius: 32px;
+      border: none;
+      background: #ff8355;
+      color: white;
+      font-weight: bold;
+      outline:none;
+      width: 70px;
     }
-      .user-item-pic {
-        padding-right: 10px;
-        width: 34px;
-        height: 28px;
-        object-fit: cover;
+    .user-edit {
+      padding: 15px;
+      border-radius: 32px;
+      border: #ff8355 1px solid;
+      background: #fffdfb;
+      color: #ff8355;
+      font-weight: bold;
+      outline:none;
+      margin-left: 15px;
+      width: 70px;
+    }
+    .user-forms {
+      overflow-y: auto;
+      color: #777;
+    }
+      .user-item-pic-container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
       }
-      hr {
-        width: 90%;
-        -webkit-margin-before: auto;
-        -webkit-margin-after: auto;
+        .user-item-pic {
+          padding-right: 10px;
+          width: 34px;
+          height: 28px;
+          object-fit: cover;
+        }
+        hr {
+          width: 90%;
+          -webkit-margin-before: auto;
+          -webkit-margin-after: auto;
+        }
+      .user-spec {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .user-spec-fields {
+        margin: 10px 8%;
+      }
+      .user-spec-gtky {
+        display: flex;
+        flex-direction: column;
       }
 
 
@@ -74,6 +95,7 @@ yellow : #e4d438
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    margin-top: 20px;
   }
     .user-save {
       padding: 15px;
@@ -88,6 +110,7 @@ yellow : #e4d438
     }
     .user-delete {
       padding: 15px;
+      padding-top: 15px;
       border-radius: 32px;
       border: #fa0700 1px solid;
       background: #fffdfb;
@@ -105,9 +128,11 @@ yellow : #e4d438
   display: flex;
   justify-content: space-around;
   flex-direction: row;
+  align-items: flex-start;
 }
 .login-carousel {
-  width: 800px;
+  display: none;
+  width: auto;
   background-color: #fffdfb;
   padding: 15px;
   margin-top: 15px;
@@ -123,16 +148,18 @@ yellow : #e4d438
   background-color: #fffdfb;
   padding: 15px;
   margin-top: 15px;
-  height: calc(100vh - 120px);
+  height: auto;
+  /*height: calc(100vh - 120px);*/
   box-shadow: 0px 1px 5px #cdc7c2;
   border-radius: 5px;
   display: flex;
+  justify-content: flex-start;
   flex-direction: column;
+  color: #777;
 }
 .login-sign-up-form {
   display: flex;
   flex-direction: column;
-
 }
     .login-sign-up-field {
       border-radius: 5px;
@@ -149,32 +176,16 @@ yellow : #e4d438
       border: none;
       margin: 5px 0px;
       font-size: 13px;
+      margin-top: 25px;
     }
     .login-sign-up-intro {
       color: #777;
       margin-bottom: 30px;
       padding: 0px;
     }
-    .login-header {
-      position: fixed;
-      top: 15px;
-      right: 10px;
-    }
-    .header-login-field {
-      border-radius: 5px;
-      border: solid 1px #d1cbc7;
-      padding: 7px;
-      margin: 0px 5px;
-      font-size: 13px;
-    }
-    .header-login-submit {
-      background-color: #81A8CD;
-      color: white;
-      padding: 7px 10px;
-      border-radius: 5px;
-      border: none;
-      margin: 0px 5px;
-      font-size: 13px;
+    .login-login-link {
+      color: #ff8355;
+      cursor: pointer;
     }
 
 
@@ -343,6 +354,7 @@ li {
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    cursor: pointer;
   }
 .right-column {
   display: flex;
@@ -618,6 +630,9 @@ li {
 
 
 @media (min-width: 1050px) {
+  .login-carousel {
+    display: block;
+  }
   .left-column {
     display: flex;
   }
