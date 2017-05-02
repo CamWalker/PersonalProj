@@ -5,12 +5,138 @@
 blue : #81A8CD
 dark blue: #597d9e
 orange : #ff8355
+dark text: #444
+medium text: #777
+light text: #AAA
+background: #fffdfb
+background: #F2EEEB
+background: #e0edfa
+border: #d1cbc7
 
 yellow : #e4d438
 */
+
 button {
   cursor: pointer;
 }
+
+.mobile-view {
+  display: block;
+}
+.desktop-view {
+  display: none;
+}
+.small-mobile-view {
+  display: block;
+}
+
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    margin-top: 60px;
+    /*padding-top: 15px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: calc(100% - 60px); /* Full height minus nav*/
+    overflow: auto; /* Enable scroll if needed */
+}
+
+.modal-content {
+    margin: auto;
+    width: 90%;
+    padding: 15px;
+    position: relative;
+    /*background-color: #fffdfb;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px #cdc7c2;*/
+}
+.close {
+    color: #fff;
+    float: left;
+    font-size: 28px;
+    font-weight: bold;
+    height: 15px;
+    width: 15px;
+    line-height: 15px;
+}
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.close-container {
+  padding: 10px;
+  background-color: #597d9e;
+  border-radius: 20px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: auto;
+  cursor: pointer;
+}
+
+
+
+
+
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: #81A8CD;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    height: 60px;
+}
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #597d9e;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fffdfb;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+/* applies to <a> and Link */
+.dropdown-content a {
+    color: #597d9e;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {background-color: #e0edfa;}
+.show {display:block;}
+
+.right-nav a {
+  padding: 10px 5px;
+  margin-right: 30px;
+  color: #81A8CD;
+  text-decoration: none;
+
+}
+.right-nav a:hover {
+  color: #597d9e;
+  border-bottom: 2px solid #597d9e;
+}
+
+
+
+
+
+
 
 /*USER PAGE*/
 .user-wrapper {
@@ -243,7 +369,7 @@ header {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0px 1px 5px #cdc7c2;
-  z-index: 1;
+  z-index: 2;
 }
 .left-nav-items {
   display: flex;
@@ -251,14 +377,6 @@ header {
   justify-content: flex-start;
   align-items: center;
   width: 140px;
-}
-.blue-circle-container {
-  padding: 7px;
-  border-right: solid 0.25px #e8e2de;
-  background: #81A8CD;
-  width: 45px;
-  height: 46px;
-  overflow: hidden;
 }
 .profile-view {
   width: 41px;
@@ -269,8 +387,6 @@ header {
 .logo {
   height: 50px;
   width: auto;
-
-  margin-right: 20%;
 }
   .logo-G {
     height: 50px;
@@ -346,15 +462,27 @@ li {
     padding-bottom: 58px;
   }
   .account-options-box {
-    border-bottom: 2px solid #fffdfb;
+    /*border-bottom: 2px solid #fffdfb;*/
     height: 30px;
-    width: 80%;
+    width: 100%;
     color: #fffdfb;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     cursor: pointer;
+  }
+  .account-options a:hover {
+    background: #597d9e;
+  }
+  .account-options hr {
+    width: 80%;
+    size: 0px;
+    background-color: white;
+    color: white;
+    border-color: white;
+    -webkit-margin-before: auto;
+    -webkit-margin-after: auto;
   }
 .right-column {
   display: flex;
@@ -514,15 +642,15 @@ li {
 
 /*SELECTED PROFILE VIEW*/
 .selected-profile-box {
-  margin-left: 315px;
+  margin-left: 0px;
   width: 100%;
   display: none;
   justify-content: center;
 }
   .selected-profile-container {
-    width: 75%;
+    width: 100%;
+    margin: auto;
     background-color: #fffdfb;
-    margin: 15px auto;
     border-radius: 5px;
     padding: 15px;
     box-shadow: 0px 1px 5px #cdc7c2;
@@ -594,7 +722,9 @@ li {
 
 
 
-
+  .show-selected {
+    display: flex;
+  }
 
 
 /*MEDIA QUERIES*/
@@ -605,7 +735,12 @@ li {
 
 @media (min-width: 770px) {
   .selected-profile-box {
+    margin-left: 315px;
     display: flex;
+  }
+  .selected-profile-container {
+    width: 75%;
+    margin: 15px auto;
   }
   .right-column {
     justify-content: flex-start;
@@ -627,7 +762,13 @@ li {
   .feed {
     margin: 15px;
   }
-
+  .small-mobile-view {
+    display: none;
+  }
+  .show-selected {
+    display: none;
+  }
+}
 
 @media (min-width: 1050px) {
   .login-carousel {
@@ -644,5 +785,11 @@ li {
   }
   .right-column {
     margin-left: 240px;
+  }
+  .mobile-view {
+    display: none;
+  }
+  .desktop-view {
+    display: block;
   }
 }

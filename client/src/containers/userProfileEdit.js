@@ -88,7 +88,7 @@ const UserProfileEdit = (props) => {
         <div className="user">
           <div className="user-container">
             <div className="user-top-buttons">
-              <Link to="/profile"><button className="user-back">BACK</button></Link>
+              <Link to="/profile"><button className="user-back">CANCEL</button></Link>
             </div>
             <div className="user-forms">
               <form>

@@ -9,8 +9,6 @@ class ProfileOverview extends Component {
 
 
   onLogout() {
-    console.log('here');
-    console.log(this.props);
     this.props.logoutAction();
   }
 
@@ -107,7 +105,7 @@ class ProfileOverview extends Component {
       </div>
       <div className="account-options">
         <Link className="account-options-box" to="/profile"><div>Profile</div></Link>
-        <div className="account-options-box">Help</div>
+        <hr />
         <a className="account-options-box" onClick={() => this.onLogout()}><div >Log Out</div></a>
       </div>
     </div>

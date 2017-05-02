@@ -15,7 +15,13 @@ import { logoutAction } from '../actions/action_login.js';
 
 
 class App extends React.Component {
-render() {
+
+  showSelected() {
+    document.getElementById("profile-modal2").classList.toggle("show-selected");
+    document.getElementById("profile-modal").classList.toggle("show-selected");
+  }
+
+  render() {
     if (!this.props.login) {
       return (
         <Redirect to='/login' />
@@ -26,10 +32,18 @@ render() {
       <div>
         <ProfileOverview />
         <div className="right-column">
+          <div id="profile-modal2" className="modal small-mobile-view">
+            <div className="modal-content">
+              <div className="close-container" onClick={this.showSelected}>
+                <span className="close" >&times;</span>
+              </div>
+              <SelectedProfile />
+            </div>
+          </div>
           <div className="feed">
             <div className="gradient-back"></div>
             <Searchbar />
-            <ProfileFeed />
+            <ProfileFeed showSelected={this.showSelected} />
           </div>
           <SelectedProfile />
         </div>

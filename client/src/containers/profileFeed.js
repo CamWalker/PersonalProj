@@ -6,6 +6,10 @@ import { bindActionCreators } from 'redux';
 import { selectProfile } from '../actions/action_selectProfile';
 
 class ProfileFeed extends React.Component {
+  constructor(props) {
+    super(props);
+    this.selectProfile = this.selectProfile.bind(this);
+  }
   componentDidMount() {
     const getFeed = this.props.getFeed;
     if (navigator.geolocation) {
@@ -35,6 +39,10 @@ class ProfileFeed extends React.Component {
 
   }
 
+  selectProfile(props) {
+    this.props.selectProfile(props);
+    this.props.showSelected();
+  }
 
   // {profileItems}
   render() {
@@ -45,7 +53,7 @@ class ProfileFeed extends React.Component {
         return <SingleProfile
           key={profile.id}
           profile={profile}
-          onProfileSelect={this.props.selectProfile}
+          onProfileSelect={this.selectProfile}
           selectedID={this.props.selectedProfile ? this.props.selectedProfile.id : null}/>
       });
     } else {
