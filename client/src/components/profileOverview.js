@@ -14,36 +14,7 @@ class ProfileOverview extends Component {
 
 
   render() {
-    let profile = {
-      specs: {
-        "education": [
-          {"value": "Dev Mountain", "start_date": "2017", "end_date": "2017"},
-          {"value": "Brigham Young University", "start_date": "2008", "end_date": "2014"},
-          {"value": "Foothill High School", "start_date": "2004", "end_date": "2008"}
-        ] ,
-        "work": [
-          {"value": "Operations Analyst - Goldman Sachs", "start_date": "2014", "end_date": "2017"},
-          {"value": "Economics Teaching Assistant - Brigham Young University", "start_date": "2012", "end_date": "2014"}
-        ] ,
-        "relation": [
-          {"value": "Married"},
-          {"value": "1 child"},
-          {"value": "4 siblings"}
-        ],
-        "lived": [
-          {"value": "Salt Lake City, UT, USA"},
-          {"value": "Provo, UT, USA"},
-          {"value": "Rio de Janeiro, Brazil"},
-          {"value": "Henderson, NV, USA"}
-        ]
-      },
-      gtky: [
-        "Building this website/app",
-        "",
-        "",
-        ""
-      ]};
-
+    let profile = this.props.login;
 
       let specs = [];
       const educ = profile.specs.education;
@@ -75,11 +46,11 @@ class ProfileOverview extends Component {
     <div className="left-column">
       <div>
         <div className="account-greeting-text">
-          Welcome, Cameron!
+          Welcome, {profile.first_name}!
         </div>
         <div className="login-summary">
           <div className="account-pic-container">
-            <img className="account-pic" src="../pics/IMG_0759.JPG" alt="" />
+            <img className="account-pic" src={profile.pic} alt="" />
           </div>
           <div className="login-profile-item">
             <div className="item-box">
@@ -112,9 +83,15 @@ class ProfileOverview extends Component {
   )
 }}
 
+function mapStateToProps(store) {
+  return {
+    login: store.login
+  };
+}
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ logoutAction }, dispatch);
 }
 
 
-export default connect(null, mapDispatchToProps)(ProfileOverview);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileOverview);

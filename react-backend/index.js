@@ -37,13 +37,14 @@ const profileCtrl = require('./profileCtrl.js');
 app.post('/profile/', profileCtrl.createUser);
 
 //AUTHENTICATION (LOGIN)
+app.get('/profile/:email/:password', profileCtrl.getUser);
 
 //CHANGE PASSWORD (CHANGE EMAIL?)
 
 
 
 //RETRIEVE USER ACCOUNT
-app.get('/profile/:id', profileCtrl.getUser);
+
 
 
 

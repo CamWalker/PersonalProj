@@ -35,7 +35,7 @@ class App extends React.Component {
           <div id="profile-modal2" className="modal small-mobile-view">
             <div className="modal-content">
               <div className="close-container" onClick={this.showSelected}>
-                <span className="close" >&times;</span>
+                <span className="close">&times;</span>
               </div>
               <SelectedProfile />
             </div>

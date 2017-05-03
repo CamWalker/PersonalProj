@@ -5,9 +5,17 @@ var db = app.get('db');
 
 
 exports.getUser = function (req, res, next) {
-  db.getUser([Number(req.params.id)], function (err, user) {
-    if (!err) {
-      res.status(200).send(user[0])
+  db.validatePass([req.params.email, req.params.password], function (err, user) {
+    if(!err && user[0]) {
+      db.getUser([Number(user[0].id)], function (err, user) {
+        if (!err) {
+          res.status(200).send(user[0])
+        } else {
+          res.status(403).send(false)
+        }
+      })
+    } else {
+      res.status(403).send(false)
     }
   })
 };

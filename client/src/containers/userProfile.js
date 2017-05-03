@@ -7,41 +7,13 @@ import { Link } from 'react-router-dom';
 
 
 const UserProfile = (props) => {
-  // if (!props.login) {
-  //   return (
-  //     <Redirect to='/login' />
-  //   )
-  // }
+  if (!props.login) {
+    return (
+      <Redirect to='/login' />
+    )
+  }
 
-  let profile = {
-    specs: {
-      "education": [
-        {"value": "Dev Mountain", "start_date": "2017", "end_date": "2017"},
-        {"value": "Brigham Young University", "start_date": "2008", "end_date": "2014"},
-        {"value": "Foothill High School", "start_date": "2004", "end_date": "2008"}
-      ] ,
-      "work": [
-        {"title": "Operations Analyst", "employer": "Goldman Sachs", "start_date": "2014", "end_date": "2017"},
-        {"title": "Economics Teaching Assistant", "employer": "Brigham Young University", "start_date": "2012", "end_date": "2014"}
-      ] ,
-      "relationship_status": "Married",
-      "relation": [
-        {"value": "1 child"},
-        {"value": "4 siblings"}
-      ],
-      "lived": [
-        {"value": "Salt Lake City, UT, USA"},
-        {"value": "Provo, UT, USA"},
-        {"value": "Rio de Janeiro, Brazil"},
-        {"value": "Henderson, NV, USA"}
-      ]
-    },
-    gtky: [
-      "Building this website/app",
-      "",
-      "",
-      ""
-    ]};
+  const profile = props.login;
 
       const education = profile.specs.education.map((spec, i) => {
         return (
@@ -59,7 +31,7 @@ const UserProfile = (props) => {
       const work = profile.specs.work.map((spec, i) => {
         return (
           <div key={i} className="user-spec">
-            <div className="user-spec-value">{spec.title} at {spec.employer}</div>
+            <div className="user-spec-value">{spec.title} <span className="user-at">at</span> {spec.employer}</div>
             <div className="user-spec-dates">{spec.start_date} - {spec.end_date}</div>
           </div>
         )
@@ -69,7 +41,7 @@ const UserProfile = (props) => {
         return (
           <div key={i} className="user-spec">
             <div className="user-spec-value"></div>
-            <div className="user-spec-dates">{spec.value}</div>
+            <div className="user-spec-dates">{spec.quantity + " " + spec.value}</div>
           </div>
         )
       });

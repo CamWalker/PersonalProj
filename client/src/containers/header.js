@@ -21,7 +21,11 @@ class Header extends Component {
       <header>
         <div className="left-nav-items">
           <div onClick={this.showDropDown} className="dropdown mobile-view">
-            <button className="dropbtn">Dropdown</button>
+            <div className="dropbtn">
+              <div className="dropbtn-bar"></div>
+              <div className="dropbtn-bar"></div>
+              <div className="dropbtn-bar"></div>
+            </div>
             <div id="myDropdown" className="dropdown-content">
               <Link to="/">Home</Link>
               {this.props.login && <Link to="/profile">Profile</Link> }

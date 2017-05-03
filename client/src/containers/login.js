@@ -7,15 +7,15 @@ import Carousel from '../components/carousel.js';
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = {signup: true};
+    this.state = {signup: false};
     this.loginSwitch = this.loginSwitch.bind(this);
   }
 
   signUp = () => {
     const form = this.props.loginForm.loginForm;
-    if (form.email.value) {
-      this.props.loginAction(form.email.value, form.password.value);
-    }
+    // if (form.email.value) {
+    //   this.props.loginAction(form.email.value, form.password.value);
+    // }
   }
 
   login = () => {
