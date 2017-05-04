@@ -7,29 +7,63 @@ import { connect } from 'react-redux';
 const SelectedProfile = (props) => {
   let education = "";
   let work = "";
+  let relationship_status = "";
   let relation = "";
   let lived = "";
   let gtkys = "";
   if(props.selectedProfile) {
-    education = props.selectedProfile.specs.education.map((spec, i) => {
+    education = props.selectedProfile.education.map((spec, i) => {
+      let educSpec = {value: spec.value + " (" + spec.start + " - " + spec.end + ")"}
       return <SelectedProfileSpec
-        spec={spec}
+        spec={educSpec}
         key={i}
         path='../pics/education2.png' />
     });
-    work = props.selectedProfile.specs.work.map((spec, i) => {
+    work = props.selectedProfile.work.map((spec, i) => {
+      let workSpec = {value: spec.value + " at " + spec.employer + " (" + spec.start + " - " + spec.end + ")"}
       return <SelectedProfileSpec
-        spec={spec}
+        spec={workSpec}
         key={i}
         path='../pics/work.png' />
     });
-    relation = props.selectedProfile.specs.relation.map((spec, i) => {
+    const relationSpec = {value: props.selectedProfile.relationship_status}
+    relationship_status = <SelectedProfileSpec
+      spec={relationSpec}
+      path='../pics/relationship.png' />
+    relation = props.selectedProfile.relation.map((spec, i) => {
+        let type = "";
+        switch (spec.value) {
+          case 'Pet(s)':
+            if (Number(spec.quantity) === 1) {
+              type = 'Pet';
+            } else {
+              type = 'Pets';
+            }
+            break;
+          case 'Child(ren)':
+            if (Number(spec.quantity) === 1) {
+              type = 'Child';
+            } else {
+              type = 'Children';
+            }
+            break;
+          case 'Sibling(s)':
+            if (Number(spec.quantity) === 1) {
+              type = 'Sibling';
+            } else {
+              type = 'Siblings';
+            }
+            break;
+          default:
+
+        }
+      let relationSpec = {value: spec.quantity + " " + type}
       return <SelectedProfileSpec
-        spec={spec}
+        spec={relationSpec}
         key={i}
         path='../pics/relationship.png' />
     });
-    lived = props.selectedProfile.specs.lived.map((spec, i) => {
+    lived = props.selectedProfile.lived.map((spec, i) => {
       return <SelectedProfileSpec
         spec={spec}
         key={i}
@@ -64,6 +98,7 @@ const SelectedProfile = (props) => {
             <div className="selected-profile-specs">
               { props.selectedProfile ? education ? education : "" : ""}
               { props.selectedProfile ? work ? work : "" : ""}
+              { props.selectedProfile ? relationship_status ? relationship_status : "" : "" }
               { props.selectedProfile ? relation ? relation : "" : "" }
               { props.selectedProfile ? lived ? lived : "" : ""}
             </div>

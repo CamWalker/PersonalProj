@@ -6,7 +6,7 @@ import React from 'react';
 import ProfileFeed from '../containers/profileFeed.js';
 import Searchbar from '../containers/searchbar.js';
 import SelectedProfile from '../containers/selectedProfile';
-import ProfileOverview from '../components/profileOverview.js';
+import ProfileOverview from '../containers/profileOverview.js';
 
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';

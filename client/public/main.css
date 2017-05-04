@@ -244,7 +244,7 @@ button {
         padding: 3px;
         margin: 0px 5px;
         border: solid 1px #d1cbc7;
-        width: 40px;
+        width: 70px;
       }
       .user-spec-value-input-relation {
         color: #597d9e;
@@ -318,6 +318,28 @@ button {
       color: #81A8CD;
       padding: 0px 10px;
     }
+    .user-empty-new-container {
+      /*color: #597d9e;*/
+      padding: 10px;
+      /*background-color: white;*/
+      /*border: solid 1px;*/
+      border-radius: 15px;
+      cursor: pointer;
+      width: 10px;
+      height: 10px;
+      position: relative;
+      margin-right: 12px;
+    }
+    .user-empty-new {
+      color: none;
+      float: left;
+      font-size: 25px;
+      font-weight: bold;
+      line-height: 10px;
+      position: absolute;
+      top: 12px;
+      left: 6px;
+    }
     .user-add-new {
       color: inherit;
       float: left;
@@ -347,6 +369,74 @@ button {
     .user-add-new-container:hover,
     .user-add-new-container:focus {
       background-color: #597d9e;
+      text-decoration: none;
+      cursor: pointer;
+      color: white;
+    }
+    .user-down-new {
+      color: inherit;
+      float: left;
+      font-size: 25px;
+      font-weight: bold;
+      line-height: 10px;
+      position: absolute;
+      top: 12px;
+      left: 6px;
+    }
+    .user-down-new:hover,
+    .user-down-new:focus {
+
+      text-decoration: none;
+    }
+    .user-down-new-container {
+      color: #597d9e;
+      padding: 10px;
+      background-color: white;
+      border: solid 1px #597d9e;
+      border-radius: 15px;
+      cursor: pointer;
+      width: 10px;
+      height: 10px;
+      position: relative;
+      margin-right: 10px;
+    }
+    .user-down-new-container:hover,
+    .user-down-new-container:focus {
+      background-color: #597d9e;
+      text-decoration: none;
+      cursor: pointer;
+      color: white;
+    }
+    .user-minus-new {
+      color: inherit;
+      float: left;
+      font-size: 34px;
+      font-weight: bold;
+      line-height: 10px;
+      position: absolute;
+      top: 9px;
+      left: 8px;
+    }
+    .user-minus-new:hover,
+    .user-minus-new:focus {
+
+      text-decoration: none;
+    }
+    .user-minus-new-container {
+      color: #fa0700;
+      padding: 10px;
+      background-color: white;
+      border: solid 1px #fa0700;
+      border-radius: 15px;
+      cursor: pointer;
+      width: 10px;
+      height: 10px;
+      position: relative;
+      margin-right: 10px;
+    }
+    .user-minus-new-container:hover,
+    .user-minus-new-container:focus {
+      background-color: #fa0700;
       text-decoration: none;
       cursor: pointer;
       color: white;

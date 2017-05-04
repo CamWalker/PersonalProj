@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { loginAction } from '../actions/action_login.js';
 import { Redirect } from 'react-router-dom';
-import { reduxForm } from 'redux-form';
-import Carousel from '../components/carousel.js';
+import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
 
 class Login extends Component {
   constructor(props) {
@@ -11,17 +11,15 @@ class Login extends Component {
     this.loginSwitch = this.loginSwitch.bind(this);
   }
 
-  signUp = () => {
-    const form = this.props.loginForm.loginForm;
+  signUp = (values) => {
     // if (form.email.value) {
     //   this.props.loginAction(form.email.value, form.password.value);
     // }
   }
 
-  login = () => {
-    const form = this.props.loginForm.loginForm
-    if (form.email.value) {
-      this.props.loginAction(form.email.value, form.password.value);
+  login = (values) => {
+    if (values) {
+      this.props.loginAction(values.email, values.password);
     }
   }
 
@@ -31,8 +29,8 @@ class Login extends Component {
 
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } }
-    const { fields: { firstName, lastName, email, password }, handleSubmit } = this.props;
-
+    // const { fields: { firstName, lastName, email, password }, handleSubmit } = this.props;
+    const { handleSubmit } = this.props;
     if (this.props.login) {
       return (
         <Redirect to={from}/>
@@ -43,7 +41,9 @@ class Login extends Component {
       return (
         <div className="login-page">
           <div className="login-carousel">
-            <Carousel />
+            <div className="login-carousel-inner">
+              <img src="../pics/Carousel/7.jpg" alt="" />
+            </div>
           </div>
           <div className="login-sign-up">
             <h3 className="login-sign-up-intro">Sign up to connect with those closest to you...literally!</h3>
@@ -51,10 +51,10 @@ class Login extends Component {
             <button className="login-sign-up-submit" onClick={this.signUp} type="submit">Log in with Facebook</button>
             <div><br /><hr size="1px" color="#ece6e2" width="250px" /><br /></div>
             <form className="login-sign-up-form" onSubmit={handleSubmit(this.signUp)}>
-              <input className="login-sign-up-field" type="text" placeholder="First Name" name="firstName" {...firstName} />
-              <input className="login-sign-up-field" type="text" placeholder="Last Name" name="lastName" {...lastName} />
-              <input className="login-sign-up-field" type="text" placeholder="Email" name="email" {...email} />
-              <input className="login-sign-up-field" type="password" placeholder="Password" name="password" {...password} />
+              <Field component="input" className="login-sign-up-field" type="text" placeholder="First Name" name="firstName"  />
+              <Field component="input" className="login-sign-up-field" type="text" placeholder="Last Name" name="lastName" />
+              <Field component="input" className="login-sign-up-field" type="text" placeholder="Email" name="email" />
+              <Field component="input" className="login-sign-up-field" type="password" placeholder="Password" name="password" />
               <button className="login-sign-up-submit" type="submit">Sign Up</button>
             </form>
             <p>
@@ -67,14 +67,16 @@ class Login extends Component {
       return (
         <div className="login-page">
           <div className="login-carousel">
-            <Carousel />
+            <div className="login-carousel-inner">
+              <img src="../pics/Carousel/7.jpg" alt="" />
+            </div>
           </div>
           <div className="login-sign-up">
             <button className="login-sign-up-submit" onClick={this.signUp} type="submit">Log in with Facebook</button>
             <div><br /><hr size="1px" color="#ece6e2" width="250px" /><br /></div>
             <form className="login-sign-up-form" onSubmit={handleSubmit(this.login)}>
-              <input className="login-sign-up-field" type="text" placeholder="Email" name="email" {...email} />
-              <input className="login-sign-up-field" type="password" placeholder="Password" name="password" {...password} />
+              <Field className="login-sign-up-field" type="email" placeholder="Email" name="email" component="input" />
+              <Field className="login-sign-up-field" type="password" placeholder="Password" name="password" component="input" />
               <button className="login-sign-up-submit" type="submit">Log in</button>
             </form>
             <p>
@@ -95,8 +97,11 @@ function mapStateToProps(store) {
   };
 }
 
+  // fields: ['firstName', 'lastName', 'email', 'password']
+Login = reduxForm({
+  form: 'loginForm'
+})(Login);
 
-export default reduxForm({
-  form: 'loginForm',
-  fields: ['firstName', 'lastName', 'email', 'password']
-}, mapStateToProps, { loginAction })(Login);
+Login = connect(mapStateToProps, { loginAction })(Login);
+
+export default Login;

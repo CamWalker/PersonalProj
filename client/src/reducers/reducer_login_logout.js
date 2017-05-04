@@ -6,10 +6,8 @@ export default function(state = false, action) {
     case LOGIN:
       if (action.payload.message !== "Request failed with status code 403") {
         return action.payload.data;
-      } else {
-        return false;
       }
-
+      break;
     case LOGOUT:
       return false;
     default:

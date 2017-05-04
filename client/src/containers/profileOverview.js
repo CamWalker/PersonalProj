@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import SingleProfileSpec from './singleProfileSpec.js';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { logoutAction } from '../actions/action_logout.js'
+import SingleProfileSpec from '../components/singleProfileSpec.js';
 
 class ProfileOverview extends Component {
 
@@ -17,20 +17,22 @@ class ProfileOverview extends Component {
     let profile = this.props.login;
 
       let specs = [];
-      const educ = profile.specs.education;
-      if (educ[0] !== undefined) {
+      const educ = profile.education;
+      if (educ[0]) {
         specs.push({spec: educ[0], path: '../pics/education4.png'});
       }
-      const work = profile.specs.work;
-      if (work[0] !== undefined) {
-        specs.push({spec: work[0], path: '../pics/work2.png'});
+      const work = profile.work;
+      if (work[0]) {
+        specs.push({spec: {value: work[0].value + " at " + work[0].employer}, path: '../pics/work2.png'});
       }
-      const relation = profile.specs.relation;
-      if (relation[0] !== undefined) {
+      const relation = profile.relation;
+      if (profile.relationship_status) {
+        specs.push({spec: {value: profile.relationship_status}, path: '../pics/relationship2.png'});
+      } else if (relation[0]) {
         specs.push({spec: relation[0], path: '../pics/relationship2.png'});
       }
-      const lived =profile.specs.lived;
-      if (lived[0] !== undefined) {
+      const lived =profile.lived;
+      if (lived[0]) {
         specs.push({spec: lived[0], path: '../pics/location2.png'});
       }
       specs = specs.map((spec, i) => {

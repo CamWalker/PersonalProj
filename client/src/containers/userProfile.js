@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import ProfileOverview from '../components/profileOverview';
+import ProfileOverview from '../containers/profileOverview';
 import { Link } from 'react-router-dom';
-
 
 
 const UserProfile = (props) => {
@@ -15,29 +14,29 @@ const UserProfile = (props) => {
 
   const profile = props.login;
 
-      const education = profile.specs.education.map((spec, i) => {
+      const education = profile.education.map((spec, i) => {
         return (
           <div key={i} className="user-spec">
             <div className="user-spec-value">
               {spec.value}
             </div>
             <div className="user-spec-dates">
-              {spec.start_date} - {spec.end_date}
+              {spec.start} - {spec.end}
             </div>
           </div>
         )
       });
 
-      const work = profile.specs.work.map((spec, i) => {
+      const work = profile.work.map((spec, i) => {
         return (
           <div key={i} className="user-spec">
-            <div className="user-spec-value">{spec.title} <span className="user-at">at</span> {spec.employer}</div>
-            <div className="user-spec-dates">{spec.start_date} - {spec.end_date}</div>
+            <div className="user-spec-value">{spec.value} <span className="user-at">at</span> {spec.employer}</div>
+            <div className="user-spec-dates">{spec.start} - {spec.end}</div>
           </div>
         )
       });
 
-      const relation = profile.specs.relation.map((spec, i) => {
+      const relation = profile.relation.map((spec, i) => {
         return (
           <div key={i} className="user-spec">
             <div className="user-spec-value"></div>
@@ -46,7 +45,7 @@ const UserProfile = (props) => {
         )
       });
 
-      const lived = profile.specs.lived.map((spec, i) => {
+      const lived = profile.lived.map((spec, i) => {
         return (
           <div key={i} className="user-spec">
             <div className="user-spec-value">{spec.value}</div>
@@ -104,7 +103,7 @@ const UserProfile = (props) => {
                   <div className="user-spec-fields">
                     <div className="user-spec">
                       <div className="user-spec-value user-relationship-status">Relationship Status:</div>
-                      <div className="user-spec-dates">{profile.specs.relationship_status}</div>
+                      <div className="user-spec-dates">{profile.relationship_status}</div>
                     </div>
                     {relation}
                   </div>
@@ -144,8 +143,10 @@ const UserProfile = (props) => {
 function mapStateToProps(store) {
   return {
     login: store.login,
-    gtkyKEY: store.gtkyKEY
+    gtkyKEY: store.gtkyKEY,
   };
 }
+
+
 
 export default connect(mapStateToProps)(UserProfile);
