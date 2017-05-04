@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { loginAction } from '../actions/action_login.js';
+import { loginAction, signUpAction } from '../actions/action_login.js';
 import { Redirect } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
+import { loginValidate } from './validate'
+
 
 class Login extends Component {
   constructor(props) {
@@ -12,9 +14,8 @@ class Login extends Component {
   }
 
   signUp = (values) => {
-    // if (form.email.value) {
-    //   this.props.loginAction(form.email.value, form.password.value);
-    // }
+    console.log(values);
+    this.props.signUpAction(values);
   }
 
   login = (values) => {
@@ -29,7 +30,14 @@ class Login extends Component {
 
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } }
-    // const { fields: { firstName, lastName, email, password }, handleSubmit } = this.props;
+
+    const renderField = ({ className, placeholder, input, type, meta: { touched, error } }) => (
+        <div>
+          <input {...input} placeholder={placeholder} type={type} className={className} />
+          {touched && (error && <span>{error}</span>)}
+        </div>
+    )
+
     const { handleSubmit } = this.props;
     if (this.props.login) {
       return (
@@ -99,9 +107,10 @@ function mapStateToProps(store) {
 
   // fields: ['firstName', 'lastName', 'email', 'password']
 Login = reduxForm({
-  form: 'loginForm'
+  form: 'loginForm',
+  loginValidate
 })(Login);
 
-Login = connect(mapStateToProps, { loginAction })(Login);
+Login = connect(mapStateToProps, { loginAction, signUpAction })(Login);
 
 export default Login;

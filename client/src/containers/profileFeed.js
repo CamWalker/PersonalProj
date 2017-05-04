@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import SingleProfile from '../components/singleProfile';
 import { getFeed } from '../actions/action_feed';
+import { getLocation } from '../actions/action_getLocation';
 import { bindActionCreators } from 'redux';
 import { selectProfile } from '../actions/action_selectProfile';
 
@@ -16,6 +17,7 @@ class ProfileFeed extends React.Component {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
         getFeed(position.coords.latitude, position.coords.longitude, userId);
+        getLocation(position.coords.latitude, position.coords.longitude);
       }, function (error) {
         switch(error.code) {
           case error.PERMISSION_DENIED:
@@ -80,7 +82,8 @@ function mapStateToProps(store) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     getFeed: getFeed,
-    selectProfile: selectProfile
+    selectProfile: selectProfile,
+    getLocation: getLocation
   }, dispatch);
 };
 

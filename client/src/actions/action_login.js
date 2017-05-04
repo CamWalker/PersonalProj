@@ -7,6 +7,18 @@ export function loginAction(email, password) {
   history.replaceState({state: undefined}, 'GoodTurn', '/');
   history.pushState({state: undefined}, 'GoodTurn', '/');
 
+
+  return {
+    type: LOGIN,
+    payload: request
+  }
+}
+
+export function signUpAction(values) {
+  const request = axios.post('/profile/',{ values: values });
+  history.replaceState({state: undefined}, 'GoodTurn', '/');
+  history.pushState({state: undefined}, 'GoodTurn', '/');
+
   return {
     type: LOGIN,
     payload: request

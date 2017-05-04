@@ -33,389 +33,339 @@ CREATE TABLE userInfo (
   first_name varchar(100),
   last_name varchar(100),
   pic text,
-  specs JSON,
+  education JSON,
+  work JSON,
+  relationship_status varchar(40),
+  relation JSON,
+  lived JSON,
   gtky JSON,
   profileId Integer
 );
 
-INSERT INTO userInfo (first_name, last_name, pic, specs, gtky, profileId)
-  VALUES ('Cameron', 'Walker', '././pics/IMG_0759.JPG', '{
-    "education": [
-      {"value": "Dev Mountain", "start_date": "2017", "end_date": "2017"},
-      {"value": "Brigham Young University", "start_date": "2008", "end_date": "2014"},
-      {"value": "Foothill High School", "start_date": "2004", "end_date": "2008"}
-    ] ,
-    "work": [
-      {"title": "Operations Analyst", Employer: "Goldman Sachs", "start_date": "2014", "end_date": "2017"},
-      {"title": "Economics Teaching Assistant", Employer: "Brigham Young University", "start_date": "2012", "end_date": "2014"}
-    ] ,
-    "relation": [
-      {"status": "Married"},
-      {"value": "1 child"},
-      {"value": "4 siblings"}
-    ],
-    "lived": [
+INSERT INTO userInfo (first_name, last_name, pic, education, work, relationship_status, relation, lived, gtky, profileId)
+  VALUES ('Cameron', 'Walker', '././pics/IMG_0759.JPG', '[
+      {"value": "Dev Mountain", "start": "2017", "end": "2017"},
+      {"value": "Brigham Young University", "start": "2008", "end": "2014"},
+      {"value": "Foothill High School", "start": "2004", "end": "2008"}
+    ]' , '[
+      {"value": "Operations Analyst", "employer": "Goldman Sachs", "start": "2014", "end": "2017"},
+      {"value": "Economics Teaching Assistant", "employer": "Brigham Young University", "start": "2012", "end": "2014"}
+    ]' , 'Married', '[
+      {"value": "Child(ren)", "quantity": "1"},
+      {"value": "Sibling(s)", "quantity": "4"}
+    ]', '[
       {"value": "Salt Lake City, UT, USA"},
       {"value": "Provo, UT, USA"},
       {"value": "Rio de Janeiro, Brazil"},
       {"value": "Henderson, NV, USA"}
-    ]
-  }', '[
+    ]' , '[
     "Building this website/app",
     "",
     "",
     ""
   ]', 1),
-  ('Barack', 'Obama', '././pics/Obama.JPG', '{
-    "education": [
-      {"value": "Harvard University", "start_date": "1988", "end_date": "1991"},
-      {"value": "Columbia University in the City of New York", "start_date": "1981", "end_date": "1983"},
-      {"value": "Occidental College", "start_date": "1979", "end_date": "1981"}
-    ] ,
-    "work": [
-      {"value": "President - United States of America", "start_date": "January 2009", "end_date": "January 2017"},
-      {"value": "US Senator (IL-D) - US Senate", "start_date": "January 2005", "end_date": "November 2008"},
-      {"value": "State Senator - Illinois State Senate", "start_date": "1997", "end_date": "2004"},
-      {"value": "Senior Lecturer in Law - University of Chicago Law School", "start_date": "1993", "end_date": "2004"}
-    ] ,
-    "relation": [
-      {"value": "Married"},
-      {"value": "2 children"}
-    ],
-    "lived": [
+  ('Barack', 'Obama', '././pics/Obama.JPG', '
+     [
+      {"value": "Harvard University", "start": "1988", "end": "1991"},
+      {"value": "Columbia University in the City of New York", "start": "1981", "end": "1983"},
+      {"value": "Occidental College", "start": "1979", "end": "1981"}
+    ]' ,
+     '[
+      {"value": "President", "employer": "United States of America", "start": "January 2009", "end": "January 2017"},
+      {"value": "US Senator (IL-D)", "employer": "US Senate", "start": "January 2005", "end": "November 2008"},
+      {"value": "State Senator", "employer": "Illinois State Senate", "start": "1997", "end": "2004"},
+      {"value": "Senior Lecturer in Law", "employer": "University of Chicago Law School", "start": "1993", "end": "2004"}
+    ]', 'Married',
+     '[
+      {"value": "Child(ren)", "quantity":"2"}
+    ]',
+     '[
       {"value": "Washington, DC, USA"},
       {"value": "Chicago, IL, USA"}
-    ]
-  }', '[
+    ]', '[
     "My thoughts on current US policy",
     "Bad policy",
     "",
     "I''m thinking"
   ]', 2),
-  ('Donald', 'Trump', '././pics/Trump.jpeg', '{
-    "education": [
-      {"value": "New York Military Academy", "start_date": "2004", "end_date": "2008"},
-      {"value": "Wharton School of Finance", "start_date": "2004", "end_date": "2008"},
-      {"value": "Fordham University", "start_date": "2004", "end_date": "2008"}
-    ] ,
-    "work": [
-      {"value": "President - United States of America", "start_date": "2012", "end_date": "2014"},
-      {"value": "Realty Business Leader", "start_date": "2012", "end_date": "2014"},
-      {"value": "Television Star - The Apprentice", "start_date": "2012", "end_date": "2014"}
-    ] ,
-    "relation": [
-      {"value": "Married"},
-      {"value": "5 children"}
-    ],
-    "lived": [
+  ('Donald', 'Trump', '././pics/Trump.jpeg', '
+     [
+      {"value": "New York Military Academy", "start": "2004", "end": "2008"},
+      {"value": "Wharton School of Finance", "start": "2004", "end": "2008"},
+      {"value": "Fordham University", "start": "2004", "end": "2008"}
+    ]' ,
+     '[
+      {"value": "President", "employer": "United States of America", "start": "2012", "end": "2014"},
+      {"value": "Realty Business Leader", "start": "2012", "end": "2014"},
+      {"value": "Television Star", "employer": "The Apprentice", "start": "2012", "end": "2014"}
+    ]' , 'Married',
+     '[
+      {"value": "Child(ren)", "quantity": "2"}
+    ]',
+     '[
       {"value": "Washington, DC, USA"},
       {"value": "Queens, NY, USA"}
-    ]
-  }', '[
+    ]', '[
     "Me",
     "Losers",
     "",
     ""
   ]', 3),
-  ('test0-a', 'test', '././pics/blank-profile.png', '{
-      "education": [
-        {"value": "test0-b", "start_date": "2004", "end_date": "2008"}
-      ],
-      "work": [
-        {"value": "test0-c", "start_date": "2012", "end_date": "2014"}
-      ] ,
-      "relation": [
-        {"value": "test0-d"}
-      ],
-      "lived": [
+  ('test0-a', 'test', '././pics/blank-profile.png', '
+       [
+        {"value": "test0-b", "start": "2004", "end": "2008"}
+      ]',
+       '[
+        {"value": "test0-c", "start": "2012", "end": "2014"}
+      ]' ,
+      'Single' ,'[]',
+       '[
         {"value": "test0-e"}
-      ]
-    }', '[
+      ]', '[
       "test0-f",
       "test0-g",
       "test0-h",
       "test0-i"
     ]', 4),
-    ('test1-a', 'test', '././pics/blank-profile.png', '{
-      "education": [
-        {"value": "test1-b", "start_date": "2004", "end_date": "2008"}
-      ],
-      "work": [
-        {"value": "test1-c", "start_date": "2012", "end_date": "2014"}
-      ] ,
-      "relation": [
-        {"value": "test1-d"}
-      ],
-      "lived": [
+    ('test1-a', 'test', '././pics/blank-profile.png', '
+       [
+        {"value": "test1-b", "start": "2004", "end": "2008"}
+      ]',
+       '[
+        {"value": "test1-c", "start": "2012", "end": "2014"}
+      ]' ,
+       'Single','[]',
+       '[
         {"value": "test1-e"}
-      ]
-    }', '[
+      ]', '[
       "test1-f",
       "test1-g",
       "test1-h",
       "test1-i"
     ]', 5),
-    ('test2-a', 'test', '././pics/blank-profile.png', '{
-      "education": [
-        {"value": "test2-b", "start_date": "2004", "end_date": "2008"}
-      ],
-      "work": [
-        {"value": "test2-c", "start_date": "2012", "end_date": "2014"}
-      ] ,
-      "relation": [
-        {"value": "test2-d"}
-      ],
-      "lived": [
+    ('test2-a', 'test', '././pics/blank-profile.png', '
+       [
+        {"value": "test2-b", "start": "2004", "end": "2008"}
+      ]',
+       '[
+        {"value": "test2-c", "start": "2012", "end": "2014"}
+      ]' ,
+       'Single','[]',
+       '[
         {"value": "test2-e"}
-      ]
-    }', '[
+      ]', '[
       "test2-f",
       "test2-g",
       "test2-h",
       "test2-i"
     ]', 6),
-    ('test3-a', 'test', '././pics/blank-profile.png', '{
-      "education": [
-        {"value": "test3-b", "start_date": "2004", "end_date": "2008"}
-      ],
-      "work": [
-        {"value": "test3-c", "start_date": "2012", "end_date": "2014"}
-      ] ,
-      "relation": [
-        {"value": "test3-d"}
-      ],
-      "lived": [
+    ('test3-a', 'test', '././pics/blank-profile.png', '
+       [
+        {"value": "test3-b", "start": "2004", "end": "2008"}
+      ]',
+       '[
+        {"value": "test3-c", "start": "2012", "end": "2014"}
+      ]' ,
+       'Single','[]',
+       '[
         {"value": "test3-e"}
-      ]
-    }', '[
+      ]', '[
       "test3-f",
       "test3-g",
       "test3-h",
       "test3-i"
     ]', 7),
-    ('test4-a', 'test', '././pics/blank-profile.png', '{
-      "education": [
-        {"value": "test4-b", "start_date": "2004", "end_date": "2008"}
-      ],
-      "work": [
-        {"value": "test4-c", "start_date": "2012", "end_date": "2014"}
-      ] ,
-      "relation": [
-        {"value": "test4-d"}
-      ],
-      "lived": [
+    ('test4-a', 'test', '././pics/blank-profile.png', '
+       [
+        {"value": "test4-b", "start": "2004", "end": "2008"}
+      ]',
+       '[
+        {"value": "test4-c", "start": "2012", "end": "2014"}
+      ]' ,
+       'Single','[]',
+       '[
         {"value": "test4-e"}
       ]
-    }', '[
+    ', '[
       "test4-f",
       "test4-g",
       "test4-h",
       "test4-i"
     ]', 8),
-    ('test5-a', 'test', '././pics/blank-profile.png', '{
-      "education": [
-        {"value": "test5-b", "start_date": "2004", "end_date": "2008"}
-      ],
-      "work": [
-        {"value": "test5-c", "start_date": "2012", "end_date": "2014"}
-      ] ,
-      "relation": [
-        {"value": "test5-d"}
-      ],
-      "lived": [
+    ('test5-a', 'test', '././pics/blank-profile.png', '
+       [
+        {"value": "test5-b", "start": "2004", "end": "2008"}
+      ]',
+       '[
+        {"value": "test5-c", "start": "2012", "end": "2014"}
+      ]' ,
+       'Single','[]',
+       '[
         {"value": "test5-e"}
       ]
-    }', '[
+    ', '[
       "test5-f",
       "test5-g",
       "test5-h",
       "test5-i"
     ]', 9),
-    ('test6-a', 'test', '././pics/blank-profile.png', '{
-      "education": [
-        {"value": "test6-b", "start_date": "2004", "end_date": "2008"}
-      ],
-      "work": [
-        {"value": "test6-c", "start_date": "2012", "end_date": "2014"}
-      ] ,
-      "relation": [
-        {"value": "test6-d"}
-      ],
-      "lived": [
+    ('test6-a', 'test', '././pics/blank-profile.png', '
+       [
+        {"value": "test6-b", "start": "2004", "end": "2008"}
+      ]',
+       '[
+        {"value": "test6-c", "start": "2012", "end": "2014"}
+      ]' ,
+       'Single','[]',
+       '[
         {"value": "test6-e"}
       ]
-    }', '[
+    ', '[
       "test6-f",
       "test6-g",
       "test6-h",
       "test6-i"
     ]', 10),
-    ('test7-a', 'test', '././pics/blank-profile.png', '{
-      "education": [
-        {"value": "test7-b", "start_date": "2004", "end_date": "2008"}
-      ],
-      "work": [
-        {"value": "test7-c", "start_date": "2012", "end_date": "2014"}
-      ] ,
-      "relation": [
-        {"value": "test7-d"}
-      ],
-      "lived": [
+    ('test7-a', 'test', '././pics/blank-profile.png', '
+       [
+        {"value": "test7-b", "start": "2004", "end": "2008"}
+      ]',
+       '[
+        {"value": "test7-c", "start": "2012", "end": "2014"}
+      ]',
+       'Single','[]',
+       '[
         {"value": "test7-e"}
-      ]
-    }', '[
+      ]', '[
       "test7-f",
       "test7-g",
       "test7-h",
       "test7-i"
     ]', 11),
-    ('test8-a', 'test', '././pics/blank-profile.png', '{
-      "education": [
-        {"value": "test8-b", "start_date": "2004", "end_date": "2008"}
-      ],
-      "work": [
-        {"value": "test8-c", "start_date": "2012", "end_date": "2014"}
-      ] ,
-      "relation": [
-        {"value": "test8-d"}
-      ],
-      "lived": [
+    ('test8-a', 'test', '././pics/blank-profile.png', '
+       [
+        {"value": "test8-b", "start": "2004", "end": "2008"}
+      ]',
+       '[
+        {"value": "test8-c", "start": "2012", "end": "2014"}
+      ]' ,
+       'Single','[]',
+       '[
         {"value": "test8-e"}
       ]
-    }', '[
+    ', '[
       "test8-f",
       "test8-g",
       "test8-h",
       "test8-i"
     ]', 12),
-    ('test9-a', 'test', '././pics/blank-profile.png', '{
-      "education": [
-        {"value": "test9-b", "start_date": "2004", "end_date": "2008"}
-      ],
-      "work": [
-        {"value": "test9-c", "start_date": "2012", "end_date": "2014"}
-      ] ,
-      "relation": [
-        {"value": "test9-d"}
-      ],
-      "lived": [
+    ('test9-a', 'test', '././pics/blank-profile.png', '
+       [
+        {"value": "test9-b", "start": "2004", "end": "2008"}
+      ]',
+       '[
+        {"value": "test9-c", "start": "2012", "end": "2014"}
+      ]' ,
+       'Single','[]',
+       '[
         {"value": "test9-e"}
-      ]
-    }', '[
+      ]', '[
       "test9-f",
       "test9-g",
       "test9-h",
       "test9-i"
     ]', 13),
-    ('test10-a', 'test', '././pics/blank-profile.png', '{
-      "education": [
-        {"value": "test10-b", "start_date": "2004", "end_date": "2008"}
-      ],
-      "work": [
-        {"value": "test10-c", "start_date": "2012", "end_date": "2014"}
-      ] ,
-      "relation": [
-        {"value": "test10-d"}
-      ],
-      "lived": [
+    ('test10-a', 'test', '././pics/blank-profile.png', '
+       [
+        {"value": "test10-b", "start": "2004", "end": "2008"}
+      ]',
+       '[
+        {"value": "test10-c", "start": "2012", "end": "2014"}
+      ]' ,
+      'Single' ,'[]',
+       '[
         {"value": "test10-e"}
-      ]
-    }', '[
+      ]', '[
       "test10-f",
       "test10-g",
       "test10-h",
       "test10-i"
     ]', 14),
-    ('test11-a', 'test', '././pics/blank-profile.png', '{
-      "education": [
-        {"value": "test11-b", "start_date": "2004", "end_date": "2008"}
-      ],
-      "work": [
-        {"value": "test11-c", "start_date": "2012", "end_date": "2014"}
-      ] ,
-      "relation": [
-        {"value": "test11-d"}
-      ],
-      "lived": [
+    ('test11-a', 'test', '././pics/blank-profile.png', '
+       [
+        {"value": "test11-b", "start": "2004", "end": "2008"}
+      ]',
+       '[
+        {"value": "test11-c", "start": "2012", "end": "2014"}
+      ]' ,
+      'Single' ,'[]',
+       '[
         {"value": "test11-e"}
-      ]
-    }', '[
+      ]', '[
       "test11-f",
       "test11-g",
       "test11-h",
       "test11-i"
     ]', 15),
-    ('test12-a', 'test', '././pics/blank-profile.png', '{
-      "education": [
-        {"value": "test12-b", "start_date": "2004", "end_date": "2008"}
-      ],
-      "work": [
-        {"value": "test12-c", "start_date": "2012", "end_date": "2014"}
-      ] ,
-      "relation": [
-        {"value": "test12-d"}
-      ],
-      "lived": [
+    ('test12-a', 'test', '././pics/blank-profile.png', '
+       [
+        {"value": "test12-b", "start": "2004", "end": "2008"}
+      ]',
+       '[
+        {"value": "test12-c", "start": "2012", "end": "2014"}
+      ]' ,
+      'Single' ,'[]',
+       '[
         {"value": "test12-e"}
-      ]
-    }', '[
+      ]', '[
       "test12-f",
       "test12-g",
       "test12-h",
       "test12-i"
     ]', 16),
-    ('test13-a', 'test', '././pics/blank-profile.png', '{
-      "education": [
-        {"value": "test13-b", "start_date": "2004", "end_date": "2008"}
-      ],
-      "work": [
-        {"value": "test13-c", "start_date": "2012", "end_date": "2014"}
-      ] ,
-      "relation": [
-        {"value": "test13-d"}
-      ],
-      "lived": [
+    ('test13-a', 'test', '././pics/blank-profile.png', '
+       [
+        {"value": "test13-b", "start": "2004", "end": "2008"}
+      ]',
+       '[
+        {"value": "test13-c", "start": "2012", "end": "2014"}
+      ]' ,
+      'Single' ,'[]',
+       '[
         {"value": "test13-e"}
-      ]
-    }', '[
+      ]', '[
       "test13-f",
       "test13-g",
       "test13-h",
       "test13-i"
     ]', 17),
-    ('test14-a', 'test', '././pics/blank-profile.png', '{
-      "education": [
-        {"value": "test14-b", "start_date": "2004", "end_date": "2008"}
-      ],
-      "work": [
-        {"value": "test14-c", "start_date": "2012", "end_date": "2014"}
-      ] ,
-      "relation": [
-        {"value": "test14-d"}
-      ],
-      "lived": [
+    ('test14-a', 'test', '././pics/blank-profile.png', '
+       [
+        {"value": "test14-b", "start": "2004", "end": "2008"}
+      ]',
+       '[
+        {"value": "test14-c", "start": "2012", "end": "2014"}
+      ]' ,
+      'Single' ,'[]',
+       '[
         {"value": "test14-e"}
-      ]
-    }', '[
+      ]', '[
       "test14-f",
       "test14-g",
       "test14-h",
       "test14-i"
     ]', 18),
-    ('test15-a', 'test', '././pics/blank-profile.png', '{
-      "education": [
-        {"value": "test15-b", "start_date": "2004", "end_date": "2008"}
-      ],
-      "work": [
-        {"value": "test15-c", "start_date": "2012", "end_date": "2014"}
-      ] ,
-      "relation": [
-        {"value": "test15-d"}
-      ],
-      "lived": [
+    ('test15-a', 'test', '././pics/blank-profile.png', '
+       [
+        {"value": "test15-b", "start": "2004", "end": "2008"}
+      ]',
+       '[
+        {"value": "test15-c", "start": "2012", "end": "2014"}
+      ]' ,
+      'Single' ,'[]',
+       '[
         {"value": "test15-e"}
-      ]
-    }', '[
+      ]', '[
       "test15-f",
       "test15-g",
       "test15-h",

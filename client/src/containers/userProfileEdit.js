@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Link, Redirect } from 'react-router-dom';
 import { Field, FieldArray, reduxForm } from 'redux-form';
 import ProfileOverview from '../containers/profileOverview';
-
+import { updateInfo } from '../actions/action_updateInfo.js';
+import { deleteAccount } from '../actions/action_deleteAccount.js';
+import validate from './validate';
 
 class UserProfileEdit extends Component {
+  constructor(props) {
+    super(props);
+    this.save = this.save.bind(this);
+    this.delete = this.delete.bind(this);
+  }
+
+  delete () {
+    console.log(this.props);
+    this.props.deleteAccount(this.props.login.profileid);
+  }
 
   save(values) {
-    console.log('saving...');
-    console.log(values);
+    this.props.updateInfo(values);
   }
 
   render () {
@@ -75,46 +87,46 @@ class UserProfileEdit extends Component {
   const relations = ['Child(ren)', 'Sibling(s)', 'Pet(s)'];
   const relationships = ['Single', 'In a relationship', 'Engaged', 'Married', "It's complicated", 'Separated', 'Divorced', 'Widowed']
   const relation = ({ fields, meta: { touched, error } }) => (
-    <div className="user-spec-fields">
-      <div className="user-relationship-status">
-        <div>Relationship Status:</div>
-        <Field className="user-spec-value-input" name="relationship_status" component="select">
-          <option value=""></option>
-          {relationships.map( relationshipOption =>
-            <option value={relationshipOption} key={relationshipOption}>{relationshipOption}</option>
-          )}
-        </Field>
+    <div>
+      <div className="user-spec-fields">
+        <div className="user-relationship-status">
+          <div>Relationship Status:</div>
+          <Field className="user-spec-value-input" name="relationship_status" component="select">
+            <option value=""></option>
+            {relationships.map( relationshipOption =>
+              <option value={relationshipOption} key={relationshipOption}>{relationshipOption}</option>
+            )}
+          </Field>
+        </div>
       </div>
-      <div className="user-relationship-status">
-        <div></div>
-        <div className="user-add-new-container user-spec-relation" onClick={() => fields.unshift()}>
+      <div className="user-spec-fields">
+        <div className="user-add-new-container" onClick={() => fields.unshift()}>
           <span className="user-add-new">+</span>
         </div>
-      </div>
-      {fields.map((value, i) =>
-        <div key={i} className="user-spec">
-          <div className="user-spec-value">
-            <div className="user-minus-new-container" onClick={() => fields.remove(i)}>
-              <span className="user-minus-new">-</span>
+        {fields.map((value, i) =>
+          <div key={i} className="user-spec">
+            <div className="user-spec-value">
+              <div className="user-minus-new-container" onClick={() => fields.remove(i)}>
+                <span className="user-minus-new">-</span>
+              </div>
+              { (i !== fields.length - 1 && <div className="user-down-new-container" onClick={() => fields.move(i, i+1)}>
+                <span className="user-down-new">&darr;</span>
+              </div>) || <div className="user-empty-new-container"><span className="user-empty-new"></span></div>}
+              <Field className="user-spec-value-input-relation-q" name={`${value}.quantity`} component="select">
+                <option value=""></option>
+                {quantity.map(quantityOption =>
+                  <option value={quantityOption} key={quantityOption}>{quantityOption}</option>)}
+              </Field>
+              <Field className="user-spec-value-input-relation" name={`${value}.value`} component="select">
+                <option value=""></option>
+                {relations.map(relationsOption =>
+                  <option value={relationsOption} key={relationsOption}>{relationsOption}</option>)}
+              </Field>
             </div>
-            { (i !== fields.length - 1 && <div className="user-down-new-container" onClick={() => fields.move(i, i+1)}>
-              <span className="user-down-new">&darr;</span>
-            </div>) || <div className="user-empty-new-container"><span className="user-empty-new"></span></div>}
+            <div></div>
           </div>
-          <div>
-            <Field className="user-spec-value-input-relation-q" name={`${value}.quantity`} component="select">
-              <option value=""></option>
-              {quantity.map(quantityOption =>
-                <option value={quantityOption} key={quantityOption}>{quantityOption}</option>)}
-            </Field>
-            <Field className="user-spec-value-input-relation" name={`${value}.value`} component="select">
-              <option value=""></option>
-              {relations.map(relationsOption =>
-                <option value={relationsOption} key={relationsOption}>{relationsOption}</option>)}
-            </Field>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 
@@ -166,6 +178,16 @@ class UserProfileEdit extends Component {
             <div className="user-forms">
               <form onSubmit={handleSubmit(this.save)}>
                 <div>
+                  <div className="user-spec-fields">
+                    <div className="user-spec">
+                      <div className="user-spec-value">
+                        <Field name="first_name" component="input" className="user-spec-value-input" type="text" placeholder="First Name" />
+                        <Field name="last_name" component="input" className="user-spec-value-input" type="text" placeholder="Last Name" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
                   <div className="user-item-pic-container">
                     <img className="user-item-pic" src="../pics/education2.png" alt="" />
                     <hr size="1px" color="#ece6e2" />
@@ -210,7 +232,7 @@ class UserProfileEdit extends Component {
             </div>
             <div className="user-bottom-buttons">
               <Link to="/profile"><button className="user-save" onClick={handleSubmit(this.save)}>SAVE</button></Link>
-              <button className="user-delete">DELETE PROFILE</button>
+              <button className="user-delete" onClick={this.delete}>DELETE PROFILE</button>
             </div>
           </div>
         </div>
@@ -227,8 +249,13 @@ function mapStateToProps(store) {
   };
 }
 
-UserProfileEdit = reduxForm({
-  form: 'profileUpdate'
-})(UserProfileEdit);
+ function mapDispatchToProps(dispatch) {
+   return bindActionCreators({ updateInfo, deleteAccount }, dispatch);
+ }
 
-export default connect(mapStateToProps)(UserProfileEdit);
+  UserProfileEdit = reduxForm({
+    form: 'profileUpdate',
+    validate
+  })(UserProfileEdit);
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfileEdit);

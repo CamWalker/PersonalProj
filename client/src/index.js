@@ -12,10 +12,11 @@ import Header from './containers/header.js';
 import UserProfileEdit from './containers/userProfileEdit.js';
 import About from './components/about.js';
 import Help from './containers/help.js';
+import thunk from 'redux-thunk';
 
 
 
-const middleware = applyMiddleware(ReduxPromise);
+const middleware = applyMiddleware(thunk, ReduxPromise);
 const store = createStore(reducers, middleware);
 
 ReactDOM.render(
@@ -27,7 +28,7 @@ ReactDOM.render(
             <Route path='/' exact={true} component={App} />
             <Route path='/login' component={Login} />
             <Route path='/profile' component={UserProfile} />
-            <Route path='/profile/edit' component={UserProfileEdit} />
+            <Route path='/edit' component={UserProfileEdit} />
             <Route path="/about" component={About} />
             <Route path="/help" component={Help} />
         </div>

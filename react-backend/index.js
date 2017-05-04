@@ -39,11 +39,11 @@ app.post('/profile/', profileCtrl.createUser);
 //AUTHENTICATION (LOGIN)
 app.get('/profile/:email/:password', profileCtrl.getUser);
 
+
+
+
 //CHANGE PASSWORD (CHANGE EMAIL?)
 
-
-
-//RETRIEVE USER ACCOUNT
 
 
 

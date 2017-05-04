@@ -2,6 +2,32 @@ PORT=8002 node bin/www
 npm start
 
 
+
+
+(a) form validation
+
+(d) image updating
+(e) password change
+
+
+(c) api for current location
+
+
+
+(d) help page
+(e) about page
+(f) facebook login
+(g) google login
+(h) hosting
+
+
+
+
+
+
+
+
+
 How many different actions?
 
 (1) Retrieve the feed. (triggered by page load or by refresh)

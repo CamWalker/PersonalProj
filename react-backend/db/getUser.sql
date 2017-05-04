@@ -1,2 +1,2 @@
-SELECT first_name, last_name, pic, specs, gtky, profileid FROM userinfo
+SELECT first_name, last_name, pic, education, work, relationship_status, relation, lived, gtky, profileid FROM userinfo
 WHERE profileid = $1;

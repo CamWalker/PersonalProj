@@ -1,5 +1,7 @@
 import { GET_FEED } from '../actions/action_feed.js';
 import { SEARCH_FILTER } from '../actions/action_search.js';
+import { LOGOUT } from '../actions/action_logout.js';
+import { DELETE_ACCOUNT } from '../actions/action_deleteAccount.js'
 
 export default function(state = [], action) {
   switch (action.type) {
@@ -57,6 +59,10 @@ export default function(state = [], action) {
         temp: profileSearch(action.payload),
         perm: state.perm
       };
+    case LOGOUT:
+      return [];
+    case DELETE_ACCOUNT:
+      return [];
     default:
       return state;
   }

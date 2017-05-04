@@ -76,9 +76,9 @@ const SingleProfile = (props) => {
       </div>
       <div className="ice-breaker-box">
         <div className="ice-breaker-item">
-          <div className="ice-breaker-question">
+          {profile.gtky[0] && <div className="ice-breaker-question">
             Ask me about...
-          </div>
+          </div>}
           <div className="ice-breaker-answer">
             {profile.gtky[0]}
           </div>

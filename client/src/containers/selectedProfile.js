@@ -98,7 +98,7 @@ const SelectedProfile = (props) => {
             <div className="selected-profile-specs">
               { props.selectedProfile ? education ? education : "" : ""}
               { props.selectedProfile ? work ? work : "" : ""}
-              { props.selectedProfile ? relationship_status ? relationship_status : "" : "" }
+              { props.selectedProfile.relationship_status ? relationship_status ? relationship_status : "" : "" }
               { props.selectedProfile ? relation ? relation : "" : "" }
               { props.selectedProfile ? lived ? lived : "" : ""}
             </div>

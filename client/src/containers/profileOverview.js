@@ -20,20 +20,28 @@ class ProfileOverview extends Component {
       const educ = profile.education;
       if (educ[0]) {
         specs.push({spec: educ[0], path: '../pics/education4.png'});
+      } else {
+        specs.push({spec: {value: 'Blank'}, path: '../pics/education4.png'});
       }
       const work = profile.work;
       if (work[0]) {
         specs.push({spec: {value: work[0].value + " at " + work[0].employer}, path: '../pics/work2.png'});
+      } else {
+        specs.push({spec: {value: 'Blank'}, path: '../pics/work2.png'});
       }
       const relation = profile.relation;
       if (profile.relationship_status) {
         specs.push({spec: {value: profile.relationship_status}, path: '../pics/relationship2.png'});
       } else if (relation[0]) {
         specs.push({spec: relation[0], path: '../pics/relationship2.png'});
+      } else {
+        specs.push({spec: {value: 'Blank'}, path: '../pics/relationship2.png'});
       }
       const lived =profile.lived;
       if (lived[0]) {
         specs.push({spec: lived[0], path: '../pics/location2.png'});
+      } else {
+        specs.push({spec: {value: 'Blank'}, path: '../pics/location2.png'});
       }
       specs = specs.map((spec, i) => {
         return <SingleProfileSpec
@@ -65,9 +73,9 @@ class ProfileOverview extends Component {
             </div>
             <div className="ice-breaker-box">
               <div className="ice-breaker-item">
-                <div className="login-ice-breaker-question">
+                {profile.gtky[0] && <div className="login-ice-breaker-question">
                   Ask me about...
-                </div>
+                </div>}
                 <div className="login-ice-breaker-answer">
                   {profile.gtky[0]}
                 </div>
