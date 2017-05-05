@@ -5,6 +5,7 @@ import gtkyKEY from './reducer_gtky';
 import login from './reducer_login_logout';
 import currentLocation from './reducer_location';
 import {reducer as formReducer} from 'redux-form';
+import popup from './reducer_popup';
 
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   selectedProfile: selectProfile,
   gtkyKEY: gtkyKEY,
   login: login,
-  currentLocation: currentLocation
+  currentLocation: currentLocation,
+  popup: popup
 });
 
 export default rootReducer;

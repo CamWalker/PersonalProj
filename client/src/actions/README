@@ -5,15 +5,16 @@ npm start
 
 
 (a) form validation
+(a1) responsive form updates
 
 (b) session for refresh
 
 (c) Amazon S3
-(d) image updating
+ -->image updating
 
-(d) help page
-(e) about page
+(d) page loading (spinner)
 
+(e) email login
 (f) facebook login
 (g) google login
 

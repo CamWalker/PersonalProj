@@ -48,21 +48,53 @@ button {
   width: 100%;
   text-align: center;
 }
+.about-container h6 {
+  width: 100%;
+  text-align: center;
+}
 .about-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.about-content div {
+.about-content:nth-child(1) {
   width: 100%;
   padding: 0px 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
 }
 .about-pic {
   display: none;
   width: 100%;
+}
+.help-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+}
+.help-field {
+  margin: 15px;
+  padding: 5px;
+  width: 100%;
+  border: 1px solid #d1cbc7;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.help-submit {
+  width: 90px;
+  padding: 10px 5px;
+  background-color: #81A8CD;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-top: 15px;
+}
+textarea.help-field {
+  height: 5em;
 }
 
 
@@ -1018,5 +1050,11 @@ li {
   }
   .desktop-view {
     display: block;
+  }
+  .help-field {
+    width: 70%;
+  }
+  input.help-field {
+    width: 30%;
   }
 }

@@ -11,7 +11,7 @@ class ProfileFeed extends React.Component {
     super(props);
     this.selectProfile = this.selectProfile.bind(this);
   }
-  componentDidMount() {
+  componentWillMount() {
     const getFeed = this.props.getFeed;
     const getLocation = this.props.getLocation;
     const userId = this.props.login.profileid;

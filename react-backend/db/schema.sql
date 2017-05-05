@@ -1,3 +1,11 @@
+CREATE TABLE issues (
+  id SERIAL PRIMARY KEY,
+  email varchar(150),
+  subject varchar(200),
+  body text
+);
+
+
 CREATE TABLE profiles (
   id SERIAL PRIMARY KEY,
   email varchar(100),

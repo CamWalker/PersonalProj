@@ -20,7 +20,6 @@ app.use(session({
 }));
 
 
-
 var conn = massive.connectSync({
   connectionString: config.connectionString
 });
@@ -30,41 +29,26 @@ var db = app.get('db');
 
 const feedCtrl = require('./feedCtrl.js');
 const profileCtrl = require('./profileCtrl.js');
+const issueCtrl = require('./issueCtrl.js');
 
 
 
 //SIGN UP (CREATE NEW ACCOUNT)
 app.post('/profile/', profileCtrl.createUser);
-
 //AUTHENTICATION (LOGIN)
 app.get('/profile/:email/:password', profileCtrl.getUser);
-
-
-
-
-//CHANGE PASSWORD (CHANGE EMAIL?)
-
-
-
-
-
 //UPDATE USER INFORMATION
 app.put('/profile/:id', profileCtrl.updateUser);
-
 //DELETE ACCOUNT
 app.delete('/profile/:id', profileCtrl.deleteUser);
-
 
 
 //RETRIEVE THE FEED
 app.put('/feed/:id', feedCtrl.updateCoordsAndGetFeed);
 
 
-
-
-
-
-
+//CREATE ISSUE
+app.post('/help/', issueCtrl.createIssue);
 
 
 app.listen(port, function () {

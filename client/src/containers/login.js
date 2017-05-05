@@ -9,8 +9,13 @@ import { loginValidate } from './validate'
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = {signup: false};
+    this.state = {
+      signup: false
+    };
     this.loginSwitch = this.loginSwitch.bind(this);
+  }
+  componentWillMount() {
+    
   }
 
   signUp = (values) => {
@@ -30,12 +35,12 @@ class Login extends Component {
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } }
 
-    const renderField = ({ className, placeholder, input, type, meta: { touched, error } }) => (
-        <div>
-          <input {...input} placeholder={placeholder} type={type} className={className} />
-          {touched && (error && <span>{error}</span>)}
-        </div>
-    )
+    // const renderField = ({ className, placeholder, input, type, meta: { touched, error } }) => (
+    //     <div>
+    //       <input {...input} placeholder={placeholder} type={type} className={className} />
+    //       {touched && (error && <span>{error}</span>)}
+    //     </div>
+    // )
 
     const { handleSubmit } = this.props;
     if (this.props.login) {

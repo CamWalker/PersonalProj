@@ -16,7 +16,7 @@ const About = () => {
             </ul>
             <p>For this reason we do not define GoodTurn as social media. We are a <i>social medium</i>--GoodTurn enables you to better socialize with the strangers in your vicinity.</p>
           </div>
-          <div>
+          <div className="about-pic">
             <img className="about-pic" src="../pics/Carousel/4.jpg" alt="" />
           </div>
         </div>
