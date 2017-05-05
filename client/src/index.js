@@ -12,11 +12,10 @@ import Header from './containers/header.js';
 import UserProfileEdit from './containers/userProfileEdit.js';
 import About from './components/about.js';
 import Help from './containers/help.js';
-import thunk from 'redux-thunk';
 
 
 
-const middleware = applyMiddleware(thunk, ReduxPromise);
+const middleware = applyMiddleware( ReduxPromise);
 const store = createStore(reducers, middleware);
 
 ReactDOM.render(

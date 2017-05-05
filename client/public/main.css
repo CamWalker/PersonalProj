@@ -29,6 +29,45 @@ button {
 }
 
 
+/*ABOUT PAGE*/
+.about-page {
+  display: flex;
+  justify-content: center;
+}
+.about-container {
+  width: 90%;
+  background-color: #fffdfb;
+  padding: 15px;
+  margin-top: 15px;
+  height: auto;
+  box-shadow: 0px 1px 5px #cdc7c2;
+  border-radius: 5px;
+  color: #597d9e;
+}
+.about-container h2 {
+  width: 100%;
+  text-align: center;
+}
+.about-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.about-content div {
+  width: 100%;
+  padding: 0px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.about-pic {
+  display: none;
+  width: 100%;
+}
+
+
+/* MOBILE MODAL */
+
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -635,9 +674,18 @@ li {
 }
   .account-greeting-text {
     color: #fffdfb;
-    font-size: 25px;
-    padding: 20px 0px;
+    font-size: 22px;
+    padding: 20px 10px 0px 10px;
     font-weight: 500;
+  }
+  .account-location-text {
+    color: #fffdfb;
+    font-size: 14px;
+    height: 35px;
+    padding: 20px 10px 0px 10px;
+  }
+  .account-location-text-blue {
+    color: #597d9e;
   }
   .account-pic-container {
     overflow: hidden;
@@ -949,6 +997,9 @@ li {
 
 @media (min-width: 1050px) {
   .login-carousel {
+    display: block;
+  }
+  .about-pic {
     display: block;
   }
   .left-column {

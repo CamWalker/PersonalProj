@@ -13,7 +13,6 @@ const UserProfile = (props) => {
   }
 
   const profile = props.login;
-  console.log(profile);
       const education = profile.education.map((spec, i) => {
         if(spec) {
           return (

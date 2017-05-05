@@ -2,6 +2,7 @@ import { LOGIN } from '../actions/action_login.js';
 import { LOGOUT } from '../actions/action_logout.js';
 import { UPDATE_INFO } from '../actions/action_updateInfo.js'
 import { DELETE_ACCOUNT } from '../actions/action_deleteAccount.js'
+// import { browserHistory } from 
 
 export default function(state = false, action) {
   switch (action.type) {

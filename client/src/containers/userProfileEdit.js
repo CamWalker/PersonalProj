@@ -16,7 +16,6 @@ class UserProfileEdit extends Component {
   }
 
   delete () {
-    console.log(this.props);
     this.props.deleteAccount(this.props.login.profileid);
   }
 

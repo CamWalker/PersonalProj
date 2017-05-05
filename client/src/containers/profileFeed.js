@@ -13,11 +13,12 @@ class ProfileFeed extends React.Component {
   }
   componentDidMount() {
     const getFeed = this.props.getFeed;
+    const getLocation = this.props.getLocation;
     const userId = this.props.login.profileid;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
-        getFeed(position.coords.latitude, position.coords.longitude, userId);
         getLocation(position.coords.latitude, position.coords.longitude);
+        getFeed(position.coords.latitude, position.coords.longitude, userId);
       }, function (error) {
         switch(error.code) {
           case error.PERMISSION_DENIED:

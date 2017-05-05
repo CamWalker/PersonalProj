@@ -74,16 +74,16 @@ const SingleProfile = (props) => {
             </div>
           </div>
       </div>
-      <div className="ice-breaker-box">
+      {profile.gtky[0] && <div className="ice-breaker-box">
         <div className="ice-breaker-item">
-          {profile.gtky[0] && <div className="ice-breaker-question">
+          <div className="ice-breaker-question">
             Ask me about...
-          </div>}
+          </div>
           <div className="ice-breaker-answer">
             {profile.gtky[0]}
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 };

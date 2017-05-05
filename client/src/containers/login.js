@@ -14,7 +14,6 @@ class Login extends Component {
   }
 
   signUp = (values) => {
-    console.log(values);
     this.props.signUpAction(values);
   }
 
@@ -50,7 +49,7 @@ class Login extends Component {
         <div className="login-page">
           <div className="login-carousel">
             <div className="login-carousel-inner">
-              <img src="../pics/Carousel/7.jpg" alt="" />
+              <img src="../pics/Carousel/4.jpg" alt="" />
             </div>
           </div>
           <div className="login-sign-up">
