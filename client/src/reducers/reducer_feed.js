@@ -1,9 +1,14 @@
 import { GET_FEED } from '../actions/action_feed.js';
 import { SEARCH_FILTER } from '../actions/action_search.js';
-import { LOGOUT } from '../actions/action_logout.js';
+import { LOGOUT } from '../actions/action_login.js';
 import { DELETE_ACCOUNT } from '../actions/action_deleteAccount.js'
 
-export default function(state = [], action) {
+const INITIAL_STATE = {
+  temp: [],
+  perm: []
+};
+
+export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case GET_FEED:
       let feed = action.payload.data.feed
@@ -24,6 +29,7 @@ export default function(state = [], action) {
 
       }
       return {
+        ...state,
         temp: action.payload.data.feed,
         perm: action.payload.data.feed
       };
@@ -56,13 +62,13 @@ export default function(state = [], action) {
          return profiles;
        }
       return {
-        temp: profileSearch(action.payload),
-        perm: state.perm
+        ...state,
+        temp: profileSearch(action.payload)
       };
     case LOGOUT:
-      return [];
+      return INITIAL_STATE;
     case DELETE_ACCOUNT:
-      return [];
+      return INITIAL_STATE;
     default:
       return state;
   }

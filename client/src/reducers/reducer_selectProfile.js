@@ -1,5 +1,5 @@
 import { SELECT_PROFILE } from '../actions/action_selectProfile'
-import { LOGOUT } from '../actions/action_logout.js';
+import { LOGOUT } from '../actions/action_login.js';
 import { DELETE_ACCOUNT } from '../actions/action_deleteAccount.js'
 
 export default function(state = null, action) {

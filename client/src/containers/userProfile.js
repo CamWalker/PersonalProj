@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
 
 
 const UserProfile = (props) => {
-  if (!props.login) {
+  if (!props.login.loggedIn) {
     return (
       <Redirect to='/login' />
     )
   }
 
-  const profile = props.login;
+  const profile = props.login.data;
       const education = profile.education.map((spec, i) => {
         if(spec) {
           return (
@@ -116,9 +116,13 @@ const UserProfile = (props) => {
             </div>
             <div className="user-forms">
                 <div>
+                  <h4>Name</h4>
                   <div className="user-spec-fields">
                     <div className="user-spec">
                       <div className="user-spec-value">{profile.first_name} &nbsp;&nbsp;{profile.last_name}</div>
+                      <div>
+                        <img className="account-pic" src={profile.pic} alt="" />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -128,6 +132,7 @@ const UserProfile = (props) => {
                     <img className="user-item-pic" src="../pics/education2.png" alt="" />
                     <hr size="1px" color="#ece6e2" />
                   </div>
+                  <h4>Education</h4>
                   <div className="user-spec-fields">
                     {education}
                   </div>
@@ -138,6 +143,7 @@ const UserProfile = (props) => {
                     <img className="user-item-pic" src="../pics/work.png" alt="" />
                     <hr size="1px" color="#ece6e2" />
                   </div>
+                  <h4>Work Experience</h4>
                   <div className="user-spec-fields">
                     {work}
                   </div>
@@ -148,6 +154,7 @@ const UserProfile = (props) => {
                     <img className="user-item-pic" src="../pics/relationship.png" alt="" />
                     <hr size="1px" color="#ece6e2" />
                   </div>
+                  <h4>Relationships</h4>
                   <div className="user-spec-fields">
                     {profile.relationship_status && <div className="user-spec">
                       <div className="user-spec-value user-relationship-status">Relationship Status:</div>
@@ -162,6 +169,7 @@ const UserProfile = (props) => {
                     <img className="user-item-pic" src="../pics/location.png" alt="" />
                     <hr size="1px" color="#ece6e2" />
                   </div>
+                  <h4>Places You Lived</h4>
                   <div className="user-spec-fields">
                     {lived}
                   </div>
@@ -172,6 +180,7 @@ const UserProfile = (props) => {
                     <div className="user-item-pic" ></div>
                     <hr size="1px" color="#ece6e2" />
                   </div>
+                  <h4>Optional Inputs</h4>
                   <div className="user-spec-fields">
                     {gtky}
                   </div>

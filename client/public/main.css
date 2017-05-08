@@ -344,7 +344,7 @@ textarea.help-field {
         padding: 3px;
         margin: 5px 10px;
         border: solid 1px #d1cbc7;
-        width: 400px;
+        width: 100%;
         background-color: white;
       }
       .user-spec-fields {
@@ -1024,6 +1024,9 @@ li {
   }
   .show-selected {
     display: none;
+  }
+  .user-spec-value-input-gtky {
+    width: 400px;
   }
 }
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { logoutAction } from '../actions/action_logout.js'
+import { logoutAction } from '../actions/action_login.js'
 import SingleProfileSpec from '../components/singleProfileSpec.js';
 
 class ProfileOverview extends Component {
@@ -14,7 +14,7 @@ class ProfileOverview extends Component {
 
 
   render() {
-    let profile = this.props.login;
+    const profile = this.props.login.data;
 
       let specs = [];
       const educ = profile.education;

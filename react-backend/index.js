@@ -11,7 +11,8 @@ const corsOptions = {
 	origin: 'http://localhost:8080'
 };
 const port = 8080
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cors(corsOptions));
 app.use(session({
 	resave: true,
@@ -36,9 +37,10 @@ const issueCtrl = require('./issueCtrl.js');
 //SIGN UP (CREATE NEW ACCOUNT)
 app.post('/profile/', profileCtrl.createUser);
 //AUTHENTICATION (LOGIN)
-app.get('/profile/:email/:password', profileCtrl.getUser);
+app.get('/profile/:email/', profileCtrl.getUser);
 //UPDATE USER INFORMATION
 app.put('/profile/:id', profileCtrl.updateUser);
+app.put('/newimage/', profileCtrl.postImage);
 //DELETE ACCOUNT
 app.delete('/profile/:id', profileCtrl.deleteUser);
 

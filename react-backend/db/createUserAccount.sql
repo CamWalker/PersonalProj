@@ -1,1 +1,1 @@
-INSERT INTO profiles (email, password) values ($1, $2);
+INSERT INTO profiles (email) values ($1);

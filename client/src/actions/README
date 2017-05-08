@@ -4,8 +4,15 @@ npm start
 
 
 
+- password update
+- undefined values if field is left blank (both on the overview and the selected profile)
+- re-reroute from edit page
+- limit file size
+
+
+
 (a) form validation
-(a1) responsive form updates
+(a1) responsive form status updates (SAVED! e.g.)
 
 (b) session for refresh
 
@@ -14,13 +21,15 @@ npm start
 
 (d) page loading (spinner)
 
-(e) email login
 (f) facebook login
 (g) google login
 
 (h) hosting
 
 
+
+
+email login
 
 
 

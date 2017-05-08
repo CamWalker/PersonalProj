@@ -14,7 +14,7 @@ class ProfileFeed extends React.Component {
   componentWillMount() {
     const getFeed = this.props.getFeed;
     const getLocation = this.props.getLocation;
-    const userId = this.props.login.profileid;
+    const userId = this.props.login.data.profileid;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
         getLocation(position.coords.latitude, position.coords.longitude);

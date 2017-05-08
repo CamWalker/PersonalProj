@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import { logoutAction } from '../actions/action_logout.js'
+import { logoutAction } from '../actions/action_login.js'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 
 
 class Header extends Component {
+  componentWillMount() {
 
+  }
   showDropDown() {
     document.getElementById("myDropdown").classList.toggle("show");
   }
@@ -28,10 +30,10 @@ class Header extends Component {
             </div>
             <div id="myDropdown" className="dropdown-content">
               <Link to="/">Home</Link>
-              {this.props.login && <Link to="/profile">Profile</Link> }
+              {this.props.login.loggedIn && <Link to="/profile">Profile</Link> }
               <Link to="/about">About</Link>
               <Link to="/help">Help</Link>
-              {this.props.login && <a onClick={() => this.onLogout()}>Log Out</a> }
+              {this.props.login.loggedIn && <a onClick={() => this.onLogout()}>Log Out</a> }
             </div>
           </div>
         </div>

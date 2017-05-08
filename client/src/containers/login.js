@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { loginAction, signUpAction } from '../actions/action_login.js';
 import { Redirect } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
-import { loginValidate } from './validate'
-
+import firebase from 'firebase';
+import { logItIn, loginAction, signUpAction, activate } from '../actions/action_login.js';
+import { loginValidate } from './validate';
+import config from './config';
 
 class Login extends Component {
   constructor(props) {
@@ -15,16 +16,21 @@ class Login extends Component {
     this.loginSwitch = this.loginSwitch.bind(this);
   }
   componentWillMount() {
-    
+    if (!this.props.appActivated) {
+      firebase.initializeApp(config);
+      this.props.activate();
+    }
   }
 
   signUp = (values) => {
+    this.props.loginAction();
     this.props.signUpAction(values);
   }
 
   login = (values) => {
     if (values) {
-      this.props.loginAction(values.email, values.password);
+      this.props.loginAction();
+      this.props.logItIn(values.email, values.password);
     }
   }
 
@@ -43,7 +49,7 @@ class Login extends Component {
     // )
 
     const { handleSubmit } = this.props;
-    if (this.props.login) {
+    if (this.props.login.loggedIn) {
       return (
         <Redirect to={from}/>
       )
@@ -105,6 +111,7 @@ class Login extends Component {
 function mapStateToProps(store) {
   return {
     login: store.login,
+    appActivated: store.appActivated,
     loginForm: store.form
   };
 }
@@ -115,6 +122,6 @@ Login = reduxForm({
   loginValidate
 })(Login);
 
-Login = connect(mapStateToProps, { loginAction, signUpAction })(Login);
+Login = connect(mapStateToProps, { loginAction, signUpAction, logItIn, activate })(Login);
 
 export default Login;

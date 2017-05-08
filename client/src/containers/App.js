@@ -22,7 +22,7 @@ class App extends React.Component {
   }
 
   render() {
-    if (!this.props.login) {
+    if (!this.props.login.loggedIn) {
       return (
         <Redirect to='/login' />
       )
