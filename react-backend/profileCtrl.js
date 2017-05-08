@@ -13,6 +13,7 @@ AWS.config.update({
 });
 
 exports.getUser = function (req, res, next) {
+  console.log('getting user');
   db.validateEmail([req.params.email], function (err, user) {
     if(!err && user[0]) {
       db.getUser([Number(user[0].id)], function (err, user) {

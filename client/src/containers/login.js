@@ -41,13 +41,6 @@ class Login extends Component {
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } }
 
-    // const renderField = ({ className, placeholder, input, type, meta: { touched, error } }) => (
-    //     <div>
-    //       <input {...input} placeholder={placeholder} type={type} className={className} />
-    //       {touched && (error && <span>{error}</span>)}
-    //     </div>
-    // )
-
     const { handleSubmit } = this.props;
     if (this.props.login.loggedIn) {
       return (
@@ -76,7 +69,7 @@ class Login extends Component {
               <button className="login-sign-up-submit" type="submit">Sign Up</button>
             </form>
             <p>
-              Have an account? <a onClick={this.loginSwitch} className="login-login-link">Log in</a>
+              Have an account? <a onClick={this.loginSwitch} className="login-login-link">Log In</a>
             </p>
           </div>
         </div>
@@ -95,7 +88,7 @@ class Login extends Component {
             <form className="login-sign-up-form" onSubmit={handleSubmit(this.login)}>
               <Field className="login-sign-up-field" type="email" placeholder="Email" name="email" component="input" />
               <Field className="login-sign-up-field" type="password" placeholder="Password" name="password" component="input" />
-              <button className="login-sign-up-submit" type="submit">Log in</button>
+              <button className="login-sign-up-submit" type="submit">Log In</button>
             </form>
             <p>
               Don't have an account? <a onClick={this.loginSwitch} className="login-login-link">Sign Up</a>
@@ -116,7 +109,6 @@ function mapStateToProps(store) {
   };
 }
 
-  // fields: ['firstName', 'lastName', 'email', 'password']
 Login = reduxForm({
   form: 'loginForm',
   loginValidate
