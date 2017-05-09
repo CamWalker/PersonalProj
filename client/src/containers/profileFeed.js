@@ -52,16 +52,20 @@ class ProfileFeed extends React.Component {
   render() {
     const profiles = this.props.profiles.temp;
     let profileItems;
-    if(profiles) {
+    if(profiles[0]) {
       profileItems = profiles.map((profile, i) => {
         return <SingleProfile
           key={profile.id}
           profile={profile}
           onProfileSelect={this.selectProfile}
-          selectedID={this.props.selectedProfile ? this.props.selectedProfile.id : null}/>
+          selectedID={this.props.profiles.selectedProfile ? this.props.profiles.selectedProfile.id : null}/>
       });
     } else {
-      profileItems = "";
+      return (
+        <div className="profile-list center">
+          <img className="loader" src="../pics/GoodTurnG.png" alt=""/>
+        </div>
+      );
     }
 
     return (
@@ -75,7 +79,6 @@ class ProfileFeed extends React.Component {
 function mapStateToProps(store) {
   return {
     profiles: store.profiles,
-    selectedProfile: store.selectedProfile,
     login: store.login
   };
 }

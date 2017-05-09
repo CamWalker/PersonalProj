@@ -50,6 +50,10 @@ class UserProfileEdit extends Component {
       return (
         <Redirect to='/login' />
       )
+    } else if (this.props.login.edited) {
+      return (
+        <Redirect to='/profile' />
+      )
     }
 
     let {imagePreviewUrl} = this.state;

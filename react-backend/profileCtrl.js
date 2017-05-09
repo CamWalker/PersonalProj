@@ -2,15 +2,16 @@ var exports = module.exports = {}
 var app = require('./index.js');
 var db = app.get('db');
 var AWS = require('aws-sdk');
-
 const config1 = require('./config.js')
-let s3 = new AWS.S3();
+
 
 AWS.config.update({
   accessKeyId: config1.AWS_key,
   secretAccessKey: config1.AWS_secret,
   region: config1.AWS_region
 });
+
+const s3 = new AWS.S3();
 
 exports.getUser = function (req, res, next) {
   console.log('getting user');
@@ -59,15 +60,13 @@ exports.updateUser = function (req, res, next) {
   })
 };
 
+
 exports.postImage = function (req, res, next) {
-
-
   const newImage = req.body.newImage
 
   buf = new Buffer(newImage.imageBody.replace(/^data:image\/\w+;base64,/, ""), 'base64');
-
   // bucketName var below crates a "folder" for each user
-  var bucketName = 'goodturn-pics/' + newImage.userEmail;
+  var bucketName = 'goodturn-pics';
   var params = {
     Bucket: bucketName,
     Key: newImage.imageName,
@@ -76,14 +75,19 @@ exports.postImage = function (req, res, next) {
     ACL: 'public-read'
   };
   s3.upload(params, function (err, data) {
-
-    if (err) {
+    if (!err) {
+      console.log(typeof data.Location, data.Location);
+      db.updateImage([data.Location, req.body.id], function (err) {
+        if (!err) {
+          res.status(200).send('gtg');
+        } else {
+          res.status(500).send(err);
+        }
+      })
+    } else {
       console.log('error:', err);
-      return res.status(500).send(err);
+      res.status(500).send(err);
     }
-
-    console.log(data);
-    res.json(data);
   });
 
 }
