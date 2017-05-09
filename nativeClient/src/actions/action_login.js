@@ -24,8 +24,13 @@ export function logItIn(email, password) {
   return (dispatch) => {
     // firebase.auth().signInWithEmailAndPassword(email, password)
     // .then((user) => {
-      // const request = axios.get('/profile/' + email + '/');
-      loginSucess(dispatch, 'request');
+      axios.get('http://localhost:8080/profile/' + email + '/')
+        .then((user) => {
+          loginSucess(dispatch, user);
+          Actions.main();
+        })
+        .catch((err) => console.log('fail', err))
+
     // })
     // .catch((err) => {
     //   loginFail(dispatch)
@@ -38,7 +43,6 @@ export function loginFail(dispatch) {
 }
 
 export function loginSucess(dispatch, request) {
-  Actions.main();
   return dispatch({
     type: LOGIN,
     payload: request
@@ -50,7 +54,7 @@ export function signUpAction(values) {
   return (dispatch) => {
     // firebase.auth().createUserWithEmailAndPassword(email, password)
     //   .then((user) => {
-        const request = axios.post('/profile/',{ values: values });
+        const request = axios.post('http://localhost:8080/profile/',{ values: values });
         loginSucess(dispatch, request)
       // })
       // .catch((err) => {

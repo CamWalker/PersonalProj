@@ -9,7 +9,7 @@ export function deleteAccount(id) {
   const user = firebase.auth().currentUser;
   user.delete()
     .then(() => Actions.auth());
-  const request = axios.delete('/profile/' + id);
+  const request = axios.delete('http://localhost:8080/profile/' + id);
 
   return {
     type: DELETE_ACCOUNT,

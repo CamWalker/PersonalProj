@@ -24,7 +24,8 @@ class LoginForm extends Component {
   login = (values) => {
     if (values) {
       this.props.loginAction();
-      this.props.logItIn(values.email, values.password);
+      this.props.logItIn('whatiscameronsemail@gmail.com', values.password);
+      // this.props.logItIn(values.email, values.password);
     }
   }
 

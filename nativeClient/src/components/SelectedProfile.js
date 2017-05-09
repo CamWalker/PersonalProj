@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { ScrollView, View, Image, Text, TouchableWithoutFeedback } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Header from './common/Header';
@@ -9,6 +10,7 @@ import Card from './common/Card';
 class SelectedProfile extends Component {
 
   render() {
+    const profile = this.props.profiles.selectedProfile;
     const value = 'Search profiles'
     return (
       <View style={styles.bodyStyle} >
@@ -26,11 +28,11 @@ class SelectedProfile extends Component {
                 </TouchableWithoutFeedback>
               </View>
               <View style={styles.containerStyle2}>
-                <Image style={styles.imageStyle2} source={require('../pics/blank-profile.png')} />
+                <Image style={styles.imageStyle2} source={{uri: profile.pic}} />
               </View>
               <View style={styles.containerStyle3}>
                 <Text style={styles.textName}>
-                  Name NAME
+                  {profile.first_name} {profile.last_name}
                 </Text>
               </View>
               <View style={styles.containerStyle4}>
@@ -174,4 +176,10 @@ const styles = {
   }
 };
 
-export default SelectedProfile;
+function mapStateToProps(store) {
+  return {
+    profiles: store.profiles
+  };
+}
+
+export default connect(mapStateToProps)(SelectedProfile);

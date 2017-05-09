@@ -88,7 +88,7 @@ const SelectedProfile = (props) => {
 
   return (
     <div id="profile-modal" className="selected-profile-box">
-      {selectedProfile &&
+      {selectedProfile.first_name &&
       <div className="selected-profile-container">
         <div className="selected-profile-item">
 

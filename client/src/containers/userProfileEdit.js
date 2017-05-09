@@ -17,6 +17,22 @@ class UserProfileEdit extends Component {
     this.delete = this.delete.bind(this);
   }
 
+  _handleImageChange = (e) => {
+    e.preventDefault();
+
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imagePreviewUrl: reader.result
+      });
+    }
+
+    reader.readAsDataURL(file)
+  }
+
   handleScale = (e) => {
     const scale = parseFloat(e.target.value)
     this.setState({ scale })
@@ -56,7 +72,7 @@ class UserProfileEdit extends Component {
       )
     }
 
-    let {imagePreviewUrl} = this.state;
+    let { imagePreviewUrl } = this.state;
     let $imagePreview = null;
     if (imagePreviewUrl) {
       $imagePreview = (<AvatarEditor
@@ -69,7 +85,6 @@ class UserProfileEdit extends Component {
         borderRadius={100}
         color={[255, 255, 255, 0.6]} // RGBA
         rotate={0}
-        onImageChange={this._handleImageChange}
       />);
     } else {
       $imagePreview = (<AvatarEditor
@@ -82,7 +97,6 @@ class UserProfileEdit extends Component {
         borderRadius={100}
         color={[255, 255, 255, 0.6]} // RGBA
         rotate={0}
-        onImageChange={this._handleImageChange}
       />);
     }
 

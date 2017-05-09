@@ -1,15 +1,21 @@
-import { GET_FEED } from '../actions/action_feed.js';
-import { SEARCH_FILTER } from '../actions/action_search.js';
+import { GET_FEED, SEARCH_FILTER } from '../actions/action_feed.js';
 import { LOGOUT } from '../actions/action_login.js';
 import { DELETE_ACCOUNT } from '../actions/action_deleteAccount.js'
+import { SELECT_PROFILE } from '../actions/action_selectProfile'
 
 const INITIAL_STATE = {
   temp: [],
-  perm: []
+  perm: [],
+  selectedProfile: {}
 };
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
+    case SELECT_PROFILE:
+      return {
+        ...state,
+        selectedProfile: action.payload
+      };
     case GET_FEED:
       let feed = action.payload.data.feed
       if (feed) {
@@ -30,8 +36,9 @@ export default function(state = INITIAL_STATE, action) {
       }
       return {
         ...state,
-        temp: action.payload.data.feed,
-        perm: action.payload.data.feed
+        temp: feed,
+        perm: feed,
+        selectedProfile: feed[0]
       };
     case SEARCH_FILTER:
         function profileSearch(term) {
@@ -61,9 +68,11 @@ export default function(state = INITIAL_STATE, action) {
          const profiles = state.perm.filter((v, i) => filtered[i])
          return profiles;
        }
+      const temp = profileSearch(action.payload)
       return {
         ...state,
-        temp: profileSearch(action.payload)
+        temp: temp,
+        selectedProfile: temp[0]
       };
     case LOGOUT:
       return INITIAL_STATE;

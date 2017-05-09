@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import SingleProfile from '../components/singleProfile';
 import { getFeed } from '../actions/action_feed';
 import { getLocation } from '../actions/action_getLocation';
-import { bindActionCreators } from 'redux';
 import { selectProfile } from '../actions/action_selectProfile';
 
-class ProfileFeed extends React.Component {
+class ProfileFeed extends Component {
   constructor(props) {
     super(props);
     this.selectProfile = this.selectProfile.bind(this);
@@ -16,13 +16,13 @@ class ProfileFeed extends React.Component {
     const getLocation = this.props.getLocation;
     const userId = this.props.login.data.profileid;
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (position) {
+      navigator.geolocation.getCurrentPosition((position) => {
         getLocation(position.coords.latitude, position.coords.longitude);
         getFeed(position.coords.latitude, position.coords.longitude, userId);
       }, function (error) {
         switch(error.code) {
           case error.PERMISSION_DENIED:
-            alert("User denied the request for Geolocation.");
+            alert("You denied the request for Geolocation.");
             break;
           case error.POSITION_UNAVAILABLE:
             alert("Location information is unavailable.");

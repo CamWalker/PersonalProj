@@ -1,29 +1,66 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { ScrollView, View, TextInput, Text } from 'react-native';
+
+//components
 import Header from './common/Header';
 import SingleProfile from './SingleProfile';
 import Nav from './common/Nav';
+import Searchbar from './Searchbar';
+
+//actions
+import { getFeed } from '../actions/action_feed';
+import { getLocation } from '../actions/action_getLocation';
+import { selectProfile } from '../actions/action_selectProfile';
 
 class Feed extends Component {
+  componentWillMount() {
+    const getFeed = this.props.getFeed;
+    const getLocation = this.props.getLocation;
+    const userId = this.props.login.data.profileid;
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        getLocation(position.coords.latitude, position.coords.longitude);
+        getFeed(position.coords.latitude, position.coords.longitude, userId);
+      }, function (error) {
+        switch(error.code) {
+          case error.PERMISSION_DENIED:
+            alert("User denied the request for Geolocation.");
+            break;
+          case error.POSITION_UNAVAILABLE:
+            alert("Location information is unavailable.");
+            break;
+          case error.TIMEOUT:
+            alert("The request to get user location timed out.");
+            break;
+          case error.UNKNOWN_ERROR:
+            alert("An unknown error occurred.");
+            break;
+          default:
+            //good to go!
+        }
+      });
+    } else {
+        alert("Geolocation is not supported.");
+    }
+  }
+
+
 
   render() {
-    const value = 'Search profiles'
+
+    const profiles = this.props.profiles.temp
+    const renderProfiles = profiles.map((profile) => <SingleProfile key={profile.id} profile={profile} />)
+    const value = 'Search profiles';
+
     return (
       <View style={styles.bodyStyle} >
         <Header>
-          <TextInput
-            placeholder="Search profiles"
-            autoCorrect={false}
-            value={value}
-            style={styles.inputStyle}/>
+          <Searchbar />
         </Header>
         <ScrollView>
-          <SingleProfile />
-          <SingleProfile />
-          <SingleProfile />
-          <SingleProfile />
-          <SingleProfile />
-          <SingleProfile />
+          {renderProfiles}
         </ScrollView>
         <Nav />
       </View>
@@ -39,19 +76,22 @@ const styles = {
     backgroundColor: '#F2EEEB',
     flex: 1,
     justifyContent: 'space-between'
-  },
-  inputStyle: {
-    backgroundColor: '#6c93b6',
-    color: 'white',
-    paddingHorizontal: 5,
-    paddingVertical: 3,
-    alignSelf: 'stretch',
-    height: 20,
-    justifyContent: 'center',
-    marginHorizontal: 10,
-    borderRadius: 3,
-    fontSize: 14
   }
 };
 
-export default Feed;
+function mapStateToProps(store) {
+  return {
+    profiles: store.profiles,
+    login: store.login
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    getFeed: getFeed,
+    selectProfile: selectProfile,
+    getLocation: getLocation
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);

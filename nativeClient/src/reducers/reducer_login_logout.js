@@ -1,35 +1,32 @@
-import { LOGIN } from '../actions/action_login.js';
-import { LOGOUT } from '../actions/action_login.js';
-import { UPDATE_INFO } from '../actions/action_updateInfo.js'
+import { UPDATE_SUCCESS, UPDATE_FAIL, CHANGE_EDITED } from '../actions/action_updateInfo.js'
 import { DELETE_ACCOUNT } from '../actions/action_deleteAccount.js'
-import { LOGIN_ERROR } from '../actions/action_login.js';
-import { LOGIN_ACTION } from '../actions/action_login.js';
+import { LOGIN, LOGOUT, LOGIN_ERROR, LOGIN_ACTION } from '../actions/action_login.js';
 
 const INITIAL_STATE = {
   loggedIn: false,
   data: {},
-  error: ''
+  message: '',
+  edited: false
 }
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case LOGIN_ACTION:
-      return { ...state, error: '' };
+      return { ...state, message: '' };
     case LOGIN:
-      if (action.payload.message !== "Request failed with status code 403") {
-        console.log(action.payload);
-        return { ...state, loggedIn: true, data: action.payload.data };
-      }
-      break;
+      return { ...state, loggedIn: true, data: action.payload.data };
     case LOGOUT:
-      return { ...state, loggedIn: false };
+      return { ...state, loggedIn: false, message: '' };
     case LOGIN_ERROR:
-      return { ...state, error: action.payload };
-    case UPDATE_INFO:
-      return { ...state, data: action.payload.data };
+      return { ...state, message: 'Authentication failed.' };
+    case UPDATE_SUCCESS:
+      return { ...state, data: action.payload.data, message: 'Profile saved and updated!', edited: true };
+    case UPDATE_FAIL:
+      return { ...state, message: 'Failed to save.'};
+    case CHANGE_EDITED:
+      return { ...state, edited: false }
     case DELETE_ACCOUNT:
-      console.log(action.payload);
-      return { ...state, loggedIn: false, data: action.payload };
+      return { ...state, loggedIn: false, data: action.payload, message: '' };
     default:
       return state;
   }

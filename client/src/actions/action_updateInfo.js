@@ -12,18 +12,21 @@ export function changeEditStatus() {
 export function updateInfo(values, newImage) {
   // RETURN AXIOS AJAX REQUEST //
 
-  axios.put('/newimage/', { newImage, id: values.profileid  })
-    .then(() => console.log('success'))
-    .catch(() => console.log('fail'));
+
 
   return (dispatch) => {
-    axios.put('/profile/' + values.profileid + '/' , { values })
-      .then((user) => {
-        updateSuccess(dispatch, user);
+    axios.put('/newimage/', { newImage, id: values.profileid  })
+      .then(() => {
+        axios.put('/profile/' + values.profileid + '/' , { values })
+          .then((user) => {
+            updateSuccess(dispatch, user);
+          })
+          .catch(() => {
+            updateFail(dispatch);
+          });
       })
-      .catch(() => {
-        updateFail(dispatch);
-      });
+      .catch(() => updateFail(dispatch));
+
   }
 }
 
