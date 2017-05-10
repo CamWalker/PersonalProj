@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 
-const Nav = (props) => {
+const Footer = (props) => {
 
   return (
     <View style={styles.viewStyle}>
@@ -13,11 +13,12 @@ const Nav = (props) => {
 const styles = {
   viewStyle: {
     backgroundColor: '#81A8CD',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     alignItems: 'center',
     height: 45,
     position: 'relative'
   }
 };
 
-export default Nav;
+export default Footer;

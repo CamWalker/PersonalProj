@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { View, Image, ScrollView, Text } from 'react-native';
+import { View, Image, ScrollView, Text, TouchableWithoutFeedback } from 'react-native';
+import UserProfile from './UserProfile';
 import Header from './common/Header';
 import Card from './common/Card';
-import Footer from './common/Footer';
-import LoginForm from './LoginForm';
+import Nav from './Nav';
 
-class Login extends Component {
+class UserProfilePage extends Component {
 
 
 
@@ -17,10 +17,10 @@ class Login extends Component {
         </Header>
         <ScrollView>
           <Card>
-            <LoginForm />
+            <UserProfile />
           </Card>
         </ScrollView>
-        <Footer />
+        <Nav />
       </View>
     )
   }
@@ -42,4 +42,4 @@ const styles = {
   }
 };
 
-export default Login;
+export default UserProfilePage;

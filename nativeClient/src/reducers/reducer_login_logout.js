@@ -18,7 +18,7 @@ export default function(state = INITIAL_STATE, action) {
     case LOGOUT:
       return { ...state, loggedIn: false, message: '' };
     case LOGIN_ERROR:
-      return { ...state, message: 'Authentication failed.' };
+      return { ...state, message: "Failed to authenticate" };
     case UPDATE_SUCCESS:
       return { ...state, data: action.payload.data, message: 'Profile saved and updated!', edited: true };
     case UPDATE_FAIL:

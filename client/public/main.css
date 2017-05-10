@@ -173,6 +173,7 @@ textarea.help-field {
 
 
 
+
 /* Dropdown Button */
 .dropbtn {
     border: #597d9e solid 1px;
@@ -308,6 +309,13 @@ textarea.help-field {
         padding: 5px 0px;
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .user-spec-value-name {
+        padding: 5px 0px;
+        display: flex;
+        flex-direction: column;
         flex-wrap: wrap;
         align-items: center;
       }
@@ -537,6 +545,14 @@ textarea.help-field {
       right: 150px;
       margin-top: 20px;
     }
+    .user-image-upload-container {
+      display: flex;
+      flex-direction: column;
+      align-items: baseline;
+    }
+    .user-image-upload-container input {
+      margin: 20px 0px;
+    }
 
 
 
@@ -599,7 +615,6 @@ textarea.help-field {
       border: none;
       margin: 5px 0px;
       font-size: 13px;
-      margin-top: 25px;
     }
     .login-sign-up-intro {
       color: #777;
@@ -609,6 +624,12 @@ textarea.help-field {
     .login-login-link {
       color: #ff8355;
       cursor: pointer;
+    }
+    .login-sign-up-error {
+      font-weight: lighter;
+      color: red;
+      font-size: 8;
+      margin: 5px auto;
     }
 
 
@@ -820,15 +841,31 @@ li {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00fffdfb', endColorstr='#fffdfb',GradientType=0 ); /* IE6-9 */
 }
   .searchBar {
-    width: 262px;
+    width: 100%;
     margin: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
   }
   .profileSearch {
-    width: 250px;
+    width: 100%;
     border-radius: 5px;
     border: solid 1px #d1cbc7;
     padding: 5px;
-    margin-bottom: 15px;
+  }
+  .refresh {
+    height: 30px;
+    width: 30px;
+    line-height: 15px;
+  }
+  .refresh-container {
+    padding: 5px 5px 5px 6px;
+    background-color: #597d9e;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 0px 10px;
+    height: 30px;
   }
   .profile-list {
     height: calc(100vh - 161px);

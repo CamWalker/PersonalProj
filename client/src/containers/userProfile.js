@@ -128,9 +128,12 @@ class UserProfile extends Component {
                     <div className="user-spec-fields">
                       <div className="user-spec">
                         <div className="user-spec-value">{profile.first_name} &nbsp;&nbsp;{profile.last_name}</div>
-                        <div>
-                          <img className="account-pic" src={profile.pic} alt="" />
-                        </div>
+                      </div>
+                    </div>
+                    <h4>Profile Picture</h4>
+                    <div className="user-spec-fields">
+                      <div className="user-spec">
+                        <img className="account-pic" src={profile.pic} alt="" />
                       </div>
                     </div>
                   </div>

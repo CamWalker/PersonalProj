@@ -7,7 +7,6 @@ import AvatarEditor from 'react-avatar-editor'
 import ProfileOverview from '../containers/profileOverview';
 import { updateInfo } from '../actions/action_updateInfo.js';
 import { deleteAccount } from '../actions/action_deleteAccount.js';
-import validate from './validate';
 
 class UserProfileEdit extends Component {
   constructor(props) {
@@ -83,7 +82,7 @@ class UserProfileEdit extends Component {
         height={130}
         border={0}
         borderRadius={100}
-        color={[255, 255, 255, 0.6]} // RGBA
+        color={[255, 255, 255, 1]} // RGBA
         rotate={0}
       />);
     } else {
@@ -95,7 +94,7 @@ class UserProfileEdit extends Component {
         height={130}
         border={0}
         borderRadius={100}
-        color={[255, 255, 255, 0.6]} // RGBA
+        color={[255, 255, 255, 1]} // RGBA
         rotate={0}
       />);
     }
@@ -247,15 +246,20 @@ class UserProfileEdit extends Component {
               <div className="user-forms">
                 <form onSubmit={handleSubmit(this.save)}>
                   <div>
+                    <h4>Name</h4>
                     <div className="user-spec-fields">
                       <div className="user-spec">
-                        <div className="user-spec-value">
-                          <h4>Name</h4>
+                        <div className="user-spec-value-name">
+
                           <Field name="first_name" component="input" className="user-spec-value-input" type="text" placeholder="First Name" />
                           <Field name="last_name" component="input" className="user-spec-value-input" type="text" placeholder="Last Name" />
                         </div>
-                        <div>
-                          <h4>Change Profile Picture</h4>
+                      </div>
+                    </div>
+                    <h4>Profile Picture</h4>
+                    <div className="user-spec-fields">
+                      <div className="user-spec">
+                        <div className="user-image-upload-container">
                           <input id="upload-demo" type="file" name="images" accept="image/*" onChange={(e)=>this._handleImageChange(e)} />
                           {$imagePreview}
                           <input
@@ -342,8 +346,7 @@ function mapStateToProps(store) {
  }
 
   UserProfileEdit = reduxForm({
-    form: 'profileUpdate',
-    validate
+    form: 'profileUpdate'
   })(UserProfileEdit);
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfileEdit);

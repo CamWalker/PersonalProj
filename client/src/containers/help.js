@@ -18,7 +18,6 @@ class Help extends Component {
       subject: values.subject,
       body: values.body
     }).then((response) => {
-      console.log(response);
       if(response.status === 200) {
         this.setState({ sent: true })
       }

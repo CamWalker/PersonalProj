@@ -1,7 +1,14 @@
-export const GET_FEED = 'GET_FEED';
 import axios from 'axios';
+export const GET_FEED = 'GET_FEED';
+export const ACT_FEED = 'ACT_FEED';
 export const SEARCH_FILTER = 'SEARCH_FILTER';
 
+
+export function activate() {
+  return {
+    type: ACT_FEED
+  }
+}
 
 export function search(term) {
   return {

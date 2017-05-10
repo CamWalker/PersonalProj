@@ -18,15 +18,14 @@ export default function(state = INITIAL_STATE, action) {
     case LOGOUT:
       return { ...state, loggedIn: false, message: '' };
     case LOGIN_ERROR:
-      return { ...state, message: 'Authentication failed.' };
+      return { ...state, message: 'Failed to authenticate' };
     case UPDATE_SUCCESS:
       return { ...state, data: action.payload.data, message: 'Profile saved and updated!', edited: true };
     case UPDATE_FAIL:
-      return { ...state, message: 'Failed to save.'};
+      return { ...state, message: 'Failed to save'};
     case CHANGE_EDITED:
       return { ...state, edited: false }
     case DELETE_ACCOUNT:
-      console.log(action.payload);
       return { ...state, loggedIn: false, data: action.payload, message: '' };
     default:
       return state;

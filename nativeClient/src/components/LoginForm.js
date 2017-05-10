@@ -3,7 +3,6 @@ import { Text,
   TextInput,
   TouchableOpacity,
   View } from 'react-native';
-import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { logItIn, loginAction, signUpAction } from '../actions/action_login.js';
 
@@ -14,20 +13,97 @@ import { logItIn, loginAction, signUpAction } from '../actions/action_login.js';
 
 
 class LoginForm extends Component {
-  state = { signup: false };
+  state = { email: '', password: '', firstName: '', lastName: '', error: '', signup: false };
 
-  signUp = (values) => {
-    this.props.loginAction();
-    this.props.signUpAction(values);
-  }
 
-  login = (values) => {
-    if (values) {
+  signUp = () => {
+    this.setState({error: ''})
+    const badValidation = this.validateSignUp(this.state.firstName, this.state.lastName, this.state.email, this.state.password)
+    if (badValidation) {
+      this.setState({error: badValidation})
+    } else {
       this.props.loginAction();
-      this.props.logItIn('whatiscameronsemail@gmail.com', values.password);
-      // this.props.logItIn(values.email, values.password);
+      const values = {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email,
+        password: this.state.password
+      }
+      this.props.signUpAction(values);
     }
   }
+
+  validateSignUp = (firstName, lastName, email, password) => {
+    const fields = [firstName, lastName, email, password];
+    let encoded = '';
+    for (var i = 0; i < fields.length; i++) {
+      if (fields[i] === "") {
+        return 'Please do not leave fields blank';
+      }
+      encoded = encodeURI(fields[i]);
+      if (fields[i] !== encoded) {
+        for (var j = 0; j < fields[i].length; j++) {
+          if (fields[i][j] !== encoded[j]) {
+            return `Invalid character ${fields[i][j]}`;
+          }
+        }
+      }
+    }
+
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(!re.test(email)) {
+      return 'Please enter a valid email';
+    }
+
+    if (password.length < 6) {
+      return 'Password must be at least 6 characters';
+    }
+
+    return false;
+  }
+
+
+  login = () => {
+    this.setState({error: ''})
+    const badValidation = this.validateLogin(this.state.email, this.state.password)
+    if (badValidation) {
+      this.setState({error: badValidation})
+    } else {
+      this.props.loginAction();
+      this.props.logItIn(this.state.email, this.state.password);
+    }
+  }
+
+  validateLogin = (email, password) => {
+    const fields = [email, password];
+    let encoded = '';
+    for (var i = 0; i < fields.length; i++) {
+      if (fields[i] === "") {
+        return 'Please do not leave fields blank';
+      }
+      encoded = encodeURI(fields[i]);
+      if (fields[i] !== encoded) {
+        for (var j = 0; j < fields[i].length; j++) {
+          if (fields[i][j] !== encoded[j]) {
+            return `Invalid character ${fields[i][j]}`;
+          }
+        }
+      }
+    }
+
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(!re.test(email)) {
+      return 'Please enter a valid email';
+    }
+
+    if (password.length < 6) {
+      return 'Password must be at least 6 characters';
+    }
+
+    return false;
+  }
+
+
 
   loginSwitch = () => {
     this.setState({ signup: !this.state.signup })
@@ -36,7 +112,6 @@ class LoginForm extends Component {
 
 
   render() {
-    const { handleSubmit } = this.props;
     const renderInput = ({ input: { onChange, ...restInput }, placeholder, secureTextEntry }) => {
       return <TextInput
         secureTextEntry={secureTextEntry}
@@ -54,12 +129,45 @@ class LoginForm extends Component {
           <Text style={styles.intro}>Sign up to connect with those closest to you...literally!</Text>
           <Text style={styles.intro}>It's free.</Text>
           <View style={styles.inputContainer}>
-            <Field name="firstName" secureTextEntry={false} component={renderInput} placeholder="First Name"/>
-            <Field name="lastName" secureTextEntry={false} component={renderInput} placeholder="Last Name"/>
-            <Field name="email" secureTextEntry={false} component={renderInput} placeholder="Email"/>
-            <Field name="password" secureTextEntry={true} component={renderInput} placeholder="Password"/>
+            <TextInput
+              autoCorrect={false}
+              autoCapitalize="none"
+              style={styles.input}
+              name="firstName"
+              placeholder="First Name"
+              value={this.state.firstName}
+              onChangeText={firstName => this.setState({ firstName })} />
+            <TextInput
+              autoCorrect={false}
+              autoCapitalize="none"
+              style={styles.input}
+              name="lastName"
+              placeholder="Last Name"
+              value={this.state.lastName}
+              onChangeText={lastName => this.setState({ lastName })} />
+            <TextInput
+              autoCorrect={false}
+              autoCapitalize="none"
+              style={styles.input}
+              name="email"
+              placeholder="Email"
+              value={this.state.email}
+              onChangeText={email => this.setState({ email })} />
+            <TextInput
+              secureTextEntry={true}
+              autoCorrect={false}
+              autoCapitalize="none"
+              style={styles.input}
+              name="password"
+              placeholder="Password"
+              value={this.state.password}
+              onChangeText={password => this.setState({ password })} />
           </View>
-          <TouchableOpacity style={styles.button} onPress={handleSubmit(this.signUp)}>
+          <Text style={styles.error}>
+            {this.state.error}
+            {this.props.login.message}
+          </Text>
+          <TouchableOpacity style={styles.button} onPress={this.signUp}>
             <Text style={styles.buttonText}>Sign Up</Text>
           </TouchableOpacity>
           <View style={styles.bottom}>
@@ -75,10 +183,29 @@ class LoginForm extends Component {
       return (
         <View style={styles.container}>
           <View style={styles.inputContainer}>
-            <Field name="email" secureTextEntry={false} component={renderInput} placeholder="Email"/>
-            <Field name="password" secureTextEntry={true} component={renderInput} placeholder="Password"/>
+            <TextInput
+              autoCorrect={false}
+              autoCapitalize="none"
+              style={styles.input}
+              name="email"
+              placeholder="Email"
+              value={this.state.email}
+              onChangeText={email => this.setState({ email })} />
+            <TextInput
+              secureTextEntry={true}
+              autoCorrect={false}
+              autoCapitalize="none"
+              style={styles.input}
+              name="password"
+              placeholder="Password"
+              value={this.state.password}
+              onChangeText={password => this.setState({ password })} />
           </View>
-          <TouchableOpacity style={styles.button} onPress={handleSubmit(this.login)}>
+          <Text style={styles.error}>
+            {this.state.error}
+            {this.props.login.message}
+          </Text>
+          <TouchableOpacity style={styles.button} onPress={this.login}>
             <Text style={styles.buttonText}>Log In</Text>
           </TouchableOpacity>
           <View style={styles.bottom}>
@@ -147,20 +274,18 @@ const styles = {
   },
   bottomTextSwitch: {
     color: '#ff8355',
+  },
+  error: {
+    color: 'red'
   }
 };
 
 function mapStateToProps(store) {
   return {
     login: store.login,
-    appActivated: store.appActivated,
-    loginForm: store.form
+    appActivated: store.appActivated
   };
 }
-
-LoginForm = reduxForm({
-  form: 'loginForm'
-})(LoginForm);
 
 LoginForm =  connect(mapStateToProps, { loginAction, signUpAction, logItIn })(LoginForm);
 

@@ -6,12 +6,15 @@ npm start
 
 - password update
 - undefined values if field is left blank (both on the overview and the selected profile)
-- limit file size
+- move image upload to different page
+  - limit file size
 
 
 
 (a) form validation
-(a1) responsive form status updates (SAVED! e.g.)
+  (a1) responsive form status updates (SAVED! e.g.)
+
+
 
 (b) session for refresh
 
@@ -20,10 +23,6 @@ npm start
 
 (h) hosting
 
-
-
-
-email login
 
 
 

@@ -4,41 +4,112 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 import { logItIn, loginAction, signUpAction, activate } from '../actions/action_login.js';
-import { loginValidate } from './validate';
 import config from './config';
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      signup: false
+      signup: false,
+      error: ''
     };
     this.loginSwitch = this.loginSwitch.bind(this);
   }
   componentWillMount() {
-    if (!this.props.appActivated) {
+    if (!this.props.appActivated.firebase) {
       firebase.initializeApp(config);
       this.props.activate();
     }
   }
 
   signUp = (values) => {
-    this.props.loginAction();
-    this.props.signUpAction(values);
+    this.setState({error: ''})
+    const badValidation = this.validateSignUp(values.firstName, values.lastName, values.email, values.password);
+    if (badValidation) {
+      this.setState({error: badValidation});
+    } else {
+      this.props.loginAction();
+      this.props.signUpAction(values);
+    }
+  }
+
+  validateSignUp = (firstName, lastName, email, password) => {
+    const fields = [firstName, lastName, email, password];
+    let encoded = '';
+    for (var i = 0; i < fields.length; i++) {
+      if (fields[i] === "") {
+        return 'Please do not leave fields blank';
+      }
+      encoded = encodeURI(fields[i]);
+      if (fields[i] !== encoded) {
+        for (var j = 0; j < fields[i].length; j++) {
+          if (fields[i][j] !== encoded[j]) {
+            return `Invalid character ${fields[i][j]}`;
+          }
+        }
+      }
+    }
+
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(!re.test(email)) {
+      return 'Please enter a valid email';
+    }
+
+    if (password.length < 6) {
+      return 'Password must be at least 6 characters';
+    }
+
+    return false;
   }
 
   login = (values) => {
-    if (values) {
+    this.setState({error: ''});
+    const badValidation = this.validateLogin(values.email, values.password);
+    if (badValidation) {
+      this.setState({error: badValidation});
+    } else {
       this.props.loginAction();
       this.props.logItIn(values.email, values.password);
     }
   }
 
+  validateLogin = (email, password) => {
+    const fields = [email, password];
+    let encoded = '';
+    for (var i = 0; i < fields.length; i++) {
+      if (fields[i] === "") {
+        return 'Please do not leave fields blank';
+      }
+      encoded = encodeURI(fields[i]);
+      if (fields[i] !== encoded) {
+        for (var j = 0; j < fields[i].length; j++) {
+          if (fields[i][j] !== encoded[j]) {
+            return `Invalid character ${fields[i][j]}`;
+          }
+        }
+      }
+    }
+
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(!re.test(email)) {
+      return 'Please enter a valid email';
+    }
+
+    if (password.length < 6) {
+      return 'Password must be at least 6 characters';
+    }
+
+    return false;
+  }
+
+
   loginSwitch () {
     this.setState({ signup: !this.state.signup })
   }
 
+
   render() {
+    console.log(this.props.login);
     const { from } = this.props.location.state || { from: { pathname: '/' } }
 
     const { handleSubmit } = this.props;
@@ -66,6 +137,7 @@ class Login extends Component {
               <Field component="input" className="login-sign-up-field" type="text" placeholder="Last Name" name="lastName" />
               <Field component="input" className="login-sign-up-field" type="text" placeholder="Email" name="email" />
               <Field component="input" className="login-sign-up-field" type="password" placeholder="Password" name="password" />
+              <p className="login-sign-up-error">{this.state.error}{this.props.login.message}</p>
               <button className="login-sign-up-submit" type="submit">Sign Up</button>
             </form>
             <p>
@@ -88,6 +160,7 @@ class Login extends Component {
             <form className="login-sign-up-form" onSubmit={handleSubmit(this.login)}>
               <Field className="login-sign-up-field" type="email" placeholder="Email" name="email" component="input" />
               <Field className="login-sign-up-field" type="password" placeholder="Password" name="password" component="input" />
+              <p className="login-sign-up-error">{this.state.error}{this.props.login.message}</p>
               <button className="login-sign-up-submit" type="submit">Log In</button>
             </form>
             <p>
@@ -105,13 +178,18 @@ function mapStateToProps(store) {
   return {
     login: store.login,
     appActivated: store.appActivated,
-    loginForm: store.form
+    loginForm: store.form,
+    initialValues: {
+      email: '',
+      password: '',
+      firstName: '',
+      lastName: ''
+    }
   };
 }
 
 Login = reduxForm({
-  form: 'loginForm',
-  loginValidate
+  form: 'loginForm'
 })(Login);
 
 Login = connect(mapStateToProps, { loginAction, signUpAction, logItIn, activate })(Login);

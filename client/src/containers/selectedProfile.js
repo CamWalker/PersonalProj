@@ -15,25 +15,36 @@ const SelectedProfile = (props) => {
     if (selectedProfile) {
       if (selectedProfile.first_name) {
       education = selectedProfile.education.map((spec, i) => {
+        if(!spec.value) {spec.value = ""}
+        if(!spec.start) {spec.start = ""}
+        if(!spec.end) {spec.end = ""}
         let educSpec = {value: spec.value + " (" + spec.start + " - " + spec.end + ")"}
+
         return <SelectedProfileSpec
           spec={educSpec}
           key={i}
           path='../pics/education2.png' />
       });
       work = selectedProfile.work.map((spec, i) => {
+        if(!spec.value) {spec.value = ""}
+        if(!spec.employer) {spec.employer = ""}
+        if(!spec.start) {spec.start = ""}
+        if(!spec.end) {spec.end = ""}
         let workSpec = {value: spec.value + " at " + spec.employer + " (" + spec.start + " - " + spec.end + ")"}
         return <SelectedProfileSpec
           spec={workSpec}
           key={i}
           path='../pics/work.png' />
       });
-      const relationSpec = {value: selectedProfile.relationship_status}
-      relationship_status = <SelectedProfileSpec
-        spec={relationSpec}
-        path='../pics/relationship.png' />
+      if(selectedProfile.relationship_status) {
+        const relationSpec = {value: selectedProfile.relationship_status}
+        relationship_status = <SelectedProfileSpec
+          spec={relationSpec}
+          path='../pics/relationship.png' />
+      }
       relation = selectedProfile.relation.map((spec, i) => {
           let type = "";
+
           switch (spec.value) {
             case 'Pet(s)':
               if (Number(spec.quantity) === 1) {
@@ -59,11 +70,19 @@ const SelectedProfile = (props) => {
             default:
 
           }
-        let relationSpec = {value: spec.quantity + " " + type}
-        return <SelectedProfileSpec
-          spec={relationSpec}
-          key={i}
-          path='../pics/relationship.png' />
+          let relationSpec = {value: spec.quantity + " " + type}
+          if(!spec.value || !spec.quantity) {
+            relationSpec = {value: ""}
+            return <SelectedProfileSpec
+              spec={relationSpec}
+              key={i}
+              path='../pics/relationship.png' />
+          } else {
+            return <SelectedProfileSpec
+              spec={relationSpec}
+              key={i}
+              path='../pics/relationship.png' />
+          }
       });
       lived = selectedProfile.lived.map((spec, i) => {
         return <SelectedProfileSpec

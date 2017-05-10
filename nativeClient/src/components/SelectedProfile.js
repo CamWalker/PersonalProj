@@ -2,16 +2,108 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, View, Image, Text, TouchableWithoutFeedback } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+
+
+//Components
 import Header from './common/Header';
 import SingleProfile from './SingleProfile';
-import Nav from './common/Nav';
+import Nav from './Nav';
 import Card from './common/Card';
+import SelectedProfileSpec from './SelectedProfileSpec';
+import SelectedProfileGTKY from './SelectedProfileGTKY';
 
 class SelectedProfile extends Component {
 
   render() {
-    const profile = this.props.profiles.selectedProfile;
-    const value = 'Search profiles'
+
+    const selectedProfile = this.props.profiles.selectedProfile;
+
+
+    let education = "";
+    let work = "";
+    let relationship_status = "";
+    let relation = "";
+    let lived = "";
+    let gtkys = "";
+      if (selectedProfile) {
+        if (selectedProfile.first_name) {
+        education = selectedProfile.education.map((spec, i) => {
+          let educSpec = {value: spec.value + " (" + spec.start + " - " + spec.end + ")"}
+          return <SelectedProfileSpec
+            spec={educSpec}
+            key={i}
+            path='https://s3-us-west-2.amazonaws.com/goodturn-pics/education2.png' />
+        });
+        work = selectedProfile.work.map((spec, i) => {
+          let workSpec = {value: spec.value + " at " + spec.employer + " (" + spec.start + " - " + spec.end + ")"}
+          return <SelectedProfileSpec
+            spec={workSpec}
+            key={i}
+            path='https://s3-us-west-2.amazonaws.com/goodturn-pics/work.png' />
+        });
+        if(selectedProfile.relationship_status !== ""){
+          const relationSpec = {value: selectedProfile.relationship_status}
+          relationship_status = <SelectedProfileSpec
+            spec={relationSpec}
+            path='https://s3-us-west-2.amazonaws.com/goodturn-pics/relationship.png' />
+        }
+        relation = selectedProfile.relation.map((spec, i) => {
+            let type = "";
+            switch (spec.value) {
+              case 'Pet(s)':
+                if (Number(spec.quantity) === 1) {
+                  type = 'Pet';
+                } else {
+                  type = 'Pets';
+                }
+                break;
+              case 'Child(ren)':
+                if (Number(spec.quantity) === 1) {
+                  type = 'Child';
+                } else {
+                  type = 'Children';
+                }
+                break;
+              case 'Sibling(s)':
+                if (Number(spec.quantity) === 1) {
+                  type = 'Sibling';
+                } else {
+                  type = 'Siblings';
+                }
+                break;
+              default:
+
+            }
+          let relationSpec = {value: spec.quantity + " " + type}
+          return <SelectedProfileSpec
+            spec={relationSpec}
+            key={i}
+            path='https://s3-us-west-2.amazonaws.com/goodturn-pics/relationship.png' />
+        });
+
+
+        lived = selectedProfile.lived.map((spec, i) => {
+          return <SelectedProfileSpec
+            spec={spec}
+            key={i}
+            path='https://s3-us-west-2.amazonaws.com/goodturn-pics/location.png' />
+        });
+
+
+        gtkys = selectedProfile.gtky.map((gtky, i) => {
+          if (gtky) {
+            return <SelectedProfileGTKY
+              question={this.props.gtkyKEY[i]}
+              answer={gtky}
+              key={this.props.gtkyKEY[i]} />
+          }
+        });
+      }
+    }
+
+
+
+
     return (
       <View style={styles.bodyStyle} >
         <Header>
@@ -28,56 +120,22 @@ class SelectedProfile extends Component {
                 </TouchableWithoutFeedback>
               </View>
               <View style={styles.containerStyle2}>
-                <Image style={styles.imageStyle2} source={{uri: profile.pic}} />
+                <Image style={styles.imageStyle2} source={{uri: selectedProfile.pic}} />
               </View>
               <View style={styles.containerStyle3}>
                 <Text style={styles.textName}>
-                  {profile.first_name} {profile.last_name}
+                  {selectedProfile.first_name} {selectedProfile.last_name}
                 </Text>
               </View>
               <View style={styles.containerStyle4}>
-                <View style={styles.containerStyle6}>
-                  <Image style={styles.imageStyle3} source={require('../pics/work.png')} />
-                  <Text style={styles.textSpec}>Education</Text>
-                </View>
-                <View style={styles.containerStyle6}>
-                  <Image style={styles.imageStyle3} source={require('../pics/work.png')} />
-                  <Text style={styles.textSpec}>Work</Text>
-                </View>
-                <View style={styles.containerStyle6}>
-                  <Image style={styles.imageStyle3} source={require('../pics/work.png')} />
-                  <Text style={styles.textSpec}>Relations</Text>
-                </View>
-                <View style={styles.containerStyle6}>
-                  <Image style={styles.imageStyle3} source={require('../pics/work.png')} />
-                  <Text style={styles.textSpec}>Lived</Text>
-                </View>
-                <View style={styles.containerStyle6}>
-                  <Image style={styles.imageStyle3} source={require('../pics/work.png')} />
-                  <Text style={styles.textSpec}>Education</Text>
-                </View>
-                <View style={styles.containerStyle6}>
-                  <Image style={styles.imageStyle3} source={require('../pics/work.png')} />
-                  <Text style={styles.textSpec}>Work</Text>
-                </View>
-                <View style={styles.containerStyle6}>
-                  <Image style={styles.imageStyle3} source={require('../pics/work.png')} />
-                  <Text style={styles.textSpec}>Relations</Text>
-                </View>
-                <View style={styles.containerStyle6}>
-                  <Image style={styles.imageStyle3} source={require('../pics/work.png')} />
-                  <Text style={styles.textSpec}>Lived</Text>
-                </View>
+                {(education === "") ? <Text>education</Text> : education}
+                {(work === "") ? <Text>work</Text> : work}
+                {(relationship_status === "") ? <Text>{relationship_status}</Text> : relationship_status}
+                {(relation === "") ? <Text>relation</Text> : relation}
+                {(lived === "") ? <Text>lived</Text> : lived}
               </View>
               <View style={styles.containerStyle5}>
-                <View style={styles.containerStyle7}>
-                  <Text style={styles.textQ}>Ask Me about...</Text>
-                  <Text style={styles.textA}>Building this website</Text>
-                </View>
-                <View style={styles.containerStyle7}>
-                  <Text style={styles.textQ}>I'm too good for...</Text>
-                  <Text style={styles.textA}>Building this website</Text>
-                </View>
+                {(gtkys === "") ? <Text>gtkys</Text> : gtkys}
               </View>
             </View>
           </Card>
@@ -109,11 +167,6 @@ const styles = {
     width: 130,
     borderRadius: 65
   },
-  imageStyle3: {
-    height: 18,
-    width: 18,
-    marginRight: 15
-  },
   arrowContainer: {
     backgroundColor: '#597d9e',
     height: 40,
@@ -131,19 +184,6 @@ const styles = {
     color: '#444',
     fontSize: 28
   },
-  textSpec: {
-    color: '#aaa',
-    fontSize: 14
-  },
-  textQ: {
-    color: '#444',
-    fontSize: 16
-  },
-  textA: {
-    color: '#aaa',
-    fontSize: 16,
-    marginLeft: 20
-  },
   containerStyle: {
     alignItems: 'center'
   },
@@ -159,26 +199,20 @@ const styles = {
     marginVertical: 10
   },
   containerStyle4: {
-    marginVertical: 10
+    marginVertical: 10,
+    paddingHorizontal: 10
   },
   containerStyle5: {
     marginVertical: 10,
     alignSelf: 'stretch',
     alignItems: 'flex-start'
-  },
-  containerStyle6: {
-    flexDirection: 'row',
-    marginVertical: 5
-  },
-  containerStyle7: {
-    marginVertical: 5,
-    marginHorizontal: 10
   }
 };
 
 function mapStateToProps(store) {
   return {
-    profiles: store.profiles
+    profiles: store.profiles,
+    gtkyKEY: store.gtkyKEY,
   };
 }
 

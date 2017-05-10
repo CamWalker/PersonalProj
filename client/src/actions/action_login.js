@@ -2,13 +2,13 @@ export const LOGIN = 'LOGIN';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGIN_ACTION = 'LOGIN_ACTION';
 export const LOGOUT = 'LOGOUT';
-export const ACTIVATE = 'ACTIVATE';
+export const ACT_FIREBASE = 'ACT_FIREBASE';
 import axios from 'axios';
 import firebase from 'firebase';
 
 export function activate() {
   return {
-    type: ACTIVATE
+    type: ACT_FIREBASE
   }
 }
 
@@ -34,7 +34,7 @@ export function logItIn(email, password) {
 }
 
 export function loginFail(dispatch) {
-  return dispatch({ type: LOGIN_ERROR, payload: "Failed to Authenticate." });
+  return dispatch({ type: LOGIN_ERROR });
 }
 
 export function loginSucess(dispatch, request) {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { logoutAction } from '../actions/action_login.js'
+import { logoutAction } from '../actions/action_login.js';
 import SingleProfileSpec from '../components/singleProfileSpec.js';
 
 class ProfileOverview extends Component {

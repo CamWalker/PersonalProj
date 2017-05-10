@@ -71,8 +71,7 @@ export default function(state = INITIAL_STATE, action) {
       const temp = profileSearch(action.payload)
       return {
         ...state,
-        temp: temp,
-        selectedProfile: temp[0]
+        temp: temp
       };
     case LOGOUT:
       return INITIAL_STATE;
