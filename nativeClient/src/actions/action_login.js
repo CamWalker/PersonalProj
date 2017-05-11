@@ -54,7 +54,7 @@ export function signUpAction(values) {
   return (dispatch) => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((user) => {
-        const request = axios.post('http://localhost:8080/profile/',{ values: values });
+        const request = axios.post(`http://localhost:8080/profile/`,{ values: values });
         loginSucess(dispatch, request);
         Actions.main();
       })

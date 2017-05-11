@@ -44,14 +44,13 @@ app.put('/newimage/', profileCtrl.postImage);
 //DELETE ACCOUNT
 app.delete('/profile/:id', profileCtrl.deleteUser);
 
-
 //RETRIEVE THE FEED
 app.put('/feed/:id', feedCtrl.updateCoordsAndGetFeed);
 
 //TEST SESSIONS
 app.get('/test/', function (req, res, next) {
 	console.log(req.session);
-	req.session.user = { name: 'CAmeron' }
+	req.session.user = { name: 'Cameron' }
 	console.log(req.session);
 	res.status(200).send(req.session);
 })

@@ -56,10 +56,11 @@ function compare(a,b) {
 }
 
 exports.updateCoordsAndGetFeed = function (req, res, next) {
-  var latitude = Number(req.body.latitude)
-  var longitude = Number(req.body.longitude)
-  var id = Number(req.params.id)
-  //update data
+  const latitude = Number(req.body.latitude)
+  const longitude = Number(req.body.longitude)
+  const id = Number(req.params.id)
+
+
   db.updateCoords([latitude, longitude, id], function (err) {
     if (!err) {
     } else {
@@ -73,7 +74,6 @@ exports.updateCoordsAndGetFeed = function (req, res, next) {
   var feed = [];
   var dist = 200;
   var block;
-
   function queryUsers(latitude, longitude, dist) {
     block = findWithinDist (latitude, longitude, dist);
     let promise = new Promise(function(resolve, reject) {

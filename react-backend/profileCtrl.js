@@ -59,10 +59,10 @@ exports.updateUser = function (req, res, next) {
 exports.postImage = function (req, res, next) {
   const newImage = req.body.newImage
 
-  buf = new Buffer(newImage.imageBody.replace(/^data:image\/\w+;base64,/, ""), 'base64');
+  const buf = new Buffer(newImage.imageBody.replace(/^data:image\/\w+;base64,/, ""), 'base64');
   // bucketName var below crates a "folder" for each user
-  var bucketName = 'goodturn-pics';
-  var params = {
+  const bucketName = 'goodturn-pics';
+  const params = {
     Bucket: bucketName,
     Key: newImage.imageName,
     Body: buf,
@@ -73,7 +73,14 @@ exports.postImage = function (req, res, next) {
     if (!err) {
       db.updateImage([data.Location, req.body.id], function (err) {
         if (!err) {
-          res.status(200).send('gtg');
+          db.getUser([Number(req.body.id)], function (err, user) {
+            if (!err) {
+              res.status(200).send(user[0])
+            } else {
+              console.log('rejected');
+              res.status(401).send(false)
+            }
+          });
         } else {
           res.status(500).send(err);
         }

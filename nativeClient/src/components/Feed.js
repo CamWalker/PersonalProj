@@ -16,7 +16,7 @@ import { selectProfile } from '../actions/action_selectProfile';
 
 class Feed extends Component {
   componentWillMount() {
-    if(!this.props.appActivated.feed) {
+    if(!this.props.appActivated.feed && this.props.login.data.profileid) {
       const getFeed = this.props.getFeed;
       const getLocation = this.props.getLocation;
       const userId = this.props.login.data.profileid;
@@ -51,7 +51,7 @@ class Feed extends Component {
   }
 
   componentDidUpdate() {
-    if(!this.props.appActivated.feed) {
+    if(!this.props.appActivated.feed && this.props.login.data.profileid) {
       const getFeed = this.props.getFeed;
       const getLocation = this.props.getLocation;
       const userId = this.props.login.data.profileid;
@@ -97,6 +97,10 @@ class Feed extends Component {
         <Header>
           <Searchbar />
         </Header>
+        <View style={styles.locationView}>
+          <Text style={styles.locationText1}>Location: </Text>
+          <Text style={styles.locationText2}>{this.props.currentLocation}</Text>
+        </View>
         <ScrollView>
           {renderProfiles}
         </ScrollView>
@@ -114,6 +118,24 @@ const styles = {
     backgroundColor: '#F2EEEB',
     flex: 1,
     justifyContent: 'space-between'
+  },
+  locationView: {
+    flexDirection: 'row',
+    backgroundColor: '#81A8CD',
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+  locationText1: {
+    color: '#597d9e',
+    paddingBottom: 4,
+    paddingHorizontal: 4,
+    fontSize: 12
+  },
+  locationText2: {
+    color: 'white',
+    paddingBottom: 4,
+    paddingHorizontal: 4,
+    fontSize: 12
   }
 };
 
@@ -121,7 +143,8 @@ function mapStateToProps(store) {
   return {
     profiles: store.profiles,
     login: store.login,
-    appActivated: store.appActivated
+    appActivated: store.appActivated,
+    currentLocation: store.currentLocation
   };
 }
 
