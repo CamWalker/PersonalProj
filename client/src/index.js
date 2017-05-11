@@ -5,15 +5,19 @@ import { createStore, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ReduxThunk from 'redux-thunk';
-import reducers from './reducers/index.js';
-import App from './containers/App.js';
-import Login from './containers/login.js';
-import UserProfile from './containers/userProfile.js';
-import Header from './containers/header.js';
-import UserProfileEdit from './containers/userProfileEdit.js';
-import About from './components/about.js';
-import Help from './containers/help.js';
+import reducers from './reducers/index';
 
+// components
+import Header from './containers/header';
+
+// ROUTES
+import App from './containers/App';
+import Login from './containers/login';
+import UserProfile from './containers/userProfile';
+import UserProfileEdit from './containers/userProfileEdit';
+import About from './components/about';
+import Help from './containers/help';
+import UserProfilePic from './containers/UserProfilePic';
 
 
 const middleware = applyMiddleware(ReduxThunk, ReduxPromise);
@@ -29,6 +33,7 @@ ReactDOM.render(
             <Route path='/login' component={Login} />
             <Route path='/profile' component={UserProfile} />
             <Route path='/edit' component={UserProfileEdit} />
+            <Route path='/picture' component={UserProfilePic} />
             <Route path="/about" component={About} />
             <Route path="/help" component={Help} />
         </div>

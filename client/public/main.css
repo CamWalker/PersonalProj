@@ -259,7 +259,7 @@ textarea.help-field {
       padding: 15px;
       border-radius: 32px;
       border: none;
-      background: #ff8355;
+      background: #597d9e;
       color: white;
       font-weight: bold;
       outline:none;
@@ -274,7 +274,8 @@ textarea.help-field {
       font-weight: bold;
       outline:none;
       margin-left: 15px;
-      width: 80px;
+      min-width: 80px;
+      /*height: 44px;*/
     }
     .user-forms {
       overflow-y: auto;
@@ -407,7 +408,7 @@ textarea.help-field {
       padding: 15px;
       border-radius: 32px;
       border: none;
-      background: #81A8CD;
+      background: #597d9e;
       color: white;
       font-weight: bold;
       outline:none;
@@ -884,7 +885,7 @@ li {
   .refresh-container:focus,
   .refresh:hover,
   .refresh:focus {
-    animation: spin 2s linear infinite;
+    animation: spin 4s linear infinite;
   }
 
   @keyframes spin {
@@ -892,6 +893,10 @@ li {
       100% { transform: rotate(0deg); }
   }
 
+    .profile-list {
+      overflow-y: auto;
+      height: calc(100% - 50px);
+    }
     .profile-item {
       width: 260px;
       height: auto;

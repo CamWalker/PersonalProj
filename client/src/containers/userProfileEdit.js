@@ -3,62 +3,20 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link, Redirect } from 'react-router-dom';
 import { Field, FieldArray, reduxForm } from 'redux-form';
-import AvatarEditor from 'react-avatar-editor'
 import ProfileOverview from '../containers/profileOverview';
 import { updateInfo, messageClear } from '../actions/action_updateInfo.js';
 import { deleteAccount } from '../actions/action_deleteAccount.js';
 
 class UserProfileEdit extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { file: '', imagePreviewUrl: '', scale: 1 };
-  }
   componentWillMount() {
     this.props.messageClear();
   }
-
-  // _handleImageChange = (e) => {
-  //   e.preventDefault();
-  //
-  //   let reader = new FileReader();
-  //   let file = e.target.files[0];
-  //
-  //   reader.onloadend = () => {
-  //     this.setState({
-  //       file: file,
-  //       imagePreviewUrl: reader.result
-  //     });
-  //   }
-  //
-  //   reader.readAsDataURL(file)
-  // }
-  //
-  // handleScale = (e) => {
-  //   const scale = parseFloat(e.target.value)
-  //   this.setState({ scale })
-  // }
-  //
-  // setEditorRef = (editor) => {
-  //   this.editor = editor;
-  // }
 
   delete = () => {
     this.props.deleteAccount(this.props.login.data.profileid);
   }
 
   save = (values) => {
-    // const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL();
-    //
-    // let imageExtension = canvasScaled.split(';')[0].split('/');
-    // imageExtension = imageExtension[imageExtension.length - 1];
-    //
-    // const newImage = {
-    //   imageName: 'profile' + values.profileid,
-    //   imageBody: canvasScaled,
-    //   imageExtension: imageExtension,
-    //   userEmail: values.email
-    // }
-    // this.props.updateInfo(values, newImage);
     this.props.updateInfo(values);
   }
 
@@ -71,34 +29,6 @@ class UserProfileEdit extends Component {
       return (
         <Redirect to='/profile' />
       )
-    }
-
-    let { imagePreviewUrl } = this.state;
-    let $imagePreview = null;
-    if (imagePreviewUrl) {
-      $imagePreview = (<AvatarEditor
-        ref={this.setEditorRef}
-        image={imagePreviewUrl}
-        scale={parseFloat(this.state.scale)}
-        width={130}
-        height={130}
-        border={0}
-        borderRadius={100}
-        color={[255, 255, 255, 1]} // RGBA
-        rotate={0}
-      />);
-    } else {
-      $imagePreview = (<AvatarEditor
-        ref={this.setEditorRef}
-        image={this.props.login.data.pic}
-        scale={parseFloat(this.state.scale)}
-        width={130}
-        height={130}
-        border={0}
-        borderRadius={100}
-        color={[255, 255, 255, 1]} // RGBA
-        rotate={0}
-      />);
     }
 
     const education = ({ fields, meta: { touched, error } }) => (
@@ -252,27 +182,8 @@ class UserProfileEdit extends Component {
                     <div className="user-spec-fields">
                       <div className="user-spec">
                         <div className="user-spec-value-name">
-
                           <Field name="first_name" component="input" className="user-spec-value-input" type="text" placeholder="First Name" />
                           <Field name="last_name" component="input" className="user-spec-value-input" type="text" placeholder="Last Name" />
-                        </div>
-                      </div>
-                    </div>
-                    <h4>Profile Picture</h4>
-                    <div className="user-spec-fields">
-                      <div className="user-spec">
-                        <div className="user-image-upload-container">
-                          <input id="upload-demo" type="file" name="images" accept="image/*" onChange={(e)=>this._handleImageChange(e)} />
-                          {$imagePreview}
-                          <input
-                            name='scale'
-                            type='range'
-                            onChange={this.handleScale}
-                            min='1'
-                            max='2'
-                            step='0.01'
-                            defaultValue='1'
-                          />
                         </div>
                       </div>
                     </div>

@@ -7,7 +7,7 @@ import { selectProfile } from '../actions/action_selectProfile';
 
 class ProfileFeed extends Component {
   componentWillMount() {
-    if(!this.props.appActivated.feed) {
+    if(!this.props.appActivated.feed && this.props.login.data.profileid) {
       const { getFeed, getLocation, activate } = this.props;
       const userId = this.props.login.data.profileid;
       if (navigator.geolocation) {
@@ -40,7 +40,7 @@ class ProfileFeed extends Component {
   }
 
   componentDidUpdate() {
-    if(!this.props.appActivated.feed) {
+    if(!this.props.appActivated.feed && this.props.login.data.profileid) {
       const { getFeed, getLocation, activate } = this.props;
       const userId = this.props.login.data.profileid;
       if (navigator.geolocation) {

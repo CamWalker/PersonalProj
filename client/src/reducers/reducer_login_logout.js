@@ -1,5 +1,6 @@
 import {
   UPDATE_SUCCESS,
+  UPDATE_PIC,
   UPDATE_FAIL,
   CHANGE_EDITED,
   MESSAGE_CLEAR
@@ -7,7 +8,7 @@ import {
 import { DELETE_ACCOUNT } from '../actions/action_deleteAccount.js'
 import {
   LOGIN,
-  LOGOUT, 
+  LOGOUT,
   LOGIN_ERROR,
   LOGIN_ACTION
 } from '../actions/action_login.js';
@@ -31,14 +32,17 @@ export default function(state = INITIAL_STATE, action) {
       return { ...state, message: 'Failed to authenticate' };
     case UPDATE_SUCCESS:
       return { ...state, data: action.payload.data, message: 'Profile saved and updated!', edited: true };
+    case UPDATE_PIC:
+      return { ...state, data: action.payload.data, message: 'Profile picture saved. It may take a few minutes to update.', edited: true };
     case UPDATE_FAIL:
       return { ...state, message: 'Failed to save'};
     case CHANGE_EDITED:
+      console.log('triple');
       return { ...state, edited: false }
     case DELETE_ACCOUNT:
       return { ...state, loggedIn: false, data: action.payload, message: '' };
     case MESSAGE_CLEAR:
-      return { ...state, message: ''}
+      return { ...state, message: '', edited: false }
     default:
       return state;
   }

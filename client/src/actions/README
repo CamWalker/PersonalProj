@@ -3,15 +3,19 @@ npm start
 
 
 (a) form validation
-(b) move image upload to different page
+
+
+
+(b) image upload
     - limit file size
     - cropper?
 (c) password update
 (d) session for refresh
 (e) facebook login
 (f) google login
+
+
 (g) hosting
-(h) sign up feed issue
 
 
 

@@ -3,16 +3,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Redirect, Link } from 'react-router-dom';
 import ProfileOverview from '../containers/profileOverview';
-import { changeEditStatus } from '../actions/action_updateInfo';
-import { messageClear } from '../actions/action_updateInfo'
+import { changeEditStatus, messageClear } from '../actions/action_updateInfo';
 
 
 class UserProfile extends Component {
-  componentWillMount() {
-    this.props.changeEditStatus();
-    // this.props.messageClear();
-  }
 
+  editStatus = () => {
+    this.props.changeEditStatus();
+  }
 
   render() {
     if (!this.props.login.loggedIn) {
@@ -121,9 +119,9 @@ class UserProfile extends Component {
           <div className="user">
             <div className="user-container">
               <div className="user-top-buttons">
-                <Link to="/"><button className="user-back">BACK</button></Link>
-                <Link to="/edit"><button className="user-edit">EDIT</button></Link>
-                <Link to="/profile-picture"><button className="user-edit">EDIT</button></Link>
+                <Link to="/"><button onClick={this.editStatus} className="user-back">BACK</button></Link>
+                <Link to="/edit"><button onClick={this.editStatus} className="user-edit">EDIT</button></Link>
+                <Link to="/picture"><button onClick={this.editStatus} className="user-edit">Change Picture</button></Link>
               </div>
               <div className="user-forms">
                   <p className="user-message">{this.props.login.message}</p>
