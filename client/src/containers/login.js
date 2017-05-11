@@ -109,7 +109,6 @@ class Login extends Component {
 
 
   render() {
-    console.log(this.props.login);
     const { from } = this.props.location.state || { from: { pathname: '/' } }
 
     const { handleSubmit } = this.props;

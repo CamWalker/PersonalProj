@@ -4,11 +4,13 @@ import { bindActionCreators } from 'redux';
 import { Redirect, Link } from 'react-router-dom';
 import ProfileOverview from '../containers/profileOverview';
 import { changeEditStatus } from '../actions/action_updateInfo';
+import { messageClear } from '../actions/action_updateInfo'
 
 
 class UserProfile extends Component {
   componentWillMount() {
     this.props.changeEditStatus();
+    // this.props.messageClear();
   }
 
 
@@ -121,13 +123,15 @@ class UserProfile extends Component {
               <div className="user-top-buttons">
                 <Link to="/"><button className="user-back">BACK</button></Link>
                 <Link to="/edit"><button className="user-edit">EDIT</button></Link>
+                <Link to="/profile-picture"><button className="user-edit">EDIT</button></Link>
               </div>
               <div className="user-forms">
+                  <p className="user-message">{this.props.login.message}</p>
                   <div>
                     <h4>Name</h4>
                     <div className="user-spec-fields">
                       <div className="user-spec">
-                        <div className="user-spec-value">{profile.first_name} &nbsp;&nbsp;{profile.last_name}</div>
+                        <div className="user-spec-value-title">{profile.first_name} &nbsp;&nbsp;{profile.last_name}</div>
                       </div>
                     </div>
                     <h4>Profile Picture</h4>
@@ -216,7 +220,7 @@ function mapStateToProps(store) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ changeEditStatus }, dispatch);
+  return bindActionCreators({ changeEditStatus, messageClear }, dispatch);
 };
 
 

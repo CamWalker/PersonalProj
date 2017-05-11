@@ -1,20 +1,24 @@
 // FACEBOOK = me?fields=education,work,relationship_status,hometown,location,languages
 
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-
-import React from 'react';
+// Components
 import ProfileFeed from '../containers/profileFeed.js';
 import Searchbar from '../containers/searchbar.js';
 import SelectedProfile from '../containers/selectedProfile';
 import ProfileOverview from '../containers/profileOverview.js';
 
-import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { logoutAction } from '../actions/action_login.js';
+// Actions
+import { messageClear } from '../actions/action_updateInfo'
 
 
-class App extends React.Component {
+class App extends Component {
+  componentWillMount() {
+    this.props.messageClear();
+  }
 
   showSelected() {
     document.getElementById("profile-modal2").classList.toggle("show-selected");
@@ -59,7 +63,7 @@ function mapStateToProps(store) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ logoutAction }, dispatch);
+  return bindActionCreators({ messageClear }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

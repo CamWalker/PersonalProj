@@ -32,12 +32,10 @@ button {
 /*SPINNING G*/
 
 .loader {
-    /*border: 16px solid #f3f3f3;
-    border-top: 16px solid #3498db;
-    border-radius: 50%;*/
-    width: 240px;
-    height: 240px;
-    animation: spin 1s cubic-bezier(.61,-0.68,.2,.93) infinite;
+  margin-top: 50px;
+  width: 200px;
+  height: 200px;
+  animation: spin 1s cubic-bezier(.61,-0.68,.2,.93) infinite;
 }
 
 @keyframes spin {
@@ -298,6 +296,7 @@ textarea.help-field {
           -webkit-margin-before: auto;
           -webkit-margin-after: auto;
         }
+
       .user-spec {
         display: flex;
         flex-direction: row;
@@ -312,6 +311,7 @@ textarea.help-field {
         flex-wrap: wrap;
         align-items: center;
       }
+
       .user-spec-value-name {
         padding: 5px 0px;
         display: flex;
@@ -379,6 +379,17 @@ textarea.help-field {
       .user-spec-fields {
         margin: 10px 8%;
         font-size: 14px;
+      }
+      .user-message {
+        color: green;
+      }
+      .user-spec-value-title {
+        padding: 5px 0px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        font-size: 18px;
       }
       .user-relationship-status {
         color: #777;
@@ -842,6 +853,7 @@ li {
 }
   .searchBar {
     width: 100%;
+    min-width: 265px;
     margin: 0px;
     display: flex;
     justify-content: space-between;
@@ -850,6 +862,7 @@ li {
   }
   .profileSearch {
     width: 100%;
+
     border-radius: 5px;
     border: solid 1px #d1cbc7;
     padding: 5px;
@@ -867,11 +880,18 @@ li {
     margin: 0px 10px;
     height: 30px;
   }
-  .profile-list {
-    height: calc(100vh - 161px);
-    overflow-y: auto;
-    box-shadow: 0px 5px 5px #FFFBF7;
+  .refresh-container:hover,
+  .refresh-container:focus,
+  .refresh:hover,
+  .refresh:focus {
+    animation: spin 2s linear infinite;
   }
+
+  @keyframes spin {
+      0% { transform: rotate(360deg); }
+      100% { transform: rotate(0deg); }
+  }
+
     .profile-item {
       width: 260px;
       height: auto;

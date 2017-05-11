@@ -1,23 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { search } from '../actions/action_search.js';
-import { activate } from '../actions/action_feed';
+import { search, activate, removeFeed } from '../actions/action_feed';
 
 
-class Searchbar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {term: ''};
-    this.onInputChange = this.onInputChange.bind(this);
-  }
+class Searchbar extends Component {
 
-  onInputChange(term) {
-    this.setState({term: term});
+  onInputChange = (term) => {
     this.props.search(term);
   }
 
   pullFeed = () => {
+    this.props.removeFeed();
     this.props.activate();
   }
 
@@ -25,7 +19,7 @@ class Searchbar extends React.Component {
     return (
       <div className="searchBar">
         <input className="profileSearch" placeholder="Search profiles"
-          value={this.state.term}
+          value={this.props.profiles.term}
           onChange={event => this.onInputChange(event.target.value)} />
         <div className="refresh-container" onClick={this.pullFeed}>
           <img className="refresh" src="../pics/WhiteG.png" alt="" />
@@ -35,8 +29,12 @@ class Searchbar extends React.Component {
   }
 };
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ search, activate }, dispatch);
+function mapStateToProps(store) {
+  return { profiles: store.profiles }
 }
 
-export default connect(null, mapDispatchToProps)(Searchbar);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ search, activate, removeFeed }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Searchbar);

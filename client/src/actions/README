@@ -2,30 +2,16 @@ PORT=8002 node bin/www
 npm start
 
 
-
-
-- password update
-- undefined values if field is left blank (both on the overview and the selected profile)
-- move image upload to different page
-  - limit file size
-
-
-
 (a) form validation
-  (a1) responsive form status updates (SAVED! e.g.)
-
-
-
-(b) session for refresh
-
-(f) facebook login
-(g) google login
-
-(h) hosting
-
-
-
-
+(b) move image upload to different page
+    - limit file size
+    - cropper?
+(c) password update
+(d) session for refresh
+(e) facebook login
+(f) google login
+(g) hosting
+(h) sign up feed issue
 
 
 

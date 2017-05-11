@@ -5,59 +5,61 @@ import { Link, Redirect } from 'react-router-dom';
 import { Field, FieldArray, reduxForm } from 'redux-form';
 import AvatarEditor from 'react-avatar-editor'
 import ProfileOverview from '../containers/profileOverview';
-import { updateInfo } from '../actions/action_updateInfo.js';
+import { updateInfo, messageClear } from '../actions/action_updateInfo.js';
 import { deleteAccount } from '../actions/action_deleteAccount.js';
 
 class UserProfileEdit extends Component {
   constructor(props) {
     super(props);
     this.state = { file: '', imagePreviewUrl: '', scale: 1 };
-    this.save = this.save.bind(this);
-    this.delete = this.delete.bind(this);
+  }
+  componentWillMount() {
+    this.props.messageClear();
   }
 
-  _handleImageChange = (e) => {
-    e.preventDefault();
+  // _handleImageChange = (e) => {
+  //   e.preventDefault();
+  //
+  //   let reader = new FileReader();
+  //   let file = e.target.files[0];
+  //
+  //   reader.onloadend = () => {
+  //     this.setState({
+  //       file: file,
+  //       imagePreviewUrl: reader.result
+  //     });
+  //   }
+  //
+  //   reader.readAsDataURL(file)
+  // }
+  //
+  // handleScale = (e) => {
+  //   const scale = parseFloat(e.target.value)
+  //   this.setState({ scale })
+  // }
+  //
+  // setEditorRef = (editor) => {
+  //   this.editor = editor;
+  // }
 
-    let reader = new FileReader();
-    let file = e.target.files[0];
-
-    reader.onloadend = () => {
-      this.setState({
-        file: file,
-        imagePreviewUrl: reader.result
-      });
-    }
-
-    reader.readAsDataURL(file)
-  }
-
-  handleScale = (e) => {
-    const scale = parseFloat(e.target.value)
-    this.setState({ scale })
-  }
-
-  setEditorRef = (editor) => {
-    this.editor = editor;
-  }
-
-  delete () {
+  delete = () => {
     this.props.deleteAccount(this.props.login.data.profileid);
   }
 
-  save(values) {
-    const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL();
-
-    let imageExtension = canvasScaled.split(';')[0].split('/');
-    imageExtension = imageExtension[imageExtension.length - 1];
-
-    const newImage = {
-      imageName: 'profile' + values.profileid,
-      imageBody: canvasScaled,
-      imageExtension: imageExtension,
-      userEmail: values.email
-    }
-    this.props.updateInfo(values, newImage);
+  save = (values) => {
+    // const canvasScaled = this.editor.getImageScaledToCanvas().toDataURL();
+    //
+    // let imageExtension = canvasScaled.split(';')[0].split('/');
+    // imageExtension = imageExtension[imageExtension.length - 1];
+    //
+    // const newImage = {
+    //   imageName: 'profile' + values.profileid,
+    //   imageBody: canvasScaled,
+    //   imageExtension: imageExtension,
+    //   userEmail: values.email
+    // }
+    // this.props.updateInfo(values, newImage);
+    this.props.updateInfo(values);
   }
 
   render () {
@@ -342,7 +344,7 @@ function mapStateToProps(store) {
 }
 
  function mapDispatchToProps(dispatch) {
-   return bindActionCreators({ updateInfo, deleteAccount }, dispatch);
+   return bindActionCreators({ updateInfo, deleteAccount, messageClear }, dispatch);
  }
 
   UserProfileEdit = reduxForm({

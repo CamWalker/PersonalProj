@@ -1,6 +1,7 @@
 export const GET_FEED = 'GET_FEED';
 export const ACT_FEED = 'ACT_FEED';
-
+export const SEARCH_FILTER = 'SEARCH_FILTER';
+export const REMOVE_FEED = 'REMOVE_FEED';
 import axios from 'axios';
 
 export function activate() {
@@ -11,7 +12,6 @@ export function activate() {
 
 export function getFeed(lat, long, id) {
   // RETURN AXIOS AJAX REQUEST //
-  console.log('getting feed');
   const url = '/feed/' + id;
   const request = axios.put(url, {
     latitude: lat,
@@ -21,5 +21,18 @@ export function getFeed(lat, long, id) {
   return {
     type: GET_FEED,
     payload: request
+  }
+}
+
+export function search(term) {
+  return {
+    type: SEARCH_FILTER,
+    payload: term,
+  }
+}
+
+export function removeFeed() {
+  return {
+    type: REMOVE_FEED
   }
 }

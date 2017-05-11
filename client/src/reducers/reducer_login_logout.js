@@ -1,6 +1,16 @@
-import { UPDATE_SUCCESS, UPDATE_FAIL, CHANGE_EDITED } from '../actions/action_updateInfo.js'
+import {
+  UPDATE_SUCCESS,
+  UPDATE_FAIL,
+  CHANGE_EDITED,
+  MESSAGE_CLEAR
+} from '../actions/action_updateInfo.js'
 import { DELETE_ACCOUNT } from '../actions/action_deleteAccount.js'
-import { LOGIN, LOGOUT, LOGIN_ERROR, LOGIN_ACTION } from '../actions/action_login.js';
+import {
+  LOGIN,
+  LOGOUT, 
+  LOGIN_ERROR,
+  LOGIN_ACTION
+} from '../actions/action_login.js';
 
 const INITIAL_STATE = {
   loggedIn: false,
@@ -27,6 +37,8 @@ export default function(state = INITIAL_STATE, action) {
       return { ...state, edited: false }
     case DELETE_ACCOUNT:
       return { ...state, loggedIn: false, data: action.payload, message: '' };
+    case MESSAGE_CLEAR:
+      return { ...state, message: ''}
     default:
       return state;
   }

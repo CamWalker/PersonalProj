@@ -1,6 +1,7 @@
 export const UPDATE_SUCCESS = 'UPDATE_SUCCESS';
 export const UPDATE_FAIL = 'UPDATE_FAIL';
-export const CHANGE_EDITED = 'CHANGE_EDITED'
+export const CHANGE_EDITED = 'CHANGE_EDITED';
+export const MESSAGE_CLEAR = 'MESSAGE_CLEAR';
 import axios from 'axios';
 
 export function changeEditStatus() {
@@ -11,12 +12,9 @@ export function changeEditStatus() {
 
 export function updateInfo(values, newImage) {
   // RETURN AXIOS AJAX REQUEST //
-
-
-
   return (dispatch) => {
-    axios.put('/newimage/', { newImage, id: values.profileid  })
-      .then(() => {
+    // axios.put('/newimage/', { newImage, id: values.profileid  })
+      // .then(() => {
         axios.put('/profile/' + values.profileid + '/' , { values })
           .then((user) => {
             updateSuccess(dispatch, user);
@@ -24,8 +22,8 @@ export function updateInfo(values, newImage) {
           .catch(() => {
             updateFail(dispatch);
           });
-      })
-      .catch(() => updateFail(dispatch));
+      // })
+      // .catch(() => updateFail(dispatch));
 
   }
 }
@@ -41,4 +39,10 @@ export function updateFail(dispatch) {
   return dispatch({
     type: UPDATE_FAIL
   })
+}
+
+export function messageClear() {
+  return {
+    type: MESSAGE_CLEAR
+  }
 }

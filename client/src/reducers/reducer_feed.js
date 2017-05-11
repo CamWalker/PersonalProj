@@ -1,5 +1,4 @@
-import { GET_FEED } from '../actions/action_feed.js';
-import { SEARCH_FILTER } from '../actions/action_search.js';
+import { GET_FEED, SEARCH_FILTER, REMOVE_FEED } from '../actions/action_feed.js';
 import { LOGOUT } from '../actions/action_login.js';
 import { DELETE_ACCOUNT } from '../actions/action_deleteAccount.js'
 import { SELECT_PROFILE } from '../actions/action_selectProfile'
@@ -7,7 +6,8 @@ import { SELECT_PROFILE } from '../actions/action_selectProfile'
 const INITIAL_STATE = {
   temp: [],
   perm: [],
-  selectedProfile: {}
+  selectedProfile: {},
+  term: ''
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -18,6 +18,8 @@ export default function(state = INITIAL_STATE, action) {
         ...state,
         selectedProfile: action.payload
       };
+    case REMOVE_FEED:
+      return INITIAL_STATE;
     case GET_FEED:
       let feed = action.payload.data.feed
       if (feed) {
@@ -43,9 +45,9 @@ export default function(state = INITIAL_STATE, action) {
         selectedProfile: feed[0]
       };
     case SEARCH_FILTER:
-        function profileSearch(term) {
-         function JSONtreeSearch(inputINIT, searchTerm) {
-           var search = inputINIT.map((v) => {
+      function profileSearch(term) {
+        function JSONtreeSearch(inputINIT, searchTerm) {
+          var search = inputINIT.map((v) => {
             function JSONtreeSearch1(inputINIT, searchTerm) {
               var returner = false
               function JSONtreeSearch2(inputINIT, searchTerm) {
@@ -65,15 +67,16 @@ export default function(state = INITIAL_STATE, action) {
             return JSONtreeSearch1(v, searchTerm);
           })
           return search
-         }
-         const filtered = JSONtreeSearch(state.perm, term)
-         const profiles = state.perm.filter((v, i) => filtered[i])
-         return profiles;
-       }
+        }
+        const filtered = JSONtreeSearch(state.perm, term)
+        const profiles = state.perm.filter((v, i) => filtered[i])
+        return profiles;
+      }
       const temp = profileSearch(action.payload)
       return {
         ...state,
-        temp: temp
+        temp: temp,
+        term: action.payload
       };
     case LOGOUT:
       return INITIAL_STATE;

@@ -1,22 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import SingleProfile from '../components/singleProfile';
 import { getFeed, activate } from '../actions/action_feed';
 import { getLocation } from '../actions/action_getLocation';
 import { selectProfile } from '../actions/action_selectProfile';
 
 class ProfileFeed extends Component {
-  constructor(props) {
-    super(props);
-    this.selectProfile = this.selectProfile.bind(this);
-  }
   componentWillMount() {
     if(!this.props.appActivated.feed) {
-      const getFeed = this.props.getFeed;
-      const getLocation = this.props.getLocation;
+      const { getFeed, getLocation, activate } = this.props;
       const userId = this.props.login.data.profileid;
-      const activate = this.props.activate
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
           getLocation(position.coords.latitude, position.coords.longitude);
@@ -48,10 +41,8 @@ class ProfileFeed extends Component {
 
   componentDidUpdate() {
     if(!this.props.appActivated.feed) {
-      const getFeed = this.props.getFeed;
-      const getLocation = this.props.getLocation;
+      const { getFeed, getLocation, activate } = this.props;
       const userId = this.props.login.data.profileid;
-      const activate = this.props.activate
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
           getLocation(position.coords.latitude, position.coords.longitude);
@@ -81,7 +72,7 @@ class ProfileFeed extends Component {
     }
   }
 
-  selectProfile(props) {
+  selectProfile = (props) => {
     this.props.selectProfile(props);
     this.props.showSelected();
   }
@@ -99,7 +90,7 @@ class ProfileFeed extends Component {
       });
     } else {
       return (
-        <div className="profile-list center">
+        (this.props.profiles.term) ? <p className="ice-breaker-question">No results match the search term.</p> : <div className="profile-list center">
           <img className="loader" src="../pics/GoodTurnG.png" alt=""/>
         </div>
       );
@@ -121,13 +112,9 @@ function mapStateToProps(store) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    getFeed: getFeed,
-    selectProfile: selectProfile,
-    getLocation: getLocation,
-    activate: activate
-  }, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileFeed);
+export default connect(mapStateToProps, {
+  getFeed,
+  selectProfile,
+  getLocation,
+  activate
+})(ProfileFeed);
