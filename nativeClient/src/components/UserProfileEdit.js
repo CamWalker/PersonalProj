@@ -7,7 +7,7 @@ import { Actions } from 'react-native-router-flux';
 import SelectedProfileSpec from './SelectedProfileSpec';
 import SelectedProfileGTKY from './SelectedProfileGTKY';
 
-class UserProfile extends Component {
+class UserProfileEdit extends Component {
 
 
   render() {
@@ -94,14 +94,9 @@ class UserProfile extends Component {
     return (
       <View>
         <View style={styles.containerStyle1}>
-          <TouchableWithoutFeedback  onPress={() => Actions.main()}>
+          <TouchableWithoutFeedback  onPress={() => Actions.userProfile()}>
             <View style={styles.arrowContainer}>
               <Text style={styles.arrowText}>&larr;</Text>
-            </View>
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback  onPress={() => Actions.userProfileEdit()}>
-            <View style={styles.editContainer}>
-              <Text style={styles.editText}>Edit Profile</Text>
             </View>
           </TouchableWithoutFeedback>
         </View>
@@ -161,10 +156,6 @@ class UserProfile extends Component {
 
 
 const styles = {
-  containerStyle1: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
   title: {
     marginVertical: 10,
     marginLeft: 30,
@@ -199,22 +190,6 @@ const styles = {
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 22
-  },
-  editContainer: {
-    backgroundColor: 'white',
-    height: 40,
-    width: 90,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 20,
-    marginBottom: 10,
-    borderColor: '#ff8355',
-    borderWidth: 1
-  },
-  editText: {
-    color: '#ff8355',
-    fontWeight: 'bold',
-    fontSize: 14
   },
   hr: {
     height: 1,
@@ -255,4 +230,4 @@ function mapStateToProps(store) {
   };
 }
 
-export default connect(mapStateToProps)(UserProfile);
+export default connect(mapStateToProps)(UserProfileEdit);

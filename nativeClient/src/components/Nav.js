@@ -21,27 +21,33 @@ class Nav extends Component {
 
   feedPress =() => {
     this.props.activate();
-    Actions.feed();
+    Actions.main();
   }
 
 
   render() {
     return (
       <Footer>
-        <TouchableWithoutFeedback onPress={() => Actions.userProfile()}>
+
+        <TouchableWithoutFeedback onPress={() => Actions.profile()}>
           <Image
             style={styles.navImage1}
             source={require('../pics/profile_white.png')}
           />
         </TouchableWithoutFeedback>
+
         <View></View>
+
         <TouchableWithoutFeedback onPress={() => this.feedPress()}>
           <Image style={styles.navImage3} source={require('../pics/WhiteG.png')} />
         </TouchableWithoutFeedback>
+
         <View></View>
+
         <TouchableWithoutFeedback onPress={() => this.onLogout()}>
           <Image style={styles.navImage5} source={require('../pics/logout.png')} />
         </TouchableWithoutFeedback>
+
       </Footer>
     )
   }
