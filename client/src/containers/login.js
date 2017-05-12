@@ -41,6 +41,7 @@ class Login extends Component {
         return 'Please do not leave fields blank';
       }
       encoded = encodeURI(fields[i]);
+      fields[i] = fields[i].replace(/ /g,"%20");
       if (fields[i] !== encoded) {
         for (var j = 0; j < fields[i].length; j++) {
           if (fields[i][j] !== encoded[j]) {
@@ -81,6 +82,7 @@ class Login extends Component {
         return 'Please do not leave fields blank';
       }
       encoded = encodeURI(fields[i]);
+      fields[i] = fields[i].replace(/ /g,"%20");
       if (fields[i] !== encoded) {
         for (var j = 0; j < fields[i].length; j++) {
           if (fields[i][j] !== encoded[j]) {

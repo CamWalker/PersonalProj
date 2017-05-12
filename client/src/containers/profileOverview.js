@@ -33,7 +33,32 @@ class ProfileOverview extends Component {
       if (profile.relationship_status) {
         specs.push({spec: {value: profile.relationship_status}, path: '../pics/relationship2.png'});
       } else if (relation[0]) {
-        specs.push({spec: relation[0], path: '../pics/relationship2.png'});
+        let type = "";
+        switch (relation[0].value) {
+          case 'Pet(s)':
+            if (Number(relation[0].quantity) === 1) {
+              type = 'Pet';
+            } else {
+              type = 'Pets';
+            }
+            break;
+          case 'Child(ren)':
+            if (Number(relation[0].quantity) === 1) {
+              type = 'Child';
+            } else {
+              type = 'Children';
+            }
+            break;
+          case 'Sibling(s)':
+            if (Number(relation[0].quantity) === 1) {
+              type = 'Sibling';
+            } else {
+              type = 'Siblings';
+            }
+            break;
+          default:
+        }
+        specs.push({spec: { value: relation[0].quantity + " " + type }, path: '../pics/relationship2.png'});
       } else {
         specs.push({spec: {value: 'Blank'}, path: '../pics/relationship2.png'});
       }

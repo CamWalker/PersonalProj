@@ -266,7 +266,7 @@ textarea.help-field {
       width: 80px;
     }
     .user-edit {
-      padding: 15px;
+      padding: 14px 15px;
       border-radius: 32px;
       border: #ff8355 1px solid;
       background: #fffdfb;
@@ -383,6 +383,9 @@ textarea.help-field {
       }
       .user-message {
         color: green;
+        margin-bottom: 20px;
+        font-weight: bold;
+        font-size: 12;
       }
       .user-spec-value-title {
         padding: 5px 0px;
@@ -414,8 +417,14 @@ textarea.help-field {
       outline:none;
       width: 80px;
     }
+    .user-error {
+      color: red;
+      font-weight: bold;
+      font-size: 12px;
+      padding-left: 20px;
+    }
     .user-delete {
-      padding: 15px;
+      padding: 14px 15px;
       border-radius: 32px;
       border: #fa0700 1px solid;
       background: #fffdfb;
@@ -425,6 +434,7 @@ textarea.help-field {
       margin-left: 15px;
       position: absolute;
       right: 20px;
+      bottom: 25px;
     }
     .user-at {
       color: #81A8CD;

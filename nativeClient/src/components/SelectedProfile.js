@@ -41,7 +41,7 @@ class SelectedProfile extends Component {
             key={i}
             path='https://s3-us-west-2.amazonaws.com/goodturn-pics/work.png' />
         });
-        if(selectedProfile.relationship_status !== ""){
+        if(selectedProfile.relationship_status){
           const relationSpec = {value: selectedProfile.relationship_status}
           relationship_status = <SelectedProfileSpec
             spec={relationSpec}
@@ -75,10 +75,12 @@ class SelectedProfile extends Component {
 
             }
           let relationSpec = {value: spec.quantity + " " + type}
-          return <SelectedProfileSpec
-            spec={relationSpec}
-            key={i}
-            path='https://s3-us-west-2.amazonaws.com/goodturn-pics/relationship.png' />
+          if (type !== "") {
+            return <SelectedProfileSpec
+              spec={relationSpec}
+              key={i}
+              path='https://s3-us-west-2.amazonaws.com/goodturn-pics/relationship.png' />
+          }
         });
 
 

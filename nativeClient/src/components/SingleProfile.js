@@ -61,7 +61,7 @@ class SingleProfile extends Component {
         default:
 
       }
-      specs.push({spec: relation[0].quantity + " " + type, path: 'https://s3-us-west-2.amazonaws.com/goodturn-pics/relationship.png'});
+      specs.push({spec: { value: relation[0].quantity + " " + type }, path: 'https://s3-us-west-2.amazonaws.com/goodturn-pics/relationship.png'});
     }
     const lived = profile.lived;
     if (lived[0]) {

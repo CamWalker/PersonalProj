@@ -44,7 +44,7 @@ const SingleProfile = (props) => {
         default:
 
       }
-      specs.push({spec: relation[0].quantity + " " + type, path: '../pics/relationship.png'});
+      specs.push({spec: { value: relation[0].quantity + " " + type }, path: '../pics/relationship.png'});
     }
     const lived = profile.lived;
     if (lived[0]) {

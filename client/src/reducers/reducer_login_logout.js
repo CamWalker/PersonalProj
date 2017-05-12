@@ -37,7 +37,6 @@ export default function(state = INITIAL_STATE, action) {
     case UPDATE_FAIL:
       return { ...state, message: 'Failed to save'};
     case CHANGE_EDITED:
-      console.log('triple');
       return { ...state, edited: false }
     case DELETE_ACCOUNT:
       return { ...state, loggedIn: false, data: action.payload, message: '' };

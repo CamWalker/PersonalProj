@@ -2,10 +2,6 @@ PORT=8002 node bin/www
 npm start
 
 
-(a) form validation
-
-
-
 (b) image upload
     - limit file size
     - cropper?
@@ -17,6 +13,9 @@ npm start
 
 (g) hosting
 
+cra build
+change static drive to the dist folder that is created
+remove CORS
 
 
 
