@@ -2,40 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SingleProfile from '../components/singleProfile';
 import { getFeed, activate } from '../actions/action_feed';
-import { getLocation } from '../actions/action_getLocation';
 import { selectProfile } from '../actions/action_selectProfile';
+import { getLocation } from '../actions/action_login';
 
 class ProfileFeed extends Component {
   componentWillMount() {
     if(!this.props.appActivated.feed && this.props.login.data.profileid) {
       const { getFeed, getLocation, activate } = this.props;
       const userId = this.props.login.data.profileid;
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          getLocation(position.coords.latitude, position.coords.longitude);
-          getFeed(position.coords.latitude, position.coords.longitude, userId);
-          activate();
-        }, function (error) {
-          switch(error.code) {
-            case error.PERMISSION_DENIED:
-              alert("You denied the request for Geolocation.");
-              break;
-            case error.POSITION_UNAVAILABLE:
-              alert("Location information is unavailable.");
-              break;
-            case error.TIMEOUT:
-              alert("The request to get user location timed out.");
-              break;
-            case error.UNKNOWN_ERROR:
-              alert("An unknown error occurred.");
-              break;
-            default:
-              //good to go!
-          }
-        });
-      } else {
-          alert("Geolocation is not supported by this browser.");
-      }
+      getLocation(userId);
+      activate();
     }
   }
 
@@ -43,32 +19,8 @@ class ProfileFeed extends Component {
     if(!this.props.appActivated.feed && this.props.login.data.profileid) {
       const { getFeed, getLocation, activate } = this.props;
       const userId = this.props.login.data.profileid;
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          getLocation(position.coords.latitude, position.coords.longitude);
-          getFeed(position.coords.latitude, position.coords.longitude, userId);
-          activate();
-        }, function (error) {
-          switch(error.code) {
-            case error.PERMISSION_DENIED:
-              alert("You denied the request for Geolocation.");
-              break;
-            case error.POSITION_UNAVAILABLE:
-              alert("Location information is unavailable.");
-              break;
-            case error.TIMEOUT:
-              alert("The request to get user location timed out.");
-              break;
-            case error.UNKNOWN_ERROR:
-              alert("An unknown error occurred.");
-              break;
-            default:
-              //good to go!
-          }
-        });
-      } else {
-          alert("Geolocation is not supported by this browser.");
-      }
+      getLocation(userId);
+      activate();
     }
   }
 

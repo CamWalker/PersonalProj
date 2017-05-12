@@ -9,9 +9,22 @@ CREATE TABLE issues (
 CREATE TABLE profiles (
   id SERIAL PRIMARY KEY,
   email varchar(100),
-  password varchar(100),
   latitude numeric(11,7),
   longitude numeric(11,7)
+);
+
+CREATE TABLE userInfo (
+  id SERIAL PRIMARY KEY,
+  first_name varchar(100),
+  last_name varchar(100),
+  pic text,
+  education JSON,
+  work JSON,
+  relationship_status varchar(40),
+  relation JSON,
+  lived JSON,
+  gtky JSON,
+  profileId Integer
 );
 
 INSERT INTO profiles (email, password, latitude, longitude)
@@ -36,19 +49,7 @@ INSERT INTO profiles (email, password, latitude, longitude)
   ('test14@gmail.com', '*****', 40.2263341, -111.6608056),
   ('test15@gmail.com', '*****', 40.2263342, -111.6608136);
 
-CREATE TABLE userInfo (
-  id SERIAL PRIMARY KEY,
-  first_name varchar(100),
-  last_name varchar(100),
-  pic text,
-  education JSON,
-  work JSON,
-  relationship_status varchar(40),
-  relation JSON,
-  lived JSON,
-  gtky JSON,
-  profileId Integer
-);
+
 
 INSERT INTO userInfo (first_name, last_name, pic, education, work, relationship_status, relation, lived, gtky, profileId)
   VALUES ('Cameron', 'Walker', '././pics/IMG_0759.JPG', '[

@@ -3,8 +3,32 @@ export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGIN_ACTION = 'LOGIN_ACTION';
 export const LOGOUT = 'LOGOUT';
 export const ACT_FIREBASE = 'ACT_FIREBASE';
+export const GET_LOCATION = 'GET_LOCATION';
+import { getFeed } from './action_feed';
+import { API_KEY } from '../../config';
+
 import axios from 'axios';
 import firebase from 'firebase';
+
+export function getLocation(id) {
+  return (dispatch) => {
+    const url = 'https://www.googleapis.com/geolocation/v1/geolocate?key=' + API_KEY
+    axios.post(url)
+      .then((location) => {
+        const lat = location.data.location.lat;
+        const long = location.data.location.lng;
+        getFeed(dispatch, lat, long, id)
+        const url2 = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + long + '&key=' + API_KEY
+        axios.get(url2)
+          .then((response) => {
+            return dispatch({
+              type: GET_LOCATION,
+              payload: response
+            });
+          })
+      })
+  }
+}
 
 export function activate() {
   return {

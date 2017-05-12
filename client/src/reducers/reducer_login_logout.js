@@ -10,14 +10,16 @@ import {
   LOGIN,
   LOGOUT,
   LOGIN_ERROR,
-  LOGIN_ACTION
+  LOGIN_ACTION,
+  GET_LOCATION
 } from '../actions/action_login.js';
 
 const INITIAL_STATE = {
   loggedIn: false,
   data: {},
   message: '',
-  edited: false
+  edited: false,
+  location: ''
 }
 
 export default function(state = INITIAL_STATE, action) {
@@ -42,6 +44,8 @@ export default function(state = INITIAL_STATE, action) {
       return { ...state, loggedIn: false, data: action.payload, message: '' };
     case MESSAGE_CLEAR:
       return { ...state, message: '', edited: false }
+    case GET_LOCATION:
+      return { ...state, location: action.payload.data.results[3].formatted_address }
     default:
       return state;
   }

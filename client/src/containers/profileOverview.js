@@ -85,7 +85,7 @@ class ProfileOverview extends Component {
         </div>
         <div className="account-location-text">
           <span className="account-location-text-blue">Current location</span>
-          <br />{this.props.currentLocation}
+          <br />{this.props.login.location}
         </div>
         <div className="login-summary">
           <div className="account-pic-container">
@@ -124,8 +124,7 @@ class ProfileOverview extends Component {
 
 function mapStateToProps(store) {
   return {
-    login: store.login,
-    currentLocation: store.currentLocation
+    login: store.login
   };
 }
 

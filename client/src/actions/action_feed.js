@@ -4,13 +4,17 @@ export const SEARCH_FILTER = 'SEARCH_FILTER';
 export const REMOVE_FEED = 'REMOVE_FEED';
 import axios from 'axios';
 
+
+
+
+
 export function activate() {
   return {
     type: ACT_FEED
   }
 }
 
-export function getFeed(lat, long, id) {
+export function getFeed(dispatch, lat, long, id) {
   // RETURN AXIOS AJAX REQUEST //
   const url = '/feed/' + id;
   const request = axios.put(url, {
@@ -18,10 +22,10 @@ export function getFeed(lat, long, id) {
     longitude: long
   });
 
-  return {
+  return dispatch({
     type: GET_FEED,
     payload: request
-  }
+  })
 }
 
 export function search(term) {

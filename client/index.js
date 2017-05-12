@@ -7,9 +7,9 @@ const massive = require('massive');
 
 
 var app = module.exports = express();
-const corsOptions = {
-	origin: 'http://localhost:8080'
-};
+// const corsOptions = {
+// 	origin: 'http://localhost:8080'
+// };
 const port = 8080
 app.use(express.static(__dirname + '/build'));
 app.use(bodyParser.json({limit: '50mb'}));
@@ -21,9 +21,8 @@ app.use(session({
 	secret: config.secret
 }));
 
-
 var conn = massive.connectSync({
-  connectionString: config.connectionString
+  connectionString: config.devConnectionString
 });
 app.set('db', conn);
 var db = app.get('db');

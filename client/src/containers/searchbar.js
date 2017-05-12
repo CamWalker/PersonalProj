@@ -11,8 +11,9 @@ class Searchbar extends Component {
   }
 
   pullFeed = () => {
-    this.props.removeFeed();
     this.props.activate();
+    this.props.removeFeed();
+
   }
 
   render() {
