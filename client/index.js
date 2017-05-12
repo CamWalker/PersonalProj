@@ -22,7 +22,7 @@ app.use(session({
 }));
 
 var conn = massive.connectSync({
-  connectionString: config.devConnectionString
+  connectionString: config.connectionString
 });
 app.set('db', conn);
 var db = app.get('db');
