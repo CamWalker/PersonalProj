@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const cors = require('cors');
+// const cors = require('cors');
 const config = require('./config.js')
 const massive = require('massive');
 
@@ -11,9 +11,10 @@ const corsOptions = {
 	origin: 'http://localhost:8080'
 };
 const port = 8080
+app.use(express.static(__dirname + '/build'));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(session({
 	resave: true,
 	saveUninitialized: true,

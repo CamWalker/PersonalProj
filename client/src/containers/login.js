@@ -4,7 +4,7 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 import { logItIn, loginAction, signUpAction, activate } from '../actions/action_login.js';
-import config from './config';
+import { config } from '../../config';
 
 class Login extends Component {
   constructor(props) {
@@ -111,6 +111,7 @@ class Login extends Component {
 
 
   render() {
+    const facebook = false;
     const { from } = this.props.location.state || { from: { pathname: '/' } }
 
     const { handleSubmit } = this.props;
@@ -131,8 +132,8 @@ class Login extends Component {
           <div className="login-sign-up">
             <h3 className="login-sign-up-intro">Sign up to connect with those closest to you...literally!</h3>
             <h3 className="login-sign-up-intro">It's free.</h3>
-            <button className="login-sign-up-submit" onClick={this.signUp} type="submit">Log in with Facebook</button>
-            <div><br /><hr size="1px" color="#ece6e2" width="250px" /><br /></div>
+            { facebook  && <div><button className="login-sign-up-submit" onClick={this.signUp} type="submit">Log in with Facebook</button>
+            <div><br /><hr size="1px" color="#ece6e2" width="250px" /><br /></div></div>}
             <form className="login-sign-up-form" onSubmit={handleSubmit(this.signUp)}>
               <Field component="input" className="login-sign-up-field" type="text" placeholder="First Name" name="firstName"  />
               <Field component="input" className="login-sign-up-field" type="text" placeholder="Last Name" name="lastName" />
@@ -156,8 +157,8 @@ class Login extends Component {
             </div>
           </div>
           <div className="login-sign-up">
-            <button className="login-sign-up-submit" onClick={this.signUp} type="submit">Log in with Facebook</button>
-            <div><br /><hr size="1px" color="#ece6e2" width="250px" /><br /></div>
+            { facebook  && <div><button className="login-sign-up-submit" onClick={this.signUp} type="submit">Log in with Facebook</button>
+            <div><br /><hr size="1px" color="#ece6e2" width="250px" /><br /></div></div> }
             <form className="login-sign-up-form" onSubmit={handleSubmit(this.login)}>
               <Field className="login-sign-up-field" type="email" placeholder="Email" name="email" component="input" />
               <Field className="login-sign-up-field" type="password" placeholder="Password" name="password" component="input" />

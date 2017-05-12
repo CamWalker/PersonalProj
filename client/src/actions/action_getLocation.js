@@ -1,6 +1,6 @@
 export const GET_LOCATION = 'GET_LOCATION';
 import axios from 'axios';
-import API_KEY from './config.js';
+import { API_KEY } from '../../config';
 
 
 
