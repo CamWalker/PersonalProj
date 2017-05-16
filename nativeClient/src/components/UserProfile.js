@@ -98,10 +98,14 @@ class UserProfile extends Component {
             <View style={styles.arrowContainer}>
               <Text style={styles.arrowText}>&larr;</Text>
             </View>
+          </TouchableWithoutFeedback><TouchableWithoutFeedback  onPress={() => Actions.userProfileEdit()}>
+            <View style={styles.editContainer}>
+              <Text style={styles.editText}>Edit Profile</Text>
+            </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback  onPress={() => Actions.userProfileEdit()}>
             <View style={styles.editContainer}>
-              <Text style={styles.editText}>Edit Profile</Text>
+              <Text style={styles.editText}>Edit Picture</Text>
             </View>
           </TouchableWithoutFeedback>
         </View>
