@@ -15,66 +15,66 @@ class ProfileOverview extends Component {
 
   render() {
     const profile = this.props.login.data;
-      if (profile) {
-        let specs = [];
-        const educ = profile.education;
-        if (educ[0]) {
-          specs.push({spec: educ[0], path: '../pics/education4.png'});
-        } else {
-          specs.push({spec: {value: 'Blank'}, path: '../pics/education4.png'});
-        }
-        const work = profile.work;
-        if (work[0]) {
-          specs.push({spec: {value: work[0].value + " at " + work[0].employer}, path: '../pics/work2.png'});
-        } else {
-          specs.push({spec: {value: 'Blank'}, path: '../pics/work2.png'});
-        }
-        const relation = profile.relation;
-        if (profile.relationship_status) {
-          specs.push({spec: {value: profile.relationship_status}, path: '../pics/relationship2.png'});
-        } else if (relation[0]) {
-          let type = "";
-          switch (relation[0].value) {
-            case 'Pet(s)':
-              if (Number(relation[0].quantity) === 1) {
-                type = 'Pet';
-              } else {
-                type = 'Pets';
-              }
-              break;
-            case 'Child(ren)':
-              if (Number(relation[0].quantity) === 1) {
-                type = 'Child';
-              } else {
-                type = 'Children';
-              }
-              break;
-            case 'Sibling(s)':
-              if (Number(relation[0].quantity) === 1) {
-                type = 'Sibling';
-              } else {
-                type = 'Siblings';
-              }
-              break;
-            default:
+
+    let specs = [];
+    const educ = profile.education;
+    if (educ[0]) {
+      specs.push({spec: educ[0], path: '../pics/education4.png'});
+    } else {
+      specs.push({spec: {value: 'Blank'}, path: '../pics/education4.png'});
+    }
+    const work = profile.work;
+    if (work[0]) {
+      specs.push({spec: {value: work[0].value + " at " + work[0].employer}, path: '../pics/work2.png'});
+    } else {
+      specs.push({spec: {value: 'Blank'}, path: '../pics/work2.png'});
+    }
+    const relation = profile.relation;
+    if (profile.relationship_status) {
+      specs.push({spec: {value: profile.relationship_status}, path: '../pics/relationship2.png'});
+    } else if (relation[0]) {
+      let type = "";
+      switch (relation[0].value) {
+        case 'Pet(s)':
+          if (Number(relation[0].quantity) === 1) {
+            type = 'Pet';
+          } else {
+            type = 'Pets';
           }
-          specs.push({spec: { value: relation[0].quantity + " " + type }, path: '../pics/relationship2.png'});
-        } else {
-          specs.push({spec: {value: 'Blank'}, path: '../pics/relationship2.png'});
-        }
-        const lived =profile.lived;
-        if (lived[0]) {
-          specs.push({spec: lived[0], path: '../pics/location2.png'});
-        } else {
-          specs.push({spec: {value: 'Blank'}, path: '../pics/location2.png'});
-        }
-        specs = specs.map((spec, i) => {
-          return <SingleProfileSpec
-            spec={spec.spec}
-            key={i}
-            path={spec.path} />
-        });
+          break;
+        case 'Child(ren)':
+          if (Number(relation[0].quantity) === 1) {
+            type = 'Child';
+          } else {
+            type = 'Children';
+          }
+          break;
+        case 'Sibling(s)':
+          if (Number(relation[0].quantity) === 1) {
+            type = 'Sibling';
+          } else {
+            type = 'Siblings';
+          }
+          break;
+        default:
       }
+      specs.push({spec: { value: relation[0].quantity + " " + type }, path: '../pics/relationship2.png'});
+    } else {
+      specs.push({spec: {value: 'Blank'}, path: '../pics/relationship2.png'});
+    }
+    const lived =profile.lived;
+    if (lived[0]) {
+      specs.push({spec: lived[0], path: '../pics/location2.png'});
+    } else {
+      specs.push({spec: {value: 'Blank'}, path: '../pics/location2.png'});
+    }
+    specs = specs.map((spec, i) => {
+      return <SingleProfileSpec
+        spec={spec.spec}
+        key={i}
+        path={spec.path} />
+    });
+
 
 
   return (

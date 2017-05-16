@@ -23,7 +23,7 @@ app.use(session({
 app.use(redirectUnmatched);
 
 function redirectUnmatched(req, res) {
-  res.redirect("http://www.cam-walker.com/");
+  res.redirect("http://goodturn.cam-walker.com/");
 }
 
 var conn = massive.connectSync({
