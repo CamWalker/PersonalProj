@@ -87,11 +87,11 @@ class UserProfileEdit extends Component {
         message = 'Please do not leave fields blank in the Education section';
         return message;
       }
-      if (education[i].start != Number(education[i].start) || education[i].start.length !== 4) {
+      if (typeof Number(education[i].start) !== 'number' || education[i].start.length !== 4) {
         message = 'Start years and end years should be four digits';
         return message;
       }
-      if (education[i].end != Number(education[i].end) || education[i].end.length !== 4) {
+      if (typeof Number(education[i].end) !== 'number' || education[i].end.length !== 4) {
         message = 'Start years and end years should be four digits';
         return message;
       }
@@ -122,11 +122,11 @@ class UserProfileEdit extends Component {
         message = 'Please do not leave fields blank in the Work Experience section';
         return message;
       }
-      if (work[i].start != Number(work[i].start) || work[i].start.length !== 4) {
+      if (typeof Number(work[i].start) !== 'number' || work[i].start.length !== 4) {
         message = 'Start years and end years should be four digits';
         return message;
       }
-      if (work[i].end != Number(work[i].end) || work[i].end.length !== 4) {
+      if (typeof Number(work[i].end) !== 'number' || work[i].end.length !== 4) {
         message = 'Start years and end years should be four digits';
         return message;
       }

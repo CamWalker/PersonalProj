@@ -1093,6 +1093,8 @@ li {
   }
   .right-column {
     justify-content: flex-start;
+    margin-left: 0px;
+    margin: auto;
   }
   .below-nav {
     padding-top: 60px;

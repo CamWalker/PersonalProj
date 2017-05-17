@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SingleProfile from '../components/singleProfile';
-import { getFeed, activate } from '../actions/action_feed';
+import { activate } from '../actions/action_feed';
 import { selectProfile } from '../actions/action_selectProfile';
 import { getLocation } from '../actions/action_login';
 
 class ProfileFeed extends Component {
   componentWillMount() {
     if(!this.props.appActivated.feed && this.props.login.data.profileid) {
-      const { getFeed, getLocation, activate } = this.props;
+      const { getLocation, activate } = this.props;
       const userId = this.props.login.data.profileid;
       getLocation(userId);
       activate();
@@ -17,7 +17,7 @@ class ProfileFeed extends Component {
 
   componentDidUpdate() {
     if(!this.props.appActivated.feed && this.props.login.data.profileid) {
-      const { getFeed, getLocation, activate } = this.props;
+      const { getLocation, activate } = this.props;
       const userId = this.props.login.data.profileid;
       getLocation(userId);
       activate();
@@ -65,7 +65,6 @@ function mapStateToProps(store) {
 }
 
 export default connect(mapStateToProps, {
-  getFeed,
   selectProfile,
   getLocation,
   activate

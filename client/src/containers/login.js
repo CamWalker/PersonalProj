@@ -17,9 +17,8 @@ class Login extends Component {
   }
   componentWillMount() {
     if (!this.props.appActivated.firebase) {
-      console.log(config);
-      firebase.initializeApp(config);
       this.props.activate();
+      firebase.initializeApp(config);
     }
   }
 

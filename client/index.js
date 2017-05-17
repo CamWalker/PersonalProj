@@ -20,11 +20,11 @@ app.use(session({
 	saveUninitialized: true,
 	secret: config.secret
 }));
-app.use(redirectUnmatched);
-
-function redirectUnmatched(req, res) {
-  res.redirect("http://goodturn.cam-walker.com/");
-}
+// app.use(redirectUnmatched);
+//
+// function redirectUnmatched(req, res) {
+//   res.redirect("http://goodturn.cam-walker.com/");
+// }
 
 var conn = massive.connectSync({
   connectionString: config.connectionString

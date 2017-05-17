@@ -12,7 +12,6 @@ import firebase from 'firebase';
 
 export function getLocation(id) {
   return (dispatch) => {
-    console.log(API_KEY);
     const url = 'https://www.googleapis.com/geolocation/v1/geolocate?key=' + API_KEY
     axios.post(url)
       .then((location) => {
