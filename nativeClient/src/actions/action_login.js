@@ -22,19 +22,19 @@ export function loginAction() {
 
 export function logItIn(email, password) {
   return (dispatch) => {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-    .then((user) => {
+    // firebase.auth().signInWithEmailAndPassword(email, password)
+    // .then((user) => {
       axios.get('http://localhost:8080/profile/' + email + '/')
         .then((user) => {
           loginSucess(dispatch, user);
           Actions.main();
         })
         .catch((err) => console.log('fail', err))
-    })
-    .catch((err) => {
-      console.log(err);
-      loginFail(dispatch)
-    });
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    //   loginFail(dispatch)
+    // });
   }
 }
 

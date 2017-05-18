@@ -1,6 +1,7 @@
 export const UPDATE_SUCCESS = 'UPDATE_SUCCESS';
 export const UPDATE_FAIL = 'UPDATE_FAIL';
-export const CHANGE_EDITED = 'CHANGE_EDITED'
+export const CHANGE_EDITED = 'CHANGE_EDITED';
+export const CHANGE_PROFILE = 'CHANGE_PROFILE';
 import axios from 'axios';
 
 export function changeEditStatus() {
@@ -11,8 +12,6 @@ export function changeEditStatus() {
 
 export function updateInfo(values, newImage) {
   // RETURN AXIOS AJAX REQUEST //
-
-
 
   return (dispatch) => {
     axios.put('http://localhost:8080/newimage/', { newImage, id: values.profileid  })
@@ -41,4 +40,16 @@ export function updateFail(dispatch) {
   return dispatch({
     type: UPDATE_FAIL
   })
+}
+
+// PROFILE EDIT FORM
+
+export function changeProfile(prop, value, index) {
+  console.log(prop, value, index);
+  return {
+    type: CHANGE_PROFILE,
+    prop: prop,
+    value: value,
+    index: index
+  }
 }

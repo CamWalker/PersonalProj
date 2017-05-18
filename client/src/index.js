@@ -23,12 +23,16 @@ import UserProfilePic from './containers/UserProfilePic';
 const middleware = applyMiddleware(ReduxThunk, ReduxPromise);
 const store = createStore(reducers, middleware);
 
+function removeDropDown() {
+  document.getElementById("myDropdown").classList.remove("show");
+}
+
 ReactDOM.render(
   <Provider store={store}>
     <Router>
         <main>
           <Header />
-          <div className="below-nav">
+          <div className="below-nav" onClick={removeDropDown}>
             <Route path='/' exact={true} component={App} />
             <Route path='/login' component={Login} />
             <Route path='/profile' component={UserProfile} />

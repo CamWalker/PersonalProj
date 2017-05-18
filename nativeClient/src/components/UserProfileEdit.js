@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
-import { View, Image, Text, TouchableWithoutFeedback } from 'react-native';
+import { View, Image, Text, TouchableWithoutFeedback, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
 
 import SelectedProfileSpec from './SelectedProfileSpec';
 import SelectedProfileGTKY from './SelectedProfileGTKY';
+import { changeProfile } from '../actions/action_updateInfo';
 
 class UserProfileEdit extends Component {
 
+  changeProfile(prop, value, index) {
+    console.log(prop, value, index);
+    this.props.changeProfile(prop, value, index);
+  }
 
   render() {
-    const user = this.props.login.data;
+    const user = this.props.login.temp;
 
 
     let education = "";
@@ -102,11 +107,10 @@ class UserProfileEdit extends Component {
         </View>
         <View style={styles.topContainer}>
           <Text style={styles.titleTop}>Name</Text>
-          <Text style={styles.textTop}>{user.first_name} {user.last_name}</Text>
-        </View>
-        <View style={styles.topContainer}>
-          <Text style={styles.titleTop}>Profile Picture</Text>
-          <Image style={styles.imageProfile} source={{uri: user.pic}} />
+          <View style={styles.textTopContainer}>
+            <TextInput onChangeText={first_name => this.changeProfile('first_name', first_name)} style={styles.textTop} value={user.first_name} />
+            <TextInput onChangeText={last_name => this.changeProfile('last_name', last_name)} style={styles.textTop} value={user.last_name} />
+          </View>
         </View>
         <View>
           <View style={styles.hrContainer}>
@@ -149,6 +153,11 @@ class UserProfileEdit extends Component {
           <Text style={styles.title}>Optional Inputs</Text>
           {(gtkys === "") ? <Text>gtkys</Text> : gtkys}
         </View>
+        <TouchableWithoutFeedback  onPress={() => Actions.userProfileEdit()}>
+          <View style={styles.editContainer}>
+            <Text style={styles.editText}>Save</Text>
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     )
   }
@@ -176,6 +185,16 @@ const styles = {
   textTop: {
     color: '#aaa',
     fontSize: 16,
+    height: 26,
+    width: 100,
+    padding: 5,
+    marginHorizontal: 5,
+    borderColor: '#d1cbc7',
+    borderWidth: 1,
+    borderRadius: 5
+  },
+  textTopContainer: {
+    flexDirection: 'row'
   },
   arrowContainer: {
     backgroundColor: '#597d9e',
@@ -220,6 +239,20 @@ const styles = {
   },
   topContainer: {
     alignItems: 'center'
+  },
+  editContainer: {
+    backgroundColor: '#597d9e',
+    height: 40,
+    width: 90,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    marginVertical: 10
+  },
+  editText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 14
   }
 };
 
@@ -230,4 +263,4 @@ function mapStateToProps(store) {
   };
 }
 
-export default connect(mapStateToProps)(UserProfileEdit);
+export default connect(mapStateToProps, { changeProfile })(UserProfileEdit);

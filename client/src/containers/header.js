@@ -7,11 +7,13 @@ import { bindActionCreators } from 'redux';
 
 
 class Header extends Component {
-  componentWillMount() {
 
-  }
   showDropDown() {
     document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  removeDropDown() {
+    document.getElementById("myDropdown").classList.remove("show");
   }
 
   onLogout() {
@@ -21,7 +23,7 @@ class Header extends Component {
   render () {
     return (
       <header>
-        <div className="left-nav-items">
+        <div className="left-nav-items" >
           <div onClick={this.showDropDown} className="dropdown mobile-view">
             <div className="dropbtn">
               <div className="dropbtn-bar"></div>
@@ -37,10 +39,10 @@ class Header extends Component {
             </div>
           </div>
         </div>
-        <div className="logo">
+        <div className="logo" onClick={this.removeDropDown}>
           <Link to="/"><img className="logo-G" src="../pics/GTLogo4.png" alt="" /></Link>
         </div>
-        <div className="right-nav">
+        <div className="right-nav" onClick={this.removeDropDown}>
           <nav className="desktop-view">
             <Link to="/">Home</Link>
             <Link to="/about">About</Link>

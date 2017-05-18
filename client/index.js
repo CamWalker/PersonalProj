@@ -10,7 +10,7 @@ var app = module.exports = express();
 // const corsOptions = {
 // 	origin: 'http://localhost:8080'
 // };
-const port = 8080
+const port = 80
 app.use(express.static(__dirname + '/build'));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
@@ -20,11 +20,7 @@ app.use(session({
 	saveUninitialized: true,
 	secret: config.secret
 }));
-// app.use(redirectUnmatched);
-//
-// function redirectUnmatched(req, res) {
-//   res.redirect("http://goodturn.cam-walker.com/");
-// }
+
 
 var conn = massive.connectSync({
   connectionString: config.connectionString

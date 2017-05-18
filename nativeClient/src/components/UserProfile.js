@@ -98,16 +98,19 @@ class UserProfile extends Component {
             <View style={styles.arrowContainer}>
               <Text style={styles.arrowText}>&larr;</Text>
             </View>
-          </TouchableWithoutFeedback><TouchableWithoutFeedback  onPress={() => Actions.userProfileEdit()}>
-            <View style={styles.editContainer}>
-              <Text style={styles.editText}>Edit Profile</Text>
-            </View>
           </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback  onPress={() => Actions.userProfileEdit()}>
-            <View style={styles.editContainer}>
-              <Text style={styles.editText}>Edit Picture</Text>
-            </View>
-          </TouchableWithoutFeedback>
+          <View>
+            <TouchableWithoutFeedback  onPress={() => Actions.userProfileEdit()}>
+              <View style={styles.editContainer}>
+                <Text style={styles.editText}>Edit Profile</Text>
+              </View>
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback  onPress={() => Actions.userPicEdit()}>
+              <View style={styles.editContainer}>
+                <Text style={styles.editText}>Edit Pic</Text>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
         </View>
         <View style={styles.topContainer}>
           <Text style={styles.titleTop}>Name</Text>
@@ -197,7 +200,8 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
-    marginBottom: 10
+    marginBottom: 10,
+    marginRight: 50
   },
   arrowText: {
     color: '#fff',

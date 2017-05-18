@@ -5,6 +5,7 @@ import Feed from './components/Feed';
 import SelectedProfile from './components/SelectedProfile';
 import UserProfilePage from './components/UserProfilePage';
 import UserProfileEditPage from './components/UserProfileEditPage';
+import UserPicEditPage from './components/UserPicEditPage';
 
 const RouterComponent = () => {
   return (
@@ -21,6 +22,7 @@ const RouterComponent = () => {
       <Scene key="profile" hideNavBar>
         <Scene key="userProfile" component={UserProfilePage} title="User Profile" />
         <Scene key="userProfileEdit" component={UserProfileEditPage} title="Edit User Profile" />
+        <Scene key="userPicEdit" component={UserPicEditPage} title="Edit User Pic" />
       </Scene>
     </Router>
   );
