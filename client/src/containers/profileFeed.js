@@ -51,6 +51,7 @@ class ProfileFeed extends Component {
     return (
       <div className="profile-list">
         {profileItems}
+        <div className="filler"></div>
       </div>
     );
   }

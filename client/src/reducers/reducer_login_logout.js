@@ -31,11 +31,11 @@ export default function(state = INITIAL_STATE, action) {
     case LOGOUT:
       return { ...state, loggedIn: false, message: '' };
     case LOGIN_ERROR:
-      return { ...state, message: 'Failed to authenticate' };
+      return { ...state, message: 'Incorrect email/password' };
     case UPDATE_SUCCESS:
       return { ...state, data: action.payload.data, message: 'Profile saved and updated!', edited: true };
     case UPDATE_PIC:
-      return { ...state, data: action.payload.data, message: 'Profile picture saved. It may take a few minutes to update.', edited: true };
+      return { ...state, data: action.payload.data, message: 'Profile picture saved. Update may take a few minutes.', edited: true };
     case UPDATE_FAIL:
       return { ...state, message: 'Failed to save'};
     case CHANGE_EDITED:
@@ -45,7 +45,7 @@ export default function(state = INITIAL_STATE, action) {
     case MESSAGE_CLEAR:
       return { ...state, message: '', edited: false }
     case GET_LOCATION:
-      return { ...state, location: action.payload.data.results[3].formatted_address }
+      return { ...state, location: action.payload.data.results[2].formatted_address }
     default:
       return state;
   }
