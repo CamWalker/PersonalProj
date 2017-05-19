@@ -120,7 +120,7 @@ class UserProfile extends Component {
             <div className="user-container">
               <div className="user-top-buttons">
                 <Link to="/"><button onClick={this.editStatus} className="user-back">BACK</button></Link>
-                <Link to="/picture"><button onClick={this.editStatus} className="user-edit">Change Picture</button></Link>
+                <Link to="/picture"><button onClick={this.editStatus} className="user-edit">CHANGE PIC</button></Link>
                 <Link to="/edit"><button onClick={this.editStatus} className="user-edit">EDIT</button></Link>
               </div>
               <div className="user-forms">

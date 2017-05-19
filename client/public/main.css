@@ -133,7 +133,7 @@ textarea.help-field {
 }
 .modal-content {
     margin: auto;
-    width: 90%;
+    width: 100%;
     padding: 15px;
     position: relative;
     /*background-color: #fffdfb;
@@ -179,6 +179,7 @@ textarea.help-field {
     cursor: pointer;
     height: 25px;
     width: 25px;
+    margin-top: 12px;
     margin-left: 15px;
     padding: 5px;
     display: flex;
@@ -696,12 +697,17 @@ textarea.help-field {
 body {
   margin: 0px;
   padding: 0px;
+  width: 100%;
   background-color: #FFFBF7;
   font-family: 'Roboto', sans-serif;
+}
+#app {
+  width: 100%;
 }
 main {
   margin: 0px;
   padding: 0px;
+  width: 100%;
   background-color: #FFFBF7;
 }
 header {
@@ -709,6 +715,7 @@ header {
   width: 100%;
   background-color: #fffdfb;
   position: fixed;
+  padding: 0px;
   margin: 0px;
   display: flex;
   flex-direction: row;
@@ -724,6 +731,7 @@ header {
   align-items: center;
   position: absolute;
   left: 0px;
+  top: 0px;
 }
 .profile-view {
   width: 41px;
@@ -849,12 +857,13 @@ li {
   /*background-color: #fffdfb;*/
   /*position: fixed;*/
   /*width: 265px;*/
-  margin: auto;
+  /*margin: auto;*/
   /*padding: 15px;*/
   margin-top: 15px;
   /*height: calc(100vh - 120px);*/
   /*box-shadow: 0px 1px 5px #cdc7c2;*/
   /*border-radius: 5px;*/
+  width: 100%;
 }
 .gradient-back {
   position:absolute;
@@ -874,6 +883,7 @@ li {
     /*width: 100%;*/
     /*min-width: 265px;*/
     /*margin: 0px;*/
+    width: calc(100% - 35px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -942,6 +952,7 @@ li {
       background-color: #fffdfb;
       box-shadow: 0px 1px 5px #cdc7c2;
       margin: 3px 10px;
+      width: calc(100% - 20px)
     }
 
     .item-box {
